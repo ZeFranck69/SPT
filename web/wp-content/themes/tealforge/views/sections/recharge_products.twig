@@ -1,0 +1,89 @@
+<section id="recharges" class="tf-recharge-products" aria-labelledby="recharge-products-title">
+    <div class="tf-recharge-products__inner">
+        <div class="tf-section-heading">
+            <h2 id="recharge-products-title" class="tf-section-heading__title">
+                {{ section.title }}
+            </h2>
+
+            {% if section.eyebrow %}
+                <p class="tf-section-heading__text">{{ section.eyebrow }}</p>
+            {% endif %}
+        </div>
+
+        {% if section.product_groups %}
+            <div class="tf-recharge-products__groups">
+                {% for group in section.product_groups %}
+                    <section class="tf-recharge-products__group tf-recharge-products__group--{{ group.tone }}" aria-labelledby="recharge-group-{{ group.tone }}">
+                        <div class="tf-recharge-products__group-heading">
+                            <span class="tf-recharge-products__group-mark" aria-hidden="true">
+                                {% include 'components/icon.twig' with { name: group.icon } only %}
+                            </span>
+                            <h3 id="recharge-group-{{ group.tone }}">{{ group.title }}</h3>
+                        </div>
+
+                        <div class="tf-recharge-products__grid">
+                            {% for product in group.products %}
+                                <article class="tf-recharge-product tf-recharge-product--{{ product.tone }}{% if product.featured %} tf-recharge-product--featured{% endif %}">
+                                    {% if product.featured %}
+                                        <p class="tf-recharge-product__popular">Populaire</p>
+                                    {% endif %}
+
+                                    <div class="tf-recharge-product__body">
+                                        <p class="tf-recharge-product__amount">{{ product.amount }}</p>
+                                        <p class="tf-recharge-product__description">{{ product.description }}</p>
+                                    </div>
+
+                                    {% if product.bonus %}
+                                        <p class="tf-recharge-product__bonus">{{ product.bonus }}</p>
+                                    {% endif %}
+
+                                    {% if product.can_quick_add %}
+                                        <form class="tf-recharge-product__purchase" method="post" action="{{ function('esc_url', product.add_to_cart_action) }}">
+                                            <label for="recharge-quantity-{{ product.id }}">Quantité</label>
+                                            <div class="tf-recharge-product__quantity" data-tf-quantity>
+                                                <button
+                                                    class="tf-recharge-product__quantity-button"
+                                                    type="button"
+                                                    aria-label="Diminuer la quantité"
+                                                    data-tf-quantity-decrease
+                                                >−</button>
+                                                <input
+                                                    id="recharge-quantity-{{ product.id }}"
+                                                    class="tf-recharge-product__quantity-input"
+                                                    type="number"
+                                                    name="quantity"
+                                                    value="1"
+                                                    min="1"
+                                                    max="{{ product.quantity_options|last }}"
+                                                    step="1"
+                                                    inputmode="numeric"
+                                                    aria-label="Quantité de recharges {{ product.family }} {{ product.amount }}"
+                                                >
+                                                <button
+                                                    class="tf-recharge-product__quantity-button"
+                                                    type="button"
+                                                    aria-label="Augmenter la quantité"
+                                                    data-tf-quantity-increase
+                                                >+</button>
+                                            </div>
+                                            <button
+                                                class="tf-recharge-product__button"
+                                                type="submit"
+                                                name="add-to-cart"
+                                                value="{{ product.id }}"
+                                            >
+                                                Ajouter au panier
+                                            </button>
+                                        </form>
+                                    {% else %}
+                                        <p class="tf-recharge-product__unavailable">Indisponible</p>
+                                    {% endif %}
+                                </article>
+                            {% endfor %}
+                        </div>
+                    </section>
+                {% endfor %}
+            </div>
+        {% endif %}
+    </div>
+</section>

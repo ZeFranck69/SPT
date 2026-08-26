@@ -1,10 +1,26 @@
 <footer class="tf-site-footer">
     <div class="tf-site-footer__inner tf-container">
-        <p>&copy; {{ 'now'|date('Y') }} {{ site.name }}</p>
+        <div class="tf-site-footer__brand">
+            <a class="tf-site-header__brand" href="{{ function('esc_url', site.url) }}">
+                <span class="tf-site-header__brand-mark">SPT</span>
+                <span class="tf-site-header__brand-copy">
+                    <strong>{{ site.name }}</strong>
+                    <small>Wallis &amp; Futuna</small>
+                </span>
+            </a>
+            <p>
+                Service de recharges mobiles prépayées en ligne à Wallis et Futuna.
+            </p>
+        </div>
 
         {% include 'components/menu.twig' with {
             menu: menus.footer,
             class_name: 'tf-menu tf-menu--footer'
         } only %}
+
+        <div class="tf-site-footer__meta">
+            <p>&copy; {{ 'now'|date('Y') }} {{ site.name }}. Tous droits réservés.</p>
+            <p>Paiement sécurisé</p>
+        </div>
     </div>
 </footer>

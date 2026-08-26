@@ -1,12 +1,12 @@
 {% extends 'layouts/base.twig' %}
 
 {% block content %}
-    <article class="tf-content">
+    <article class="tf-content tf-inner-page">
         <div class="tf-content__inner">
-            <h1>{{ post.title }}</h1>
+            {% include 'components/inner-page-heading.twig' with { heading: heading } only %}
 
             {% if post.content %}
-                <div class="tf-wysiwyg">
+                <div class="tf-wysiwyg tf-inner-page__content">
                     {{ post.content }}
                 </div>
             {% endif %}

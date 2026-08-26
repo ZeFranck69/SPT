@@ -1,0 +1,17 @@
+<header class="tf-inner-page-heading">
+    {% if heading.icon %}
+        <span class="tf-inner-page-heading__icon" aria-hidden="true">
+            {% include 'components/icon.twig' with { name: heading.icon } only %}
+        </span>
+    {% endif %}
+
+    {% if heading.eyebrow %}
+        <p class="tf-inner-page-heading__eyebrow">{{ heading.eyebrow }}</p>
+    {% endif %}
+
+    <h1 class="tf-inner-page-heading__title">{{ heading.title }}</h1>
+
+    {% if heading.text %}
+        <p class="tf-inner-page-heading__text">{{ heading.text }}</p>
+    {% endif %}
+</header>

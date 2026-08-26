@@ -1,0 +1,66 @@
+<section
+    class="tf-recharge-hero"
+    aria-labelledby="recharge-hero-title"
+>
+    <div class="tf-recharge-hero__inner">
+        <div class="tf-recharge-hero__content">
+            {% if section.eyebrow %}
+                <p class="tf-recharge-hero__eyebrow">
+                    {% include 'components/icon.twig' with { name: 'zap', class_name: 'tf-recharge-hero__eyebrow-icon' } only %}
+                    {{ section.eyebrow }}
+                </p>
+            {% endif %}
+
+            <h1 id="recharge-hero-title" class="tf-recharge-hero__title">
+                {{ section.title_before }}{% if section.title_highlight %}<span>{{ section.title_highlight }}</span>{% endif %}{{ section.title_after }}
+            </h1>
+
+            {% if section.text %}
+                <p class="tf-recharge-hero__text">
+                    {{ section.text }}
+                </p>
+            {% endif %}
+
+            <div class="tf-recharge-hero__actions">
+                {% if section.primary_label and section.primary_url %}
+                    <a class="tf-button" href="{{ function('esc_url', section.primary_url) }}">
+                        {{ section.primary_label }}
+                    </a>
+                {% endif %}
+
+                {% if section.secondary_label and section.secondary_url %}
+                    <a class="tf-button tf-button--secondary" href="{{ function('esc_url', section.secondary_url) }}">
+                        {{ section.secondary_label }}
+                    </a>
+                {% endif %}
+            </div>
+
+            <div class="tf-recharge-hero__signals" aria-label="Informations de confiance">
+                <div class="tf-recharge-hero__signal">
+                    <strong>{{ section.stat_value }}</strong>
+                    <span>{{ section.stat_label }} {{ section.stat_suffix }}</span>
+                </div>
+
+                {% for card in section.mini_cards %}
+                    <div class="tf-recharge-hero__signal">
+                        <strong>{{ card.amount }}</strong>
+                        <span>{{ card.text }}</span>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+
+        <figure class="tf-recharge-hero__visual">
+            <img
+                class="tf-recharge-hero__image"
+                src="{{ function('esc_url', section.hero_image) }}"
+                alt="Recharge mobile SPT sécurisée"
+                fetchpriority="high"
+            >
+            <figcaption class="tf-recharge-hero__visual-content">
+                {% include 'components/icon.twig' with { name: 'smartphone', class_name: 'tf-recharge-hero__visual-icon' } only %}
+                <span>Recharge mobile facile</span>
+            </figcaption>
+        </figure>
+    </div>
+</section>

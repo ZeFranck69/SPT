@@ -1,0 +1,72 @@
+{% extends 'layouts/base.twig' %}
+
+{% block content %}
+    <section class="tf-contact-page" aria-label="Contact SPT">
+        {% set contact_heading = {
+            icon: 'message-circle',
+            eyebrow: 'Contact & Support',
+            title: 'Une question sur une recharge ?',
+            text: 'Notre équipe vous accompagne pour vos commandes et vos codes vouchers.'
+        } %}
+        {% include 'components/inner-page-heading.twig' with { heading: contact_heading } only %}
+
+        <div class="tf-contact-page__inner">
+            <aside class="tf-contact-page__intro">
+                <div class="tf-contact-info">
+                    <h2 class="tf-contact-info__title">Nos coordonnées</h2>
+
+                    <div class="tf-contact-info__list">
+                        {% for item in contact.items %}
+                            <div>
+                                <span class="tf-contact-info__icon" aria-hidden="true">
+                                    {% include 'components/icon.twig' with { name: item.icon } only %}
+                                </span>
+                                <div class="tf-contact-info__copy">
+                                    <p class="tf-contact-info__label">{{ item.label }}</p>
+                                    <p class="tf-contact-info__value">
+                                        {% if item.url %}<a href="{{ function('esc_url', item.url) }}">{{ item.value }}</a>{% else %}{{ item.value }}{% endif %}
+                                    </p>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </aside>
+
+            <div class="tf-contact-page__main">
+                <div class="tf-contact-card">
+                    <p class="tf-contact-card__eyebrow">Support client</p>
+                    <h2 class="tf-contact-card__title">Envoyer un message</h2>
+
+                    {% if post.content %}
+                        <div class="tf-wysiwyg">
+                            {{ post.content }}
+                        </div>
+                    {% else %}
+                        <p class="tf-contact-card__empty">
+                            Ajoutez un shortcode WPForms dans la page Contact pour afficher le formulaire.
+                        </p>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+
+        <div class="tf-contact-faq">
+            <div class="tf-contact-faq__inner">
+                <div class="tf-section-heading">
+                    <p class="tf-section-heading__eyebrow">Aide rapide</p>
+                    <h2 class="tf-section-heading__title">Questions fréquentes</h2>
+                </div>
+
+                <div class="tf-contact-faq__grid">
+                    {% for item in contact.faq %}
+                        <article class="tf-faq-item">
+                            <h3 class="tf-faq-item__question">{{ item.question }}</h3>
+                            <p class="tf-faq-item__answer">{{ item.answer }}</p>
+                        </article>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}

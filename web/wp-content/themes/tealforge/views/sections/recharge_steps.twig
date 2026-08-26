@@ -1,0 +1,30 @@
+<section id="fonctionnement" class="tf-recharge-steps" aria-labelledby="recharge-steps-title">
+    <div class="tf-recharge-steps__inner">
+        <div class="tf-section-heading">
+            <h2 id="recharge-steps-title" class="tf-section-heading__title">
+                {{ section.title }}
+            </h2>
+
+            {% if section.eyebrow %}
+                <p class="tf-section-heading__text">{{ section.eyebrow }}</p>
+            {% endif %}
+        </div>
+
+        {% if section.steps %}
+            <ol class="tf-recharge-steps__list">
+                {% for step in section.steps %}
+                    <li class="tf-recharge-step{% if step.featured %} tf-recharge-step--featured{% endif %}">
+                        <span class="tf-recharge-step__number">{{ step.number }}</span>
+                        {% include 'components/icon.twig' with { name: step.icon, class_name: 'tf-recharge-step__icon' } only %}
+                        <h3 class="tf-recharge-step__title">{{ step.title }}</h3>
+                        <p class="tf-recharge-step__text">{{ step.text }}</p>
+
+                        {% if step.badge %}
+                            <span class="tf-recharge-step__badge">{{ step.badge }}</span>
+                        {% endif %}
+                    </li>
+                {% endfor %}
+            </ol>
+        {% endif %}
+    </div>
+</section>

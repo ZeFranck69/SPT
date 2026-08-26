@@ -1,17 +1,15 @@
 {% extends 'layouts/base.twig' %}
 
 {% block content %}
-    <section class="tf-page-hero">
-        <div class="tf-page-hero__inner">
-            <h1 class="tf-page-hero__title">
-                {{ post.title ?: site.name }}
-            </h1>
-
-            {% if post.content %}
-                <div class="tf-page-hero__text">
-                    {{ post.content }}
-                </div>
-            {% endif %}
+    {% if woocommerce_notices %}
+        <div class="tf-home-notices" aria-live="polite">
+            {{ woocommerce_notices|raw }}
         </div>
-    </section>
+    {% endif %}
+
+    {% for section in sections %}
+        {% include ['sections/' ~ section.acf_fc_layout ~ '.twig', 'sections/unknown.twig'] with {
+            section: section
+        } only %}
+    {% endfor %}
 {% endblock %}

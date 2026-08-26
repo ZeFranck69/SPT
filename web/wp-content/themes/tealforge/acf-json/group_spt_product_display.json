@@ -1,0 +1,77 @@
+{
+    "key": "group_spt_product_display",
+    "title": "Affichage recharge SPT",
+    "fields": [
+        {
+            "key": "field_spt_product_display_family",
+            "label": "Famille",
+            "name": "recharge_family",
+            "type": "text",
+            "instructions": "Exemple : Papito ou Neti."
+        },
+        {
+            "key": "field_spt_product_display_type",
+            "label": "Type",
+            "name": "recharge_type",
+            "type": "text",
+            "instructions": "Exemple : Voix ou Data."
+        },
+        {
+            "key": "field_spt_product_display_amount",
+            "label": "Montant affiché",
+            "name": "recharge_amount",
+            "type": "text",
+            "instructions": "Exemple : 1 000 F."
+        },
+        {
+            "key": "field_spt_product_display_description",
+            "label": "Description courte",
+            "name": "recharge_description",
+            "type": "text"
+        },
+        {
+            "key": "field_spt_product_display_bonus",
+            "label": "Bonus",
+            "name": "recharge_bonus",
+            "type": "text"
+        },
+        {
+            "key": "field_spt_product_display_featured",
+            "label": "Populaire",
+            "name": "recharge_featured",
+            "type": "true_false",
+            "ui": 1
+        },
+        {
+            "key": "field_spt_product_display_tone",
+            "label": "Couleur",
+            "name": "recharge_tone",
+            "type": "select",
+            "choices": {
+                "papito": "Papito",
+                "neti": "Neti"
+            },
+            "default_value": "papito",
+            "return_format": "value"
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "post_type",
+                "operator": "==",
+                "value": "product"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": true,
+    "description": "Champs utilisés par les sections de recharge pour afficher les produits WooCommerce.",
+    "show_in_rest": 0,
+    "modified": 1787702400
+}

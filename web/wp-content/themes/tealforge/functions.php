@@ -14,3 +14,8 @@ require_once __DIR__ . '/inc/helpers.php';
 require_once __DIR__ . '/inc/setup.php';
 require_once __DIR__ . '/inc/assets.php';
 require_once __DIR__ . '/inc/timber.php';
+require_once __DIR__ . '/inc/sections.php';
+
+if (class_exists('WooCommerce')) {
+    require_once __DIR__ . '/inc/woocommerce.php';
+}

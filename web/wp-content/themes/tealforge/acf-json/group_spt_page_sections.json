@@ -1,0 +1,346 @@
+{
+    "key": "group_spt_page_sections",
+    "title": "Sections de page",
+    "fields": [
+        {
+            "key": "field_spt_page_sections",
+            "label": "Sections",
+            "name": "page_sections",
+            "aria-label": "",
+            "type": "flexible_content",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "layouts": {
+                "layout_spt_recharge_hero": {
+                    "key": "layout_spt_recharge_hero",
+                    "name": "recharge_hero",
+                    "label": "Hero recharges",
+                    "display": "block",
+                    "sub_fields": [
+                        {
+                            "key": "field_spt_hero_eyebrow",
+                            "label": "Accroche",
+                            "name": "eyebrow",
+                            "type": "text"
+                        },
+                        {
+                            "key": "field_spt_hero_title",
+                            "label": "Titre",
+                            "name": "title",
+                            "type": "text"
+                        },
+                        {
+                            "key": "field_spt_hero_text",
+                            "label": "Texte",
+                            "name": "text",
+                            "type": "textarea",
+                            "rows": 3
+                        },
+                        {
+                            "key": "field_spt_hero_primary_label",
+                            "label": "Libellé bouton principal",
+                            "name": "primary_label",
+                            "type": "text"
+                        },
+                        {
+                            "key": "field_spt_hero_primary_url",
+                            "label": "Lien bouton principal",
+                            "name": "primary_url",
+                            "type": "text"
+                        },
+                        {
+                            "key": "field_spt_hero_secondary_label",
+                            "label": "Libellé bouton secondaire",
+                            "name": "secondary_label",
+                            "type": "text"
+                        },
+                        {
+                            "key": "field_spt_hero_secondary_url",
+                            "label": "Lien bouton secondaire",
+                            "name": "secondary_url",
+                            "type": "text"
+                        },
+                        {
+                            "key": "field_spt_hero_image",
+                            "label": "Image de fond",
+                            "name": "hero_image",
+                            "type": "image",
+                            "return_format": "array",
+                            "preview_size": "medium",
+                            "library": "all"
+                        },
+                        {
+                            "key": "field_spt_hero_stat_label",
+                            "label": "Libellé statistique",
+                            "name": "stat_label",
+                            "type": "text"
+                        },
+                        {
+                            "key": "field_spt_hero_stat_value",
+                            "label": "Valeur statistique",
+                            "name": "stat_value",
+                            "type": "text"
+                        },
+                        {
+                            "key": "field_spt_hero_stat_suffix",
+                            "label": "Suffixe statistique",
+                            "name": "stat_suffix",
+                            "type": "text"
+                        },
+                        {
+                            "key": "field_spt_hero_stat_badge",
+                            "label": "Badge statistique",
+                            "name": "stat_badge",
+                            "type": "text"
+                        },
+                        {
+                            "key": "field_spt_hero_mini_cards",
+                            "label": "Mini cartes",
+                            "name": "mini_cards",
+                            "type": "repeater",
+                            "layout": "table",
+                            "button_label": "Ajouter une mini carte",
+                            "sub_fields": [
+                                {
+                                    "key": "field_spt_hero_mini_card_label",
+                                    "label": "Libellé",
+                                    "name": "label",
+                                    "type": "text"
+                                },
+                                {
+                                    "key": "field_spt_hero_mini_card_amount",
+                                    "label": "Montant",
+                                    "name": "amount",
+                                    "type": "text"
+                                },
+                                {
+                                    "key": "field_spt_hero_mini_card_text",
+                                    "label": "Texte",
+                                    "name": "text",
+                                    "type": "text"
+                                }
+                            ]
+                        }
+                    ],
+                    "min": "",
+                    "max": ""
+                },
+                "layout_spt_recharge_products": {
+                    "key": "layout_spt_recharge_products",
+                    "name": "recharge_products",
+                    "label": "Grille de recharges",
+                    "display": "block",
+                    "sub_fields": [
+                        {
+                            "key": "field_spt_products_eyebrow",
+                            "label": "Accroche",
+                            "name": "eyebrow",
+                            "type": "text"
+                        },
+                        {
+                            "key": "field_spt_products_title",
+                            "label": "Titre",
+                            "name": "title",
+                            "type": "text"
+                        },
+                        {
+                            "key": "field_spt_products_items",
+                            "label": "Produits",
+                            "name": "products",
+                            "type": "relationship",
+                            "instructions": "Sélectionner les produits WooCommerce à afficher dans cette grille.",
+                            "post_type": [
+                                "product"
+                            ],
+                            "taxonomy": "",
+                            "filters": [
+                                "search",
+                                "taxonomy"
+                            ],
+                            "return_format": "id",
+                            "min": "",
+                            "max": ""
+                        }
+                    ],
+                    "min": "",
+                    "max": ""
+                },
+                "layout_spt_recharge_families": {
+                    "key": "layout_spt_recharge_families",
+                    "name": "recharge_families",
+                    "label": "Familles de recharges",
+                    "display": "block",
+                    "sub_fields": [
+                        {
+                            "key": "field_spt_families_items",
+                            "label": "Familles",
+                            "name": "families",
+                            "type": "repeater",
+                            "layout": "block",
+                            "button_label": "Ajouter une famille",
+                            "sub_fields": [
+                                {
+                                    "key": "field_spt_family_eyebrow",
+                                    "label": "Accroche",
+                                    "name": "eyebrow",
+                                    "type": "text"
+                                },
+                                {
+                                    "key": "field_spt_family_title",
+                                    "label": "Titre",
+                                    "name": "title",
+                                    "type": "text"
+                                },
+                                {
+                                    "key": "field_spt_family_text",
+                                    "label": "Texte",
+                                    "name": "text",
+                                    "type": "textarea",
+                                    "rows": 3
+                                },
+                                {
+                                    "key": "field_spt_family_tone",
+                                    "label": "Couleur",
+                                    "name": "tone",
+                                    "type": "select",
+                                    "choices": {
+                                        "papito": "Papito",
+                                        "neti": "Neti"
+                                    },
+                                    "default_value": "papito",
+                                    "return_format": "value"
+                                }
+                            ]
+                        }
+                    ],
+                    "min": "",
+                    "max": ""
+                },
+                "layout_spt_recharge_steps": {
+                    "key": "layout_spt_recharge_steps",
+                    "name": "recharge_steps",
+                    "label": "Comment ça marche",
+                    "display": "block",
+                    "sub_fields": [
+                        {
+                            "key": "field_spt_steps_eyebrow",
+                            "label": "Accroche",
+                            "name": "eyebrow",
+                            "type": "text"
+                        },
+                        {
+                            "key": "field_spt_steps_title",
+                            "label": "Titre",
+                            "name": "title",
+                            "type": "text"
+                        },
+                        {
+                            "key": "field_spt_steps_items",
+                            "label": "Étapes",
+                            "name": "steps",
+                            "type": "repeater",
+                            "layout": "block",
+                            "button_label": "Ajouter une étape",
+                            "sub_fields": [
+                                {
+                                    "key": "field_spt_step_number",
+                                    "label": "Numéro",
+                                    "name": "number",
+                                    "type": "text"
+                                },
+                                {
+                                    "key": "field_spt_step_title",
+                                    "label": "Titre",
+                                    "name": "title",
+                                    "type": "text"
+                                },
+                                {
+                                    "key": "field_spt_step_text",
+                                    "label": "Texte",
+                                    "name": "text",
+                                    "type": "textarea",
+                                    "rows": 3
+                                },
+                                {
+                                    "key": "field_spt_step_badge",
+                                    "label": "Badge",
+                                    "name": "badge",
+                                    "type": "text"
+                                },
+                                {
+                                    "key": "field_spt_step_featured",
+                                    "label": "Mise en avant",
+                                    "name": "featured",
+                                    "type": "true_false",
+                                    "ui": 1
+                                }
+                            ]
+                        }
+                    ],
+                    "min": "",
+                    "max": ""
+                },
+                "layout_spt_reassurance": {
+                    "key": "layout_spt_reassurance",
+                    "name": "reassurance",
+                    "label": "Réassurance",
+                    "display": "block",
+                    "sub_fields": [
+                        {
+                            "key": "field_spt_reassurance_items",
+                            "label": "Éléments",
+                            "name": "items",
+                            "type": "repeater",
+                            "layout": "table",
+                            "button_label": "Ajouter un élément",
+                            "sub_fields": [
+                                {
+                                    "key": "field_spt_reassurance_title",
+                                    "label": "Titre",
+                                    "name": "title",
+                                    "type": "text"
+                                },
+                                {
+                                    "key": "field_spt_reassurance_text",
+                                    "label": "Texte",
+                                    "name": "text",
+                                    "type": "text"
+                                }
+                            ]
+                        }
+                    ],
+                    "min": "",
+                    "max": ""
+                }
+            },
+            "min": "",
+            "max": "",
+            "button_label": "Ajouter une section"
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "page_type",
+                "operator": "==",
+                "value": "front_page"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": true,
+    "description": "",
+    "show_in_rest": 0,
+    "modified": 1787702400
+}

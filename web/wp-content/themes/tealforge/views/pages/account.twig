@@ -1,0 +1,27 @@
+{% extends 'layouts/base.twig' %}
+
+{% block content %}
+    <section class="tf-woo-page tf-account-page{{ spt_account.is_logged_in ? ' tf-account-page--authenticated' : ' tf-account-page--guest' }}">
+        <div class="tf-woo-page__inner">
+            {% set account_heading = {
+                icon: 'users',
+                eyebrow: spt_account.is_logged_in ? 'Espace client' : 'Connexion sécurisée',
+                title: spt_account.is_logged_in and spt_account.display_name ? 'Bonjour ' ~ spt_account.display_name : post.title,
+                text: spt_account.is_logged_in ? 'Retrouvez vos commandes et gérez vos informations personnelles.' : 'Connectez-vous pour consulter vos commandes et retrouver vos achats SPT.'
+            } %}
+            {% include 'components/inner-page-heading.twig' with { heading: account_heading } only %}
+
+            <div class="{{ spt_account.is_logged_in ? 'tf-account-shell' : 'tf-woo-panel tf-account-login-card' }}">
+                {% if post.content %}
+                    <div class="tf-wysiwyg tf-wysiwyg--woocommerce">
+                        {{ post.content }}
+                    </div>
+                {% else %}
+                    <p class="tf-account-card__empty">
+                        Le contenu WooCommerce de l'espace client sera affiché ici.
+                    </p>
+                {% endif %}
+            </div>
+        </div>
+    </section>
+{% endblock %}
