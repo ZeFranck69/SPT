@@ -1,9 +1,10 @@
 <section
     class="tf-recharge-hero"
     aria-labelledby="recharge-hero-title"
+    {% if section.hero_image %}style="--tf-hero-image: url('{{ function('esc_url', section.hero_image) }}');"{% endif %}
 >
     <div class="tf-recharge-hero__inner">
-        <div class="tf-recharge-hero__content">
+        <div class="tf-recharge-hero__content" data-tf-reveal>
             {% if section.eyebrow %}
                 <p class="tf-recharge-hero__eyebrow">
                     {% include 'components/icon.twig' with { name: 'zap', class_name: 'tf-recharge-hero__eyebrow-icon' } only %}
@@ -50,17 +51,5 @@
             </div>
         </div>
 
-        <figure class="tf-recharge-hero__visual">
-            <img
-                class="tf-recharge-hero__image"
-                src="{{ function('esc_url', section.hero_image) }}"
-                alt="Recharge mobile SPT sécurisée"
-                fetchpriority="high"
-            >
-            <figcaption class="tf-recharge-hero__visual-content">
-                {% include 'components/icon.twig' with { name: 'smartphone', class_name: 'tf-recharge-hero__visual-icon' } only %}
-                <span>Recharge mobile facile</span>
-            </figcaption>
-        </figure>
     </div>
 </section>

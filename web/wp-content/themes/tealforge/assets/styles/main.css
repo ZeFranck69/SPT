@@ -3852,6 +3852,26 @@ img {
 }
 
 /* Header actions and product quantity steppers. */
+.tf-recharge-hero {
+  min-height: min(700px, calc(100vh - 80px));
+  background:
+    linear-gradient(90deg, rgb(255 255 255 / 98%) 0%, rgb(255 255 255 / 92%) 42%, rgb(255 255 255 / 40%) 72%, rgb(255 255 255 / 12%) 100%),
+    linear-gradient(135deg, rgb(0 169 192 / 12%), rgb(255 107 74 / 10%)),
+    var(--tf-hero-image) 68% center / cover no-repeat,
+    #ffffff;
+}
+
+.tf-recharge-hero__inner {
+  min-height: min(700px, calc(100vh - 80px));
+  grid-template-columns: minmax(0, 680px);
+  padding-block: 80px;
+}
+
+.tf-recharge-hero__content {
+  position: relative;
+  z-index: 1;
+}
+
 .tf-site-header__navigation {
   display: flex;
   margin-left: auto;
@@ -3976,9 +3996,211 @@ img {
   outline-offset: -2px;
 }
 
+.tf-button,
+.tf-recharge-product__button,
+.tf-site-header__action,
+.woocommerce button.button,
+.woocommerce a.button,
+.woocommerce input.button,
+.woocommerce #respond input#submit,
+.woocommerce #payment #place_order,
+.wc-block-components-button,
+.wpforms-container button[type="submit"] {
+  transition:
+    transform 0.28s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.28s ease,
+    opacity 0.28s ease,
+    background-color 0.28s ease,
+    background-position 0.45s ease,
+    border-color 0.28s ease,
+    color 0.28s ease !important;
+}
+
+.tf-recharge-hero .tf-button:not(.tf-button--secondary),
+.woocommerce button.button,
+.woocommerce a.button,
+.woocommerce input.button,
+.woocommerce #respond input#submit,
+.woocommerce #payment #place_order,
+.wc-block-components-button,
+.wpforms-container button[type="submit"] {
+  background-size: 200% 100% !important;
+  background-position: 0% center !important;
+}
+
+.tf-button:hover,
+.tf-button:focus-visible,
+.tf-recharge-product__button:hover,
+.tf-recharge-product__button:focus-visible,
+.tf-site-header__action:hover,
+.tf-site-header__action:focus-visible,
+.woocommerce button.button:hover,
+.woocommerce button.button:focus-visible,
+.woocommerce a.button:hover,
+.woocommerce a.button:focus-visible,
+.woocommerce input.button:hover,
+.woocommerce input.button:focus-visible,
+.woocommerce #respond input#submit:hover,
+.woocommerce #respond input#submit:focus-visible,
+.woocommerce #payment #place_order:hover,
+.woocommerce #payment #place_order:focus-visible,
+.wc-block-components-button:hover,
+.wc-block-components-button:focus-visible,
+.wpforms-container button[type="submit"]:hover,
+.wpforms-container button[type="submit"]:focus-visible {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 24px rgb(26 26 26 / 15%) !important;
+}
+
+.tf-recharge-hero .tf-button:not(.tf-button--secondary):hover,
+.tf-recharge-hero .tf-button:not(.tf-button--secondary):focus-visible,
+.woocommerce button.button:hover,
+.woocommerce button.button:focus-visible,
+.woocommerce a.button:hover,
+.woocommerce a.button:focus-visible,
+.woocommerce input.button:hover,
+.woocommerce input.button:focus-visible,
+.woocommerce #respond input#submit:hover,
+.woocommerce #respond input#submit:focus-visible,
+.woocommerce #payment #place_order:hover,
+.woocommerce #payment #place_order:focus-visible,
+.wc-block-components-button:hover,
+.wc-block-components-button:focus-visible,
+.wpforms-container button[type="submit"]:hover,
+.wpforms-container button[type="submit"]:focus-visible {
+  background-position: 100% center !important;
+}
+
+.tf-recharge-hero .tf-button:not(.tf-button--secondary):hover,
+.tf-recharge-hero .tf-button:not(.tf-button--secondary):focus-visible {
+  background-image: linear-gradient(90deg, var(--tf-color-primary), var(--tf-color-coral)) !important;
+}
+
+.tf-recharge-product__quantity-button {
+  transition: background-color 0.22s ease, color 0.22s ease;
+}
+
+.tf-reveal {
+  opacity: 0;
+  translate: 0 24px;
+  transition:
+    opacity 0.65s cubic-bezier(0.22, 1, 0.36, 1),
+    translate 0.65s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.25s ease,
+    border-color 0.25s ease,
+    box-shadow 0.25s ease;
+  transition-delay: var(--tf-reveal-delay, 0ms);
+}
+
+.tf-reveal--visible {
+  opacity: 1;
+  translate: none;
+}
+
+[data-tf-reveal-delay="1"] {
+  --tf-reveal-delay: 90ms;
+}
+
+[data-tf-reveal-delay="2"] {
+  --tf-reveal-delay: 180ms;
+}
+
+[data-tf-reveal-delay="3"] {
+  --tf-reveal-delay: 270ms;
+}
+
+/* Full-width WooCommerce cart and checkout layouts. */
+.woocommerce-cart .tf-inner-page__content,
+.woocommerce-checkout .tf-inner-page__content,
+.woocommerce-cart .wp-block-woocommerce-cart,
+.woocommerce-checkout .wp-block-woocommerce-checkout {
+  width: 100% !important;
+  max-width: none !important;
+}
+
+.woocommerce-cart .wc-block-components-sidebar-layout,
+.woocommerce-checkout .wc-block-components-sidebar-layout {
+  display: grid !important;
+  width: 100% !important;
+  max-width: none !important;
+  align-items: start !important;
+  gap: 32px !important;
+}
+
+.woocommerce-cart .wc-block-components-sidebar-layout {
+  grid-template-columns: minmax(0, 1fr) minmax(340px, 400px) !important;
+}
+
+.woocommerce-checkout .wc-block-components-sidebar-layout {
+  grid-template-columns: minmax(0, 1fr) minmax(380px, 440px) !important;
+}
+
+.woocommerce-cart .wc-block-components-main,
+.woocommerce-cart .wc-block-cart__main,
+.woocommerce-cart .wp-block-woocommerce-cart-items-block,
+.woocommerce-checkout .wc-block-components-main,
+.woocommerce-checkout .wc-block-checkout__main,
+.woocommerce-checkout .wp-block-woocommerce-checkout-fields-block {
+  width: 100% !important;
+  max-width: none !important;
+  margin: 0 !important;
+  grid-column: 1 !important;
+}
+
+.woocommerce-cart .wc-block-components-sidebar,
+.woocommerce-cart .wc-block-cart__sidebar,
+.woocommerce-cart .wp-block-woocommerce-cart-totals-block,
+.woocommerce-checkout .wc-block-components-sidebar,
+.woocommerce-checkout .wc-block-checkout__sidebar,
+.woocommerce-checkout .wp-block-woocommerce-checkout-totals-block {
+  width: 100% !important;
+  max-width: none !important;
+  margin: 0 !important;
+  grid-column: 2 !important;
+}
+
+.woocommerce-checkout .wc-block-checkout__sidebar,
+.woocommerce-checkout .wp-block-woocommerce-checkout-totals-block {
+  position: sticky;
+  top: 112px;
+}
+
 @media (max-width: 920px) {
+  .tf-recharge-hero {
+    background:
+      linear-gradient(90deg, rgb(255 255 255 / 98%) 0%, rgb(255 255 255 / 88%) 58%, rgb(255 255 255 / 48%) 100%),
+      linear-gradient(135deg, rgb(0 169 192 / 10%), rgb(255 107 74 / 8%)),
+      var(--tf-hero-image) 62% center / cover no-repeat,
+      #ffffff;
+  }
+
   .tf-site-header__navigation {
     gap: 10px;
+  }
+
+  .woocommerce-cart .wc-block-components-sidebar-layout,
+  .woocommerce-checkout .wc-block-components-sidebar-layout {
+    grid-template-columns: minmax(0, 1fr) !important;
+  }
+
+  .woocommerce-cart .wc-block-components-main,
+  .woocommerce-cart .wc-block-cart__main,
+  .woocommerce-cart .wp-block-woocommerce-cart-items-block,
+  .woocommerce-checkout .wc-block-components-main,
+  .woocommerce-checkout .wc-block-checkout__main,
+  .woocommerce-checkout .wp-block-woocommerce-checkout-fields-block,
+  .woocommerce-cart .wc-block-components-sidebar,
+  .woocommerce-cart .wc-block-cart__sidebar,
+  .woocommerce-cart .wp-block-woocommerce-cart-totals-block,
+  .woocommerce-checkout .wc-block-components-sidebar,
+  .woocommerce-checkout .wc-block-checkout__sidebar,
+  .woocommerce-checkout .wp-block-woocommerce-checkout-totals-block {
+    grid-column: 1 !important;
+  }
+
+  .woocommerce-checkout .wc-block-checkout__sidebar,
+  .woocommerce-checkout .wp-block-woocommerce-checkout-totals-block {
+    position: static;
   }
 
   .woocommerce ul.products {
@@ -3999,6 +4221,19 @@ img {
 }
 
 @media (max-width: 680px) {
+  .tf-recharge-hero {
+    min-height: auto;
+    background:
+      linear-gradient(rgb(255 255 255 / 88%), rgb(255 255 255 / 94%)),
+      var(--tf-hero-image) center / cover no-repeat,
+      #ffffff;
+  }
+
+  .tf-recharge-hero__inner {
+    min-height: 620px;
+    padding-block: 56px 64px;
+  }
+
   .tf-site-header__brand-copy strong {
     font-size: 16px;
   }
@@ -4055,6 +4290,12 @@ img {
 }
 
 @media (prefers-reduced-motion: reduce) {
+  .tf-reveal,
+  .tf-reveal--visible {
+    opacity: 1;
+    translate: none;
+  }
+
   *,
   *::before,
   *::after {

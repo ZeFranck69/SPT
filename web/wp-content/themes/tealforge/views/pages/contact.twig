@@ -12,7 +12,7 @@
 
         <div class="tf-contact-page__inner">
             <aside class="tf-contact-page__intro">
-                <div class="tf-contact-info">
+                <div class="tf-contact-info" data-tf-reveal>
                     <h2 class="tf-contact-info__title">Nos coordonnées</h2>
 
                     <div class="tf-contact-info__list">
@@ -34,7 +34,7 @@
             </aside>
 
             <div class="tf-contact-page__main">
-                <div class="tf-contact-card">
+                <div class="tf-contact-card" data-tf-reveal data-tf-reveal-delay="1">
                     <p class="tf-contact-card__eyebrow">Support client</p>
                     <h2 class="tf-contact-card__title">Envoyer un message</h2>
 
@@ -53,14 +53,14 @@
 
         <div class="tf-contact-faq">
             <div class="tf-contact-faq__inner">
-                <div class="tf-section-heading">
+                <div class="tf-section-heading" data-tf-reveal>
                     <p class="tf-section-heading__eyebrow">Aide rapide</p>
                     <h2 class="tf-section-heading__title">Questions fréquentes</h2>
                 </div>
 
                 <div class="tf-contact-faq__grid">
                     {% for item in contact.faq %}
-                        <article class="tf-faq-item">
+                        <article class="tf-faq-item" data-tf-reveal data-tf-reveal-delay="{{ loop.index0 % 3 }}">
                             <h3 class="tf-faq-item__question">{{ item.question }}</h3>
                             <p class="tf-faq-item__answer">{{ item.answer }}</p>
                         </article>

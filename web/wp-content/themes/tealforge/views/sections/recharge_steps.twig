@@ -1,6 +1,6 @@
 <section id="fonctionnement" class="tf-recharge-steps" aria-labelledby="recharge-steps-title">
     <div class="tf-recharge-steps__inner">
-        <div class="tf-section-heading">
+        <div class="tf-section-heading" data-tf-reveal>
             <h2 id="recharge-steps-title" class="tf-section-heading__title">
                 {{ section.title }}
             </h2>
@@ -13,7 +13,11 @@
         {% if section.steps %}
             <ol class="tf-recharge-steps__list">
                 {% for step in section.steps %}
-                    <li class="tf-recharge-step{% if step.featured %} tf-recharge-step--featured{% endif %}">
+                    <li
+                        class="tf-recharge-step{% if step.featured %} tf-recharge-step--featured{% endif %}"
+                        data-tf-reveal
+                        data-tf-reveal-delay="{{ loop.index0 % 4 }}"
+                    >
                         <span class="tf-recharge-step__number">{{ step.number }}</span>
                         {% include 'components/icon.twig' with { name: step.icon, class_name: 'tf-recharge-step__icon' } only %}
                         <h3 class="tf-recharge-step__title">{{ step.title }}</h3>

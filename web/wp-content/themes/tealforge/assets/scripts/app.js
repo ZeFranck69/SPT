@@ -71,8 +71,40 @@ const initQuantityControls = () => {
   });
 };
 
+const initScrollReveals = () => {
+  const elements = document.querySelectorAll('[data-tf-reveal]');
+
+  if (!elements.length) {
+    return;
+  }
+
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches || !('IntersectionObserver' in window)) {
+    elements.forEach((element) => element.classList.add('tf-reveal--visible'));
+    return;
+  }
+
+  elements.forEach((element) => element.classList.add('tf-reveal'));
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (!entry.isIntersecting) {
+        return;
+      }
+
+      entry.target.classList.add('tf-reveal--visible');
+      observer.unobserve(entry.target);
+    });
+  }, {
+    threshold: 0.12,
+    rootMargin: '0px 0px -48px',
+  });
+
+  elements.forEach((element) => observer.observe(element));
+};
+
 document.addEventListener('DOMContentLoaded', () => {
   initMobileNavigation();
   initHistoryBackButtons();
   initQuantityControls();
+  initScrollReveals();
 });

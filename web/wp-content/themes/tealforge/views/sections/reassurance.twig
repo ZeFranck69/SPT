@@ -1,7 +1,7 @@
 <section class="tf-recharge-assurance" aria-label="Informations de service">
     <div class="tf-recharge-assurance__inner">
         {% for item in section.items %}
-            <p>
+            <p data-tf-reveal data-tf-reveal-delay="{{ loop.index0 % 4 }}">
                 <span class="tf-recharge-assurance__icon" aria-hidden="true">
                     {% include 'components/icon.twig' with { name: item.icon } only %}
                 </span>

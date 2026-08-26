@@ -1,6 +1,6 @@
 <section id="recharges" class="tf-recharge-products" aria-labelledby="recharge-products-title">
     <div class="tf-recharge-products__inner">
-        <div class="tf-section-heading">
+        <div class="tf-section-heading" data-tf-reveal>
             <h2 id="recharge-products-title" class="tf-section-heading__title">
                 {{ section.title }}
             </h2>
@@ -14,7 +14,7 @@
             <div class="tf-recharge-products__groups">
                 {% for group in section.product_groups %}
                     <section class="tf-recharge-products__group tf-recharge-products__group--{{ group.tone }}" aria-labelledby="recharge-group-{{ group.tone }}">
-                        <div class="tf-recharge-products__group-heading">
+                        <div class="tf-recharge-products__group-heading" data-tf-reveal>
                             <span class="tf-recharge-products__group-mark" aria-hidden="true">
                                 {% include 'components/icon.twig' with { name: group.icon } only %}
                             </span>
@@ -23,7 +23,11 @@
 
                         <div class="tf-recharge-products__grid">
                             {% for product in group.products %}
-                                <article class="tf-recharge-product tf-recharge-product--{{ product.tone }}{% if product.featured %} tf-recharge-product--featured{% endif %}">
+                                <article
+                                    class="tf-recharge-product tf-recharge-product--{{ product.tone }}{% if product.featured %} tf-recharge-product--featured{% endif %}"
+                                    data-tf-reveal
+                                    data-tf-reveal-delay="{{ loop.index0 % 3 }}"
+                                >
                                     {% if product.featured %}
                                         <p class="tf-recharge-product__popular">Populaire</p>
                                     {% endif %}
