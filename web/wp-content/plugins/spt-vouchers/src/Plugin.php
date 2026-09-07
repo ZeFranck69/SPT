@@ -7,6 +7,7 @@ namespace SptVouchers;
 use SptVouchers\Admin\Menu;
 use SptVouchers\Database\Schema;
 use SptVouchers\Database\VoucherRepository;
+use SptVouchers\Email\VoucherEmail;
 use SptVouchers\Import\CsvImporter;
 use SptVouchers\Security\Cipher;
 use SptVouchers\WooCommerce\Integration;
@@ -31,6 +32,7 @@ final class Plugin
         add_action('wp_loaded', [self::class, 'maybeRefreshCatalogStocks']);
 
         (new Integration($repository))->register();
+        (new VoucherEmail($repository))->register();
 
         if (is_admin()) {
             (new Menu($repository, $importer, $cipher))->register();

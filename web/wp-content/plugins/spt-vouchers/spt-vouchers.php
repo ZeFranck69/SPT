@@ -2,7 +2,7 @@
 /**
  * Plugin Name: SPT Vouchers
  * Description: Gestion securisee des vouchers prepayes SPT pour WooCommerce.
- * Version: 0.2.0
+ * Version: 0.3.0
  * Requires at least: 6.5
  * Requires PHP: 8.1
  * Requires Plugins: woocommerce
@@ -14,7 +14,7 @@ declare(strict_types=1);
 
 defined('ABSPATH') || exit;
 
-define('SPT_VOUCHERS_VERSION', '0.2.0');
+define('SPT_VOUCHERS_VERSION', '0.3.0');
 define('SPT_VOUCHERS_FILE', __FILE__);
 define('SPT_VOUCHERS_DIR', plugin_dir_path(__FILE__));
 define('SPT_VOUCHERS_URL', plugin_dir_url(__FILE__));

@@ -198,3 +198,74 @@ function tealforge_woocommerce_empty_cart_block(string $block_content, array $bl
 }
 
 add_filter('render_block_woocommerce/empty-cart-block', 'tealforge_woocommerce_empty_cart_block', 10, 2);
+
+function tealforge_woocommerce_email_logo(mixed $currentLogo): mixed
+{
+    if (! function_exists('get_field')) {
+        return $currentLogo;
+    }
+
+    $logo = get_field('header_logo', 'option');
+
+    if (is_array($logo) && ! empty($logo['url'])) {
+        return esc_url_raw((string) $logo['url']);
+    }
+
+    if (is_numeric($logo)) {
+        $url = wp_get_attachment_image_url((int) $logo, 'full');
+
+        return $url ?: $currentLogo;
+    }
+
+    return is_string($logo) && $logo !== '' ? esc_url_raw($logo) : $currentLogo;
+}
+
+add_filter('option_woocommerce_email_header_image', 'tealforge_woocommerce_email_logo');
+
+function tealforge_woocommerce_email_brand_color(mixed $color): string
+{
+    return '#e6141f';
+}
+
+function tealforge_woocommerce_email_text_color(mixed $color): string
+{
+    return '#1d1b1c';
+}
+
+function tealforge_woocommerce_email_background_color(mixed $color): string
+{
+    return '#f3f3f3';
+}
+
+function tealforge_woocommerce_email_body_color(mixed $color): string
+{
+    return '#ffffff';
+}
+
+function tealforge_woocommerce_email_logo_width(mixed $width): string
+{
+    return '220';
+}
+
+add_filter('option_woocommerce_email_base_color', 'tealforge_woocommerce_email_brand_color');
+add_filter('option_woocommerce_email_text_color', 'tealforge_woocommerce_email_text_color');
+add_filter('option_woocommerce_email_background_color', 'tealforge_woocommerce_email_background_color');
+add_filter('option_woocommerce_email_body_background_color', 'tealforge_woocommerce_email_body_color');
+add_filter('option_woocommerce_email_header_image_width', 'tealforge_woocommerce_email_logo_width');
+
+function tealforge_woocommerce_completed_email_subject(string $subject, WC_Order $order): string
+{
+    return sprintf(
+        __('Vos codes de recharge - commande #%s', 'tealforge'),
+        $order->get_order_number()
+    );
+}
+
+add_filter('woocommerce_email_subject_customer_completed_order', 'tealforge_woocommerce_completed_email_subject', 10, 2);
+
+function tealforge_woocommerce_completed_email_heading(string $heading, WC_Order $order): string
+{
+    return __('Vos recharges sont disponibles', 'tealforge');
+}
+
+add_filter('woocommerce_email_heading_customer_completed_order', 'tealforge_woocommerce_completed_email_heading', 10, 2);

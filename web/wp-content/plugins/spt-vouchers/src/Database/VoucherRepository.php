@@ -136,6 +136,36 @@ final class VoucherRepository
         ));
     }
 
+    public function canDecryptAvailableVoucher(int $productId): bool
+    {
+        static $results = [];
+
+        if (array_key_exists($productId, $results)) {
+            return $results[$productId];
+        }
+
+        global $wpdb;
+
+        $payload = $wpdb->get_var($wpdb->prepare(
+            'SELECT code_ciphertext FROM ' . Schema::table('codes') . "
+                WHERE product_id = %d AND status = 'available'
+                ORDER BY expires_at ASC, id ASC LIMIT 1",
+            $productId
+        ));
+
+        if (!is_string($payload) || $payload === '') {
+            return $results[$productId] = false;
+        }
+
+        try {
+            $results[$productId] = $this->cipher->decrypt($payload) !== '';
+        } catch (Throwable) {
+            $results[$productId] = false;
+        }
+
+        return $results[$productId];
+    }
+
     /** @return array<int, array<string, int|string>> */
     public function stockSummary(): array
     {
@@ -355,6 +385,43 @@ final class VoucherRepository
         }
 
         return $codes;
+    }
+
+    /** @return array<int, array{product_id: int, order_item_id: int, code: string, serial_number: string, expires_at: string}> */
+    public function orderVouchers(int $orderId): array
+    {
+        return $this->orderVouchersWithStatus($orderId, 'sold');
+    }
+
+    /** @return array<int, array{product_id: int, order_item_id: int, code: string, serial_number: string, expires_at: string}> */
+    public function orderReservedVouchers(int $orderId): array
+    {
+        return $this->orderVouchersWithStatus($orderId, 'reserved');
+    }
+
+    /** @return array<int, array{product_id: int, order_item_id: int, code: string, serial_number: string, expires_at: string}> */
+    private function orderVouchersWithStatus(int $orderId, string $status): array
+    {
+        global $wpdb;
+
+        $rows = $wpdb->get_results($wpdb->prepare(
+            'SELECT product_id, order_item_id, code_ciphertext, serial_number, expires_at
+                FROM ' . Schema::table('codes') . "
+                WHERE order_id = %d AND status = %s
+                ORDER BY order_item_id ASC, id ASC",
+            $orderId,
+            $status
+        ), ARRAY_A) ?: [];
+
+        return array_map(function (array $row): array {
+            return [
+                'product_id' => (int) $row['product_id'],
+                'order_item_id' => (int) $row['order_item_id'],
+                'code' => $this->cipher->decrypt((string) $row['code_ciphertext']),
+                'serial_number' => (string) $row['serial_number'],
+                'expires_at' => (string) $row['expires_at'],
+            ];
+        }, $rows);
     }
 
     public function syncProductStock(int $productId): void

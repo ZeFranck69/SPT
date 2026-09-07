@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.3.0 - 2026-09-07
+
+- Ajout des codes vouchers aux emails client de commande payee en HTML et texte brut.
+- Ajout du numero de serie et de la date d expiration dans chaque carte voucher.
+- Passage direct au statut termine pour une commande composee uniquement de recharges gerees.
+- Preparation des vouchers avant le declenchement des emails WooCommerce de paiement.
+- Blocage de la vente si la cle active ne permet pas de dechiffrer les vouchers disponibles.
+
 ## 0.2.0 - 2026-09-04
 
 - Remplacement du depot FTP par six imports manuels associes aux produits.

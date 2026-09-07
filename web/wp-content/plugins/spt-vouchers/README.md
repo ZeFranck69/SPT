@@ -2,7 +2,7 @@
 
 Plugin metier WooCommerce pour importer, stocker et attribuer des vouchers SPT uniques.
 
-## Fonctionnalites de la version 0.2.0
+## Fonctionnalites de la version 0.3.0
 
 - six champs d import manuels, un pour chaque produit Papito ou Neti ;
 - lecture du format CSV SPT sans en-tete et separe par `|` ;
@@ -14,9 +14,13 @@ Plugin metier WooCommerce pour importer, stocker et attribuer des vouchers SPT u
 - synchronisation du stock WooCommerce avec les vouchers valides ;
 - reservation transactionnelle facultative lors de la commande ;
 - passage au statut vendu uniquement apres confirmation du paiement ;
-- liberation des reservations pour les commandes echouees ou annulees.
+- liberation des reservations pour les commandes echouees ou annulees ;
+- ajout des vouchers aux emails client de commande payee, en HTML et texte brut ;
+- passage direct au statut termine pour les commandes composees uniquement de recharges gerees.
 
-Les emails et SMS contenant les codes ne sont pas encore actifs.
+Les emails contenant les codes sont actifs. L envoi SMS n est pas encore actif.
+
+Par securite, une recharge devient indisponible si la cle configuree ne permet pas de dechiffrer les vouchers importes.
 
 ## Configuration obligatoire
 
@@ -84,7 +88,7 @@ Avant de l activer :
 4. confirmer les regles de remboursement ;
 5. effectuer une sauvegarde.
 
-Le plugin reserve le nombre exact de vouchers lors de la creation de la commande. Les codes ne deviennent vendus qu apres paiement confirme. Aucun code n est encore transmis au client dans cette version.
+Le plugin reserve le nombre exact de vouchers lors de la creation de la commande. Les codes ne deviennent vendus et ne sont ajoutes a l email client qu apres paiement confirme.
 
 ## Suppression
 

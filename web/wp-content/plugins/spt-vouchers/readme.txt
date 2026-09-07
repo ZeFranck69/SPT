@@ -2,14 +2,14 @@
 Contributors: tealforge
 Requires at least: 6.5
 Requires PHP: 8.1
-Stable tag: 0.2.0
+Stable tag: 0.3.0
 License: Proprietary
 
 Gestion securisee des vouchers prepayes SPT pour WooCommerce.
 
 == Description ==
 
-Import manuel des six produits, chiffrement, numeros de serie, expirations, stocks et attribution transactionnelle facultative.
+Import manuel des six produits, chiffrement, stocks, attribution transactionnelle et envoi des vouchers par email.
 Les notifications contenant les codes ne sont pas actives dans la version 0.2.0.
 
 == Installation ==
