@@ -24,7 +24,7 @@
                         <div class="tf-recharge-products__grid">
                             {% for product in group.products %}
                                 <article
-                                    class="tf-recharge-product tf-recharge-product--{{ product.tone }}{% if product.featured %} tf-recharge-product--featured{% endif %}"
+                                    class="tf-recharge-product tf-recharge-product--{{ product.tone }}{% if product.featured %} tf-recharge-product--featured{% endif %}{% if not product.can_quick_add %} tf-recharge-product--unavailable{% endif %}"
                                     data-tf-reveal
                                     data-tf-reveal-delay="{{ loop.index0 % 3 }}"
                                 >
@@ -39,6 +39,15 @@
 
                                     {% if product.bonus %}
                                         <p class="tf-recharge-product__bonus">{{ product.bonus }}</p>
+                                    {% endif %}
+
+                                    {% if product.voucher_managed and product.stock_label %}
+                                        <p class="tf-recharge-product__stock{% if product.stock_quantity > 0 %} tf-recharge-product__stock--available{% else %} tf-recharge-product__stock--empty{% endif %}">
+                                            {% if product.stock_quantity > 0 %}
+                                                {% include 'components/icon.twig' with { name: 'circle-check' } only %}
+                                            {% endif %}
+                                            {{ product.stock_label }}
+                                        </p>
                                     {% endif %}
 
                                     {% if product.can_quick_add %}
@@ -80,7 +89,7 @@
                                             </button>
                                         </form>
                                     {% else %}
-                                        <p class="tf-recharge-product__unavailable">Indisponible</p>
+                                        <p class="tf-recharge-product__unavailable">{{ product.unavailable_label }}</p>
                                     {% endif %}
                                 </article>
                             {% endfor %}

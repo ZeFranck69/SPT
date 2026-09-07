@@ -17,7 +17,7 @@
 
                     <div class="tf-contact-info__list">
                         {% for item in contact.items %}
-                            <div>
+                            <div class="tf-contact-info__item tf-contact-info__item--{{ item.icon }}">
                                 <span class="tf-contact-info__icon" aria-hidden="true">
                                     {% include 'components/icon.twig' with { name: item.icon } only %}
                                 </span>

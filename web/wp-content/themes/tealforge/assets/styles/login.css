@@ -1,0 +1,135 @@
+:root {
+  --tf-login-red: #e6141f;
+  --tf-login-black: #1d1b1c;
+  --tf-login-border: #dedede;
+}
+
+body.login {
+  display: grid;
+  min-height: 100vh;
+  place-items: center;
+  border-top: 6px solid var(--tf-login-red);
+  background: #f3f3f3;
+  color: var(--tf-login-black);
+}
+
+#login {
+  width: min(420px, calc(100vw - 32px));
+  padding: 40px 0;
+}
+
+#login h1 {
+  margin-bottom: 28px;
+}
+
+#login h1 a {
+  width: min(340px, 82vw);
+  height: 110px;
+  margin: 0 auto;
+  background-position: center;
+  background-size: contain;
+}
+
+.login form {
+  margin-top: 0;
+  border: 1px solid var(--tf-login-border);
+  border-top: 5px solid var(--tf-login-red);
+  border-radius: 8px;
+  padding: 30px;
+  background: #ffffff;
+  box-shadow: 0 18px 50px rgb(29 27 28 / 10%);
+}
+
+.login label {
+  color: var(--tf-login-black);
+  font-weight: 700;
+}
+
+.login form .input,
+.login input[type="text"] {
+  min-height: 50px;
+  margin-top: 8px;
+  border: 1px solid var(--tf-login-border);
+  border-radius: 6px;
+  background: #f8f8f8;
+  color: var(--tf-login-black);
+  box-shadow: none;
+}
+
+.login form .input:focus,
+.login input[type="text"]:focus,
+.login input[type="checkbox"]:focus {
+  border-color: var(--tf-login-red);
+  box-shadow: 0 0 0 1px var(--tf-login-red);
+}
+
+.login .button.wp-hide-pw {
+  color: var(--tf-login-red);
+}
+
+.login .button-primary {
+  min-height: 42px;
+  border-color: var(--tf-login-red);
+  border-radius: 6px;
+  background: var(--tf-login-red);
+  color: #ffffff;
+  font-weight: 700;
+  box-shadow: none;
+  transition: border-color 0.2s, background-color 0.2s, transform 0.2s;
+}
+
+.login .button-primary:hover,
+.login .button-primary:focus {
+  border-color: var(--tf-login-black);
+  background: var(--tf-login-black);
+  transform: translateY(-1px);
+}
+
+.login #nav,
+.login #backtoblog,
+.login .privacy-policy-page-link {
+  text-align: center;
+}
+
+.login #nav a,
+.login #backtoblog a,
+.login .privacy-policy-page-link a {
+  color: var(--tf-login-black);
+  font-weight: 600;
+}
+
+.login #nav a:hover,
+.login #nav a:focus,
+.login #backtoblog a:hover,
+.login #backtoblog a:focus,
+.login .privacy-policy-page-link a:hover,
+.login .privacy-policy-page-link a:focus {
+  color: var(--tf-login-red);
+}
+
+.login .message,
+.login .notice,
+.login #login_error {
+  border-left-color: var(--tf-login-red);
+  border-radius: 4px;
+}
+
+@media (max-width: 480px) {
+  #login {
+    padding-block: 24px;
+  }
+
+  #login h1 a {
+    height: 84px;
+  }
+
+  .login form {
+    padding: 24px 20px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .login .button-primary {
+    transition: none;
+  }
+}

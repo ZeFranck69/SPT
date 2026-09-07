@@ -21,6 +21,15 @@ function tealforge_get_context(): array
         'footer' => has_nav_menu('footer') ? Timber\Timber::get_menu('footer') : null,
     ];
 
+    $header_logo = function_exists('get_field') ? get_field('header_logo', 'option') : null;
+    $footer_logo = function_exists('get_field') ? get_field('footer_logo', 'option') : null;
+
+    $context['spt_branding'] = [
+        'header_logo' => tealforge_prepare_image_field($header_logo),
+        'header_logo_text' => function_exists('get_field') ? (string) get_field('header_logo_text', 'option') : '',
+        'footer_logo' => tealforge_prepare_image_field($footer_logo),
+    ];
+
     $context['spt_links'] = [
         'shop' => function_exists('wc_get_page_permalink') ? wc_get_page_permalink('shop') : home_url('/boutique/'),
         'cart' => function_exists('wc_get_cart_url') ? wc_get_cart_url() : home_url('/panier/'),

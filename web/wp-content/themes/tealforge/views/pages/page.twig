@@ -1,15 +1,24 @@
 {% extends 'layouts/base.twig' %}
 
 {% block content %}
-    <article class="tf-content tf-inner-page">
-        <div class="tf-content__inner">
-            {% include 'components/inner-page-heading.twig' with { heading: heading } only %}
+    {% if sections %}
+        {% for section in sections %}
+            {% include ['sections/' ~ section.acf_fc_layout ~ '.twig', 'sections/unknown.twig'] with {
+                section: section,
+                section_index: loop.index
+            } only %}
+        {% endfor %}
+    {% else %}
+        <article class="tf-content tf-inner-page">
+            <div class="tf-content__inner">
+                {% include 'components/inner-page-heading.twig' with { heading: heading } only %}
 
-            {% if post.content %}
-                <div class="tf-wysiwyg tf-inner-page__content">
-                    {{ post.content }}
-                </div>
-            {% endif %}
-        </div>
-    </article>
+                {% if post.content %}
+                    <div class="tf-wysiwyg tf-inner-page__content">
+                        {{ post.content }}
+                    </div>
+                {% endif %}
+            </div>
+        </article>
+    {% endif %}
 {% endblock %}

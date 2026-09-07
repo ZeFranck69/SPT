@@ -1,0 +1,15 @@
+<section class="tf-text-content" aria-labelledby="text-content-title-{{ section_index|default(1) }}">
+    <div class="tf-text-content__inner">
+        {% if section.title %}
+            <h1 id="text-content-title-{{ section_index|default(1) }}" class="tf-text-content__title" data-tf-reveal>
+                {{ section.title }}
+            </h1>
+        {% endif %}
+
+        {% if section.content %}
+            <div class="tf-text-content__body tf-wysiwyg" data-tf-reveal data-tf-reveal-delay="1">
+                {{ function('wp_kses_post', section.content)|raw }}
+            </div>
+        {% endif %}
+    </div>
+</section>

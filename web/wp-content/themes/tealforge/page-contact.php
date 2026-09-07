@@ -7,27 +7,35 @@ defined('ABSPATH') || exit;
 $context = tealforge_get_context();
 $context['post'] = Timber\Timber::get_post();
 
+$contact_email = function_exists('get_field') ? trim((string) get_field('contact_email', 'option')) : '';
+$contact_address = function_exists('get_field') ? trim((string) get_field('contact_address', 'option')) : '';
+$contact_hours = function_exists('get_field') ? trim((string) get_field('contact_hours', 'option')) : '';
+
+$contact_email = $contact_email !== '' ? $contact_email : 'support@spt.wf';
+$contact_address = $contact_address !== '' ? $contact_address : 'Wallis et Futuna';
+$contact_hours = $contact_hours !== '' ? $contact_hours : '24h/24 - 7j/7';
+
 $context['contact'] = [
-    'email' => 'support@spt.wf',
-    'location' => 'Wallis et Futuna',
-    'hours' => '24h/24 - 7j/7',
+    'email' => $contact_email,
+    'location' => $contact_address,
+    'hours' => $contact_hours,
     'items' => [
         [
             'icon' => 'mail',
             'label' => 'Email',
-            'value' => 'support@spt.wf',
-            'url' => 'mailto:support@spt.wf',
+            'value' => $contact_email,
+            'url' => 'mailto:' . sanitize_email($contact_email),
         ],
         [
             'icon' => 'clock',
             'label' => 'Horaires',
-            'value' => '24h/24 - 7j/7',
+            'value' => $contact_hours,
             'url' => '',
         ],
         [
             'icon' => 'map-pin',
             'label' => 'Adresse',
-            'value' => 'Wallis et Futuna',
+            'value' => $contact_address,
             'url' => '',
         ],
     ],

@@ -1,6 +1,7 @@
 const initMobileNavigation = () => {
   const toggles = document.querySelectorAll('[data-tf-menu-toggle]');
-  const panel = document.querySelector('[data-tf-menu-panel]');
+  const panel = document.querySelector('.tf-site-header [data-tf-menu-panel]');
+  const closeButtons = document.querySelectorAll('[data-tf-menu-close]');
 
   if (!toggles.length || !panel) {
     return;
@@ -10,6 +11,10 @@ const initMobileNavigation = () => {
     document.documentElement.classList.toggle('tf-menu-is-open', isOpen);
     toggles.forEach((toggle) => {
       toggle.setAttribute('aria-expanded', String(isOpen));
+      toggle.setAttribute(
+        'aria-label',
+        isOpen ? toggle.dataset.tfMenuCloseLabel : toggle.dataset.tfMenuOpenLabel,
+      );
     });
   };
 
@@ -17,6 +22,14 @@ const initMobileNavigation = () => {
     toggle.addEventListener('click', () => {
       setOpen(!document.documentElement.classList.contains('tf-menu-is-open'));
     });
+  });
+
+  closeButtons.forEach((button) => {
+    button.addEventListener('click', () => setOpen(false));
+  });
+
+  panel.querySelectorAll('a').forEach((link) => {
+    link.addEventListener('click', () => setOpen(false));
   });
 
   document.addEventListener('keydown', (event) => {
@@ -102,9 +115,44 @@ const initScrollReveals = () => {
   elements.forEach((element) => observer.observe(element));
 };
 
+const initHeroParallax = () => {
+  const hero = document.querySelector('[data-tf-parallax-hero]');
+
+  if (!hero || window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    return;
+  }
+
+  let frame = null;
+
+  const updatePosition = () => {
+    frame = null;
+    const bounds = hero.getBoundingClientRect();
+    const viewportHeight = window.innerHeight;
+
+    if (bounds.bottom <= 0 || bounds.top >= viewportHeight) {
+      return;
+    }
+
+    const progress = (viewportHeight - bounds.top) / (viewportHeight + bounds.height);
+    const offset = (progress - 0.5) * 64;
+    hero.style.setProperty('--tf-hero-parallax-y', `${offset.toFixed(2)}px`);
+  };
+
+  const requestUpdate = () => {
+    if (frame === null) {
+      frame = window.requestAnimationFrame(updatePosition);
+    }
+  };
+
+  window.addEventListener('scroll', requestUpdate, { passive: true });
+  window.addEventListener('resize', requestUpdate);
+  requestUpdate();
+};
+
 document.addEventListener('DOMContentLoaded', () => {
   initMobileNavigation();
   initHistoryBackButtons();
   initQuantityControls();
   initScrollReveals();
+  initHeroParallax();
 });

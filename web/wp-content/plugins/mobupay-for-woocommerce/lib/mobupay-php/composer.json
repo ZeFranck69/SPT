@@ -1,0 +1,22 @@
+{
+  "name": "mobupay/mobupay-php",
+  "description": "SDK PHP officiel Mobupay : creation de paiements (session / lien), remboursements et verification de signature des webhooks. Mutualise par les connecteurs e-commerce (WooCommerce, PrestaShop, Magento).",
+  "type": "library",
+  "license": "MIT",
+  "homepage": "https://mobupay.nc",
+  "support": {
+    "email": "support@mobupay.nc",
+    "docs": "https://docs.mobupay.nc"
+  },
+  "require": {
+    "php": ">=7.4",
+    "ext-curl": "*",
+    "ext-json": "*",
+    "ext-hash": "*"
+  },
+  "autoload": {
+    "psr-4": {
+      "Mobupay\\": "src/"
+    }
+  }
+}

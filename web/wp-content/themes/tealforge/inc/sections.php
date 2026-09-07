@@ -276,6 +276,11 @@ function tealforge_get_recharge_product_data(int $product_id): array
     $title = get_the_title($product_id);
     $price = $product && method_exists($product, 'get_price') ? (string) $product->get_price() : '';
     $featured = get_post_meta($product_id, 'recharge_featured', true);
+    $voucher_managed = get_post_meta($product_id, '_spt_vouchers_managed', true) === 'yes';
+    $filtered_voucher_stock = apply_filters('spt_vouchers_available_stock', null, $product_id);
+    $voucher_stock = $voucher_managed
+        ? max(0, is_numeric($filtered_voucher_stock) ? (int) $filtered_voucher_stock : (int) $product?->get_stock_quantity())
+        : null;
     $can_quick_add = $product
         && method_exists($product, 'is_type')
         && $product->is_type('simple')
@@ -285,6 +290,23 @@ function tealforge_get_recharge_product_data(int $product_id): array
 
     if ($can_quick_add && ($max_quantity < 1 || $max_quantity > 10)) {
         $max_quantity = 10;
+    }
+
+    $stock_label = '';
+    $unavailable_label = __('Indisponible', 'tealforge');
+
+    if ($voucher_stock !== null && $voucher_stock > 0) {
+        $stock_label = sprintf(
+            _n('%d code disponible', '%d codes disponibles', $voucher_stock, 'tealforge'),
+            $voucher_stock
+        );
+
+        if (!$can_quick_add) {
+            $unavailable_label = __('Vente bientôt disponible', 'tealforge');
+        }
+    } elseif ($voucher_stock === 0) {
+        $stock_label = __('Stock épuisé', 'tealforge');
+        $unavailable_label = __('Stock épuisé', 'tealforge');
     }
 
     return [
@@ -299,6 +321,10 @@ function tealforge_get_recharge_product_data(int $product_id): array
         'tone' => (string) (tealforge_get_recharge_product_field($product_id, 'recharge_tone') ?: ($fallback['tone'] ?? 'papito')),
         'url' => (string) get_permalink($product_id),
         'can_quick_add' => $can_quick_add,
+        'voucher_managed' => $voucher_managed,
+        'stock_quantity' => $voucher_stock,
+        'stock_label' => $stock_label,
+        'unavailable_label' => $unavailable_label,
         'quantity_options' => $max_quantity > 0 ? range(1, $max_quantity) : [],
         'add_to_cart_action' => home_url('/#recharges'),
     ];
@@ -382,7 +408,10 @@ function tealforge_prepare_page_sections(array $sections): array
             $step_icons = ['smartphone', 'users', 'credit-card', 'circle-check'];
 
             foreach ((array) ($section['steps'] ?? []) as $step_index => $step) {
-                $sections[$section_index]['steps'][$step_index]['icon'] = $step_icons[$step_index] ?? 'circle-check';
+                $sections[$section_index]['steps'][$step_index]['icon'] = tealforge_resolve_section_icon(
+                    $step['icon'] ?? '',
+                    $step_icons[$step_index] ?? 'circle-check'
+                );
             }
         }
 
@@ -390,12 +419,42 @@ function tealforge_prepare_page_sections(array $sections): array
             $reassurance_icons = ['lock', 'zap', 'undo', 'headphones'];
 
             foreach ((array) ($section['items'] ?? []) as $item_index => $item) {
-                $sections[$section_index]['items'][$item_index]['icon'] = $reassurance_icons[$item_index] ?? 'circle-check';
+                $sections[$section_index]['items'][$item_index]['icon'] = tealforge_resolve_section_icon(
+                    $item['icon'] ?? '',
+                    $reassurance_icons[$item_index] ?? 'circle-check'
+                );
             }
         }
     }
 
     return $sections;
+}
+
+function tealforge_resolve_section_icon(mixed $icon, string $fallback = 'circle-check'): string
+{
+    if (! is_string($icon)) {
+        return $fallback;
+    }
+
+    $allowed_icons = [
+        'circle-check',
+        'clock',
+        'credit-card',
+        'headphones',
+        'lock',
+        'mail',
+        'map-pin',
+        'message-circle',
+        'shopping-cart',
+        'smartphone',
+        'undo',
+        'users',
+        'wifi',
+        'zap',
+    ];
+    $icon = sanitize_key($icon);
+
+    return in_array($icon, $allowed_icons, true) ? $icon : $fallback;
 }
 
 function tealforge_split_highlighted_title(string $title, string $highlight): array

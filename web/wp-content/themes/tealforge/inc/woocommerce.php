@@ -58,6 +58,42 @@ function tealforge_woocommerce_add_to_cart_text(): string
 add_filter('woocommerce_product_add_to_cart_text', 'tealforge_woocommerce_add_to_cart_text');
 add_filter('woocommerce_product_single_add_to_cart_text', 'tealforge_woocommerce_add_to_cart_text');
 
+function tealforge_get_cart_count(): int
+{
+    if (! function_exists('WC') || ! WC()->cart) {
+        return 0;
+    }
+
+    return max(0, (int) WC()->cart->get_cart_contents_count());
+}
+
+function tealforge_render_header_cart_count(): string
+{
+    $count = tealforge_get_cart_count();
+
+    if ($count === 0) {
+        return '<span class="tf-site-header__cart-count" hidden></span>';
+    }
+
+    return sprintf(
+        '<span class="tf-site-header__cart-count" aria-label="%1$s">%2$d</span>',
+        esc_attr(sprintf(
+            _n('%d article dans le panier', '%d articles dans le panier', $count, 'tealforge'),
+            $count
+        )),
+        $count
+    );
+}
+
+function tealforge_woocommerce_cart_count_fragment(array $fragments): array
+{
+    $fragments['.tf-site-header__cart-count'] = tealforge_render_header_cart_count();
+
+    return $fragments;
+}
+
+add_filter('woocommerce_add_to_cart_fragments', 'tealforge_woocommerce_cart_count_fragment');
+
 function tealforge_woocommerce_before_account_navigation(): void
 {
     echo '<div class="tf-myaccount-nav-heading">';
@@ -120,3 +156,45 @@ function tealforge_woocommerce_gettext(string $translation, string $text, string
 }
 
 add_filter('gettext', 'tealforge_woocommerce_gettext', 10, 3);
+
+function tealforge_woocommerce_empty_cart_block(string $block_content, array $block): string
+{
+    if (($block['blockName'] ?? '') !== 'woocommerce/empty-cart-block') {
+        return $block_content;
+    }
+
+    $empty_cart_panel = sprintf(
+        '<div class="tf-empty-cart__panel">'
+        . '<span class="tf-empty-cart__icon" aria-hidden="true">'
+        . '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" focusable="false">'
+        . '<circle cx="8" cy="21" r="1"></circle><circle cx="19" cy="21" r="1"></circle>'
+        . '<path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h7.78a2 2 0 0 0 2-1.61L20.12 6H5.12"></path>'
+        . '</svg>'
+        . '</span>'
+        . '<h2 class="wp-block-heading has-text-align-center wc-block-cart__empty-cart__title">%1$s</h2>'
+        . '<p class="tf-empty-cart__text">%2$s</p>'
+        . '<a class="tf-empty-cart__button" href="%3$s">%4$s</a>'
+        . '</div>',
+        esc_html__('Votre panier est vide', 'tealforge'),
+        esc_html__('Choisissez une ou plusieurs recharges Papito Voix ou Neti Data pour commencer votre commande.', 'tealforge'),
+        esc_url(home_url('/#recharges')),
+        esc_html__('Découvrir les recharges', 'tealforge')
+    );
+
+    $block_content = (string) preg_replace(
+        '/<h2[^>]*class="[^"]*wc-block-cart__empty-cart__title[^"]*"[^>]*>.*?<\/h2>/s',
+        $empty_cart_panel,
+        $block_content,
+        1
+    );
+
+    $block_content = str_replace(
+        '>New in store</h2>',
+        '>' . esc_html__('Quelques recharges disponibles', 'tealforge') . '</h2>',
+        $block_content
+    );
+
+    return $block_content;
+}
+
+add_filter('render_block_woocommerce/empty-cart-block', 'tealforge_woocommerce_empty_cart_block', 10, 2);

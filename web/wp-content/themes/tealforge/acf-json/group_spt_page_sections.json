@@ -232,19 +232,22 @@
                             "key": "field_spt_steps_eyebrow",
                             "label": "Accroche",
                             "name": "eyebrow",
-                            "type": "text"
+                            "type": "text",
+                            "instructions": "Texte court affiché avec le titre de la section."
                         },
                         {
                             "key": "field_spt_steps_title",
                             "label": "Titre",
                             "name": "title",
-                            "type": "text"
+                            "type": "text",
+                            "instructions": "Titre principal de la section Comment ça marche."
                         },
                         {
                             "key": "field_spt_steps_items",
                             "label": "Étapes",
                             "name": "steps",
                             "type": "repeater",
+                            "instructions": "Ajouter et ordonner les étapes du parcours d’achat.",
                             "layout": "block",
                             "button_label": "Ajouter une étape",
                             "sub_fields": [
@@ -252,32 +255,66 @@
                                     "key": "field_spt_step_number",
                                     "label": "Numéro",
                                     "name": "number",
-                                    "type": "text"
+                                    "type": "text",
+                                    "instructions": "Numéro affiché sur la carte, par exemple 01."
+                                },
+                                {
+                                    "key": "field_spt_step_icon",
+                                    "label": "Picto",
+                                    "name": "icon",
+                                    "type": "select",
+                                    "instructions": "Choisir le picto affiché sur cette étape. Laisser vide pour conserver le picto automatique.",
+                                    "choices": {
+                                        "smartphone": "Téléphone",
+                                        "users": "Utilisateurs",
+                                        "credit-card": "Carte bancaire",
+                                        "shopping-cart": "Panier",
+                                        "circle-check": "Validation",
+                                        "lock": "Cadenas",
+                                        "zap": "Éclair",
+                                        "headphones": "Support",
+                                        "message-circle": "Message",
+                                        "mail": "Email",
+                                        "clock": "Horloge",
+                                        "map-pin": "Localisation",
+                                        "wifi": "Réseau"
+                                    },
+                                    "default_value": false,
+                                    "return_format": "value",
+                                    "multiple": 0,
+                                    "allow_null": 1,
+                                    "ui": 1,
+                                    "ajax": 0,
+                                    "placeholder": "Picto automatique"
                                 },
                                 {
                                     "key": "field_spt_step_title",
                                     "label": "Titre",
                                     "name": "title",
-                                    "type": "text"
+                                    "type": "text",
+                                    "instructions": "Intitulé court de l’étape."
                                 },
                                 {
                                     "key": "field_spt_step_text",
                                     "label": "Texte",
                                     "name": "text",
                                     "type": "textarea",
+                                    "instructions": "Courte explication affichée sous le titre.",
                                     "rows": 3
                                 },
                                 {
                                     "key": "field_spt_step_badge",
                                     "label": "Badge",
                                     "name": "badge",
-                                    "type": "text"
+                                    "type": "text",
+                                    "instructions": "Mention facultative affichée en bas de la carte."
                                 },
                                 {
                                     "key": "field_spt_step_featured",
                                     "label": "Mise en avant",
                                     "name": "featured",
                                     "type": "true_false",
+                                    "instructions": "Activer pour mettre visuellement cette étape en avant.",
                                     "ui": 1
                                 }
                             ]
@@ -297,22 +334,82 @@
                             "label": "Éléments",
                             "name": "items",
                             "type": "repeater",
+                            "instructions": "Ajouter les engagements de réassurance affichés avant le footer.",
                             "layout": "table",
                             "button_label": "Ajouter un élément",
                             "sub_fields": [
                                 {
+                                    "key": "field_spt_reassurance_icon",
+                                    "label": "Picto",
+                                    "name": "icon",
+                                    "type": "select",
+                                    "instructions": "Choisir le picto affiché. Laisser vide pour conserver le picto automatique.",
+                                    "choices": {
+                                        "lock": "Cadenas",
+                                        "zap": "Éclair",
+                                        "circle-check": "Validation",
+                                        "headphones": "Support",
+                                        "smartphone": "Téléphone",
+                                        "credit-card": "Carte bancaire",
+                                        "shopping-cart": "Panier",
+                                        "message-circle": "Message",
+                                        "mail": "Email",
+                                        "clock": "Horloge",
+                                        "map-pin": "Localisation",
+                                        "wifi": "Réseau",
+                                        "undo": "Retour"
+                                    },
+                                    "default_value": false,
+                                    "return_format": "value",
+                                    "multiple": 0,
+                                    "allow_null": 1,
+                                    "ui": 1,
+                                    "ajax": 0,
+                                    "placeholder": "Picto automatique"
+                                },
+                                {
                                     "key": "field_spt_reassurance_title",
                                     "label": "Titre",
                                     "name": "title",
-                                    "type": "text"
+                                    "type": "text",
+                                    "instructions": "Engagement principal, par exemple Paiement sécurisé."
                                 },
                                 {
                                     "key": "field_spt_reassurance_text",
                                     "label": "Texte",
                                     "name": "text",
-                                    "type": "text"
+                                    "type": "text",
+                                    "instructions": "Précision courte affichée sous le titre."
                                 }
                             ]
+                        }
+                    ],
+                    "min": "",
+                    "max": ""
+                },
+                "layout_spt_text_content": {
+                    "key": "layout_spt_text_content",
+                    "name": "text_content",
+                    "label": "Contenu texte",
+                    "display": "block",
+                    "sub_fields": [
+                        {
+                            "key": "field_spt_text_content_title",
+                            "label": "Titre",
+                            "name": "title",
+                            "type": "text",
+                            "required": 1
+                        },
+                        {
+                            "key": "field_spt_text_content_body",
+                            "label": "Contenu",
+                            "name": "content",
+                            "type": "wysiwyg",
+                            "required": 1,
+                            "tabs": "all",
+                            "toolbar": "full",
+                            "media_upload": 0,
+                            "delay": 0
                         }
                     ],
                     "min": "",
@@ -327,9 +424,9 @@
     "location": [
         [
             {
-                "param": "page_type",
+                "param": "post_type",
                 "operator": "==",
-                "value": "front_page"
+                "value": "page"
             }
         ]
     ],
@@ -342,5 +439,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1787702400
+    "modified": 1788741525
 }

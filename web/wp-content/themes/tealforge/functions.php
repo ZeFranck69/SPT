@@ -13,6 +13,8 @@ if (file_exists($tealforge_autoload)) {
 require_once __DIR__ . '/inc/helpers.php';
 require_once __DIR__ . '/inc/setup.php';
 require_once __DIR__ . '/inc/assets.php';
+require_once __DIR__ . '/inc/admin.php';
+require_once __DIR__ . '/inc/acf.php';
 require_once __DIR__ . '/inc/timber.php';
 require_once __DIR__ . '/inc/sections.php';
 

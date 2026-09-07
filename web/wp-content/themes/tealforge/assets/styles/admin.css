@@ -1,0 +1,174 @@
+:root {
+  --tf-admin-red: #e6141f;
+  --tf-admin-red-dark: #b90f18;
+  --tf-admin-black: #1d1b1c;
+  --tf-admin-surface: #f5f5f5;
+  --tf-admin-border: #dcdcde;
+}
+
+#wpadminbar,
+#adminmenuback,
+#adminmenuwrap,
+#adminmenu {
+  background: var(--tf-admin-black);
+}
+
+#adminmenu a,
+#adminmenu div.wp-menu-image::before,
+#wpadminbar .ab-icon::before,
+#wpadminbar .ab-item::before {
+  color: rgb(255 255 255 / 78%);
+}
+
+#adminmenu li.menu-top:hover,
+#adminmenu li.opensub > a.menu-top,
+#adminmenu li > a.menu-top:focus,
+#adminmenu .wp-submenu,
+#wpadminbar .menupop .ab-sub-wrapper {
+  background: #292627;
+}
+
+#adminmenu li.wp-has-current-submenu a.wp-has-current-submenu,
+#adminmenu li.current a.menu-top,
+#adminmenu .wp-submenu a:focus,
+#adminmenu .wp-submenu a:hover,
+#adminmenu a:hover,
+#adminmenu li.menu-top > a:focus {
+  background: var(--tf-admin-red);
+  color: #ffffff;
+}
+
+#adminmenu li.wp-has-current-submenu div.wp-menu-image::before,
+#adminmenu li.current div.wp-menu-image::before,
+#adminmenu a:hover div.wp-menu-image::before,
+#adminmenu a:focus div.wp-menu-image::before {
+  color: #ffffff;
+}
+
+#adminmenu li.wp-has-current-submenu .wp-submenu .wp-submenu-head,
+#adminmenu li.current a.menu-top {
+  font-weight: 700;
+}
+
+#collapse-button:hover,
+#collapse-button:focus {
+  color: #ffffff;
+}
+
+a,
+.wp-core-ui .button-link,
+.wrap .page-title-action,
+.row-actions a,
+.subsubsub a {
+  color: var(--tf-admin-red-dark);
+}
+
+a:hover,
+a:focus,
+.wp-core-ui .button-link:hover,
+.wp-core-ui .button-link:focus,
+.row-actions a:hover,
+.row-actions a:focus {
+  color: var(--tf-admin-red);
+}
+
+.wp-core-ui .button-primary,
+.wp-core-ui .button-primary-disabled,
+.wp-core-ui .button-primary.disabled,
+.wp-core-ui .button-primary:disabled,
+.wp-core-ui .button-primary[disabled],
+.components-button.is-primary {
+  border-color: var(--tf-admin-red);
+  background: var(--tf-admin-red);
+  color: #ffffff;
+  box-shadow: none;
+}
+
+.wp-core-ui .button-primary:hover,
+.wp-core-ui .button-primary:focus,
+.components-button.is-primary:hover,
+.components-button.is-primary:focus:not(:disabled) {
+  border-color: var(--tf-admin-black);
+  background: var(--tf-admin-black);
+  color: #ffffff;
+  box-shadow: 0 0 0 1px #ffffff, 0 0 0 3px var(--tf-admin-red);
+}
+
+.wp-core-ui .button-secondary:hover,
+.wp-core-ui .button-secondary:focus,
+.wrap .page-title-action:hover,
+.wrap .page-title-action:focus {
+  border-color: var(--tf-admin-red);
+  color: var(--tf-admin-red);
+}
+
+input[type="checkbox"]:checked::before,
+input[type="radio"]:checked::before {
+  color: var(--tf-admin-red);
+}
+
+input[type="text"]:focus,
+input[type="password"]:focus,
+input[type="email"]:focus,
+input[type="url"]:focus,
+input[type="number"]:focus,
+input[type="search"]:focus,
+input[type="tel"]:focus,
+textarea:focus,
+select:focus {
+  border-color: var(--tf-admin-red);
+  box-shadow: 0 0 0 1px var(--tf-admin-red);
+}
+
+.notice,
+div.updated,
+div.error {
+  border-radius: 4px;
+}
+
+.notice-success,
+div.updated {
+  border-left-color: var(--tf-admin-red);
+}
+
+.postbox,
+.stuffbox,
+.welcome-panel,
+.card {
+  border-color: var(--tf-admin-border);
+  border-radius: 6px;
+  box-shadow: 0 2px 8px rgb(29 27 28 / 5%);
+}
+
+.acf-tab-wrap.-top .acf-tab-group li.active a,
+.acf-tab-wrap.-left .acf-tab-group li.active a,
+.acf-button-group label.selected {
+  border-color: var(--tf-admin-red);
+  background: var(--tf-admin-red);
+  color: #ffffff;
+}
+
+.acf-flexible-content .layout .acf-fc-layout-handle {
+  border-left: 4px solid var(--tf-admin-red);
+}
+
+.woocommerce-layout__header,
+.woocommerce-layout__activity-panel-tabs {
+  border-bottom-color: var(--tf-admin-red);
+}
+
+.woocommerce-navigation .woocommerce-navigation__item.is-active .woocommerce-navigation__item-link,
+.woocommerce-navigation .woocommerce-navigation__item-link:hover,
+.woocommerce-navigation .woocommerce-navigation__item-link:focus {
+  color: var(--tf-admin-red);
+}
+
+.woocommerce-navigation .woocommerce-navigation__item.is-active::after {
+  background: var(--tf-admin-red);
+}
+
+@media (max-width: 782px) {
+  #wpadminbar {
+    background: var(--tf-admin-black);
+  }
+}

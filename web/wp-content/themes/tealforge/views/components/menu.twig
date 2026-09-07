@@ -1,5 +1,5 @@
 {% if menu and menu.items %}
-    <nav class="{{ class_name }}" data-tf-menu-panel aria-label="{{ function('__', 'Navigation', 'tealforge') }}">
+    <nav class="{{ class_name }}"{% if mobile_panel %} data-tf-menu-panel{% endif %} aria-label="{{ function('__', 'Navigation', 'tealforge') }}">
         <ul class="tf-menu__list">
             {% for item in menu.items %}
                 <li class="tf-menu__item">

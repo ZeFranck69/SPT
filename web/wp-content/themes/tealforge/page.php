@@ -6,6 +6,10 @@ defined('ABSPATH') || exit;
 
 $context = tealforge_get_context();
 $context['post'] = Timber\Timber::get_post();
+$sections = function_exists('get_field') && $context['post']
+    ? get_field('page_sections', $context['post']->ID)
+    : [];
+$context['sections'] = is_array($sections) ? tealforge_prepare_page_sections($sections) : [];
 $context['heading'] = [
     'icon' => '',
     'eyebrow' => 'SPT Wallis & Futuna',
