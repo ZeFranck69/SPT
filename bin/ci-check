@@ -1,0 +1,67 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+PROJECT_ROOT="$(cd "$SCRIPT_DIR/.." && pwd)"
+THEME_DIR="${THEME_DIR:-web/wp-content/themes/tealforge}"
+
+cd "$PROJECT_ROOT"
+
+DDEV_READY=0
+if command -v ddev >/dev/null 2>&1 && ddev describe >/dev/null 2>&1; then
+  DDEV_READY=1
+fi
+
+echo "Verification Git"
+git diff --check
+
+echo "Verification PHP"
+while IFS= read -r -d '' file; do
+  if command -v php >/dev/null 2>&1; then
+    php -l "$file" >/dev/null
+  elif [ "$DDEV_READY" -eq 1 ]; then
+    ddev exec php -l "/var/www/html/$file" >/dev/null
+  else
+    echo "PHP introuvable. Installez PHP ou demarrez DDEV avec ddev start."
+    exit 1
+  fi
+  echo "OK $file"
+done < <(find "$THEME_DIR" -type f -name '*.php' -not -path '*/vendor/*' -print0)
+
+if [ ! -f "$THEME_DIR/package.json" ]; then
+  echo "package.json introuvable : $THEME_DIR"
+  exit 1
+fi
+
+echo "Installation des dependances npm"
+if command -v npm >/dev/null 2>&1; then
+  if [ -f "$THEME_DIR/package-lock.json" ]; then
+    npm ci --prefix "$THEME_DIR"
+  else
+    npm install --prefix "$THEME_DIR"
+  fi
+elif [ "$DDEV_READY" -eq 1 ]; then
+  if [ -f "$THEME_DIR/package-lock.json" ]; then
+    ddev npm --prefix "/var/www/html/$THEME_DIR" ci
+  else
+    ddev npm --prefix "/var/www/html/$THEME_DIR" install
+  fi
+else
+  echo "npm introuvable. Installez Node.js ou demarrez DDEV avec ddev start."
+  exit 1
+fi
+
+echo "Build Vite"
+if command -v npm >/dev/null 2>&1; then
+  npm run build --prefix "$THEME_DIR"
+else
+  ddev npm --prefix "/var/www/html/$THEME_DIR" run build
+fi
+
+MANIFEST="$THEME_DIR/dist/manifest.json"
+if [ ! -s "$MANIFEST" ]; then
+  echo "Manifest Vite introuvable ou vide : $MANIFEST"
+  exit 1
+fi
+
+echo "CI locale terminee"

@@ -1,56 +1,41 @@
 # Boilerplate WordPress Tealforge
 
-Boilerplate WordPress reutilisable pour les projets Tealforge.
+Socle WordPress reutilisable pour les projets Tealforge.
 
-Stack par defaut :
+Stack incluse :
 
-- DDEV ;
 - WordPress ;
 - theme custom `tealforge` ;
 - Timber 2 et Twig ;
-- ACF JSON ;
+- ACF Pro ;
 - WPForms ;
-- Vite ;
-- CSS natif moderne ;
-- JavaScript natif.
+- Vite, CSS natif et JavaScript natif ;
+- DDEV pour l'environnement local.
 
-Le depot contient le socle du projet, le theme et les scripts de workflow.
-La base de donnees, les medias, les plugins tiers et les secrets ne sont pas
-versionnes.
+Le code du theme, les fichiers ACF JSON et les assets construits sont versionnes.
+La base de donnees, les medias, les plugins tiers et les secrets ne le sont pas.
+
+Les regles de developpement sont dans [AGENTS.md](AGENTS.md).
+Les informations propres a un projet sont dans [PROJECT.md](PROJECT.md).
 
 ## 1. Prerequis
 
-Avant de demarrer un projet, il faut :
+Installer ou obtenir :
 
 - Git ;
 - Docker Desktop ;
 - DDEV ;
 - un depot Git vide pour le projet ;
-- un acces WordPress admin local ou distant selon le projet ;
-- un acces SSH serveur si un deploiement distant est prevu.
+- les acces WordPress necessaires ;
+- un acces SSH si un deploiement distant est prevu.
 
-PHP, Composer, Node.js et WP-CLI doivent etre utilises via DDEV.
+PHP, Composer, Node.js et WP-CLI sont utilises via DDEV.
 
-## 2. Installation des prerequis
-
-### Docker Desktop
+### Installer Docker et DDEV
 
 Installer Docker Desktop :
 
-```text
-https://docs.docker.com/desktop/setup/install/mac-install/
-```
-
-Ouvrir Docker Desktop au moins une fois, puis verifier :
-
-```bash
-docker --version
-docker ps
-```
-
-Si `docker ps` retourne une erreur, Docker n'est probablement pas demarre.
-
-### DDEV
+<https://docs.docker.com/desktop/setup/install/mac-install/>
 
 Sur macOS :
 
@@ -62,82 +47,42 @@ mkcert -install
 Verifier :
 
 ```bash
+docker --version
 ddev version
 ```
 
-Documentation DDEV :
+Docker Desktop doit etre demarre avant d'utiliser DDEV.
 
-```text
-https://ddev.github.io/ddev/en/stable/users/install/ddev-installation/
-```
+## 2. Creer le projet
 
-## 3. Installation du projet
+Creer d'abord un depot Git vide, sans README ni commit initial.
 
-Créer d'abord un depot Git vide pour le projet, sans README ni commit initial.
-
-Depuis `~/Sites` :
+Depuis le dossier des projets :
 
 ```bash
 cd ~/Sites
 git clone git@github.com:ORGANISATION/boilerplate-wordpress-tealforge.git NOM_PROJET
 cd NOM_PROJET
-```
-
-Remplacer le remote du boilerplate par celui du projet :
-
-```bash
 git remote remove origin
 git remote add origin git@github.com:ORGANISATION/NOM_PROJET.git
-```
-
-Créer le fichier projet :
-
-```bash
 cp PROJECT.md.example PROJECT.md
 ```
 
 Adapter ensuite :
 
-```text
-PROJECT.md
-.ddev/config.yaml
-```
+- `PROJECT.md` ;
+- `.ddev/config.yaml`, avec `name: NOM_PROJET`.
 
-Dans `.ddev/config.yaml`, remplacer :
+## 3. Installer WordPress en local
 
-```yaml
-name: NOM_PROJET
-```
-
-Démarrer DDEV :
+Depuis la racine du projet :
 
 ```bash
 ddev start
-```
-
-Installer WordPress dans `web/` sans écraser `wp-content` :
-
-```bash
-ddev wp core download \
-  --path=/var/www/html/web \
-  --locale=fr_FR \
-  --skip-content
-```
-
-Créer `wp-config.php` :
-
-```bash
+ddev wp core download --path=/var/www/html/web --locale=fr_FR --skip-content
 ddev wp config create \
   --path=/var/www/html/web \
-  --dbname=db \
-  --dbuser=db \
-  --dbpass=db \
-  --dbhost=db
-```
-
-Installer WordPress :
-
-```bash
+  --dbname=db --dbuser=db --dbpass=db --dbhost=db
 ddev wp core install \
   --path=/var/www/html/web \
   --url=https://NOM_PROJET.ddev.site \
@@ -146,30 +91,24 @@ ddev wp core install \
   --admin_password='CHANGE_ME_LOCAL_ONLY' \
   --admin_email=dev@tealforge.local \
   --skip-email
-```
-
-Configurer les permaliens :
-
-```bash
 ddev wp rewrite structure '/%postname%/' --path=/var/www/html/web
 ddev wp rewrite flush --path=/var/www/html/web
 ```
+
+Le mot de passe ci-dessus est reserve au local et doit etre remplace.
+
+## 4. Installer le theme et les plugins
 
 Installer les dependances du theme :
 
 ```bash
 ddev composer --working-dir=/var/www/html/web/wp-content/themes/tealforge install
 ddev npm --prefix /var/www/html/web/wp-content/themes/tealforge install
-```
-
-Builder puis activer le theme :
-
-```bash
 bin/build
 ddev wp theme activate tealforge --path=/var/www/html/web
 ```
 
-Installer ensuite les plugins obligatoires depuis l'admin WordPress :
+Installer ensuite depuis l'administration WordPress les plugins retenus :
 
 - ACF Pro ;
 - WPForms ;
@@ -178,8 +117,15 @@ Installer ensuite les plugins obligatoires depuis l'admin WordPress :
 - plugin de maintenance ;
 - All-In-One Security / AIOS.
 
-Si un environnement dev/prod existe deja, installer WPvivid sur les deux
-environnements puis importer la base distante vers le local.
+Les plugins tiers ne sont pas versionnes dans le depot.
+
+Si un environnement dev/prod existe deja :
+
+1. installer et configurer WPvivid sur le local et l'environnement distant ;
+2. faire un backup ;
+3. importer la base distante vers le local ;
+4. importer les medias si necessaire ;
+5. verifier les utilisateurs, pages, menus, ACF et formulaires.
 
 Sens recommande :
 
@@ -187,234 +133,102 @@ Sens recommande :
 dev/prod -> local
 ```
 
-## 4. Reprise locale et renommage
+## 5. Reprendre un projet existant
 
-Si un projet issu du boilerplate est renomme en local, mettre a jour le nom du
-site WordPress, les URLs et le nom DDEV.
-
-Remplacer `NOM_PROJET` par le nouveau nom du projet :
+Pour travailler sur un projet deja initialise, cloner le depot du projet, et non
+le boilerplate :
 
 ```bash
-ddev wp option update blogname "NOM_PROJET"
-ddev wp option update siteurl "https://NOM_PROJET.ddev.site"
-ddev wp option update home "https://NOM_PROJET.ddev.site"
-
-ddev stop
-ddev config --project-name=NOM_PROJET
+cd ~/Sites
+git clone git@github.com:ORGANISATION/NOM_PROJET.git
+cd NOM_PROJET
 ddev start
-```
-
-Si le mot de passe admin local doit etre reinitialise :
-
-```bash
-ddev wp user update tf-admin --user_pass='admin'
-```
-
-Cette commande est reservee au local. Ne jamais utiliser de mot de passe faible
-sur un environnement distant ou en production.
-
-## 5. Synchronisation ACF apres deploiement
-
-Les definitions ACF versionnees dans `acf-json` ne mettent pas automatiquement la
-base de donnees distante a jour. Apres un deploiement qui ajoute ou modifie des
-champs ACF, verifier puis synchroniser les JSON avant d'editer les pages.
-
-Commandes WP-CLI recommandees sur le serveur :
-
-```bash
-wp acf json status
-wp acf json sync --dry-run
-wp acf json sync
-wp rewrite flush --hard
-wp cache flush
-```
-
-Si seuls certains types sont concernes, limiter la synchronisation :
-
-```bash
-wp acf json sync --type=field-group
-wp acf json sync --type=post-type
-wp acf json sync --type=taxonomy
-```
-
-Si des CPT ou taxonomies ont ete ajoutes ou modifies, relancer les regles de
-reecriture avec `wp rewrite flush --hard`. Ne pas sauvegarder une page tant que
-les champs ACF attendus ne sont pas visibles dans l'admin.
-
-## 6. Structure du projet
-
-Structure principale :
-
-```text
-.
-├── AGENTS.md
-├── PROJECT.md
-├── README.md
-├── bin/
-├── docs/
-├── .ddev/
-└── web/
-    └── wp-content/
-        └── themes/
-            └── tealforge/
-```
-
-Theme :
-
-```text
-web/wp-content/themes/tealforge/
-├── inc/
-├── views/
-├── assets/
-├── acf-json/
-├── dist/
-├── functions.php
-└── style.css
-```
-
-## 7. Commandes build et Git
-
-Voir l'etat du projet :
-
-```bash
-bin/status
-```
-
-Builder le theme :
-
-```bash
+ddev composer --working-dir=/var/www/html/web/wp-content/themes/tealforge install
+ddev npm --prefix /var/www/html/web/wp-content/themes/tealforge install
 bin/build
 ```
 
-Verifier avant commit :
+WordPress n'est pas reinstalle. La base, les medias et les plugins tiers ne sont
+pas recuperes par Git : les importer depuis l'environnement de reference avec
+WPvivid.
+
+Chaque developpeur doit utiliser ses propres acces Git et sa propre cle SSH.
+La procedure cPanel est decrite dans la documentation du projet.
+
+## 6. Developper et builder
+
+Le theme se trouve dans :
+
+```text
+web/wp-content/themes/tealforge
+```
+
+Les pages sont composees avec des sections ACF Flexible Content. Pour creer une
+section, consulter [docs/creer-section.md](docs/creer-section.md).
+
+Commandes principales :
 
 ```bash
+ddev launch
+bin/status
 bin/check
+bin/build
+bin/ci-check
 ```
+
+`bin/build` compile les assets et met a jour `dist/`.
+Le dossier `dist/` doit rester versionne pour le deploiement.
+
+`bin/ci-check` verifie Git, PHP, les dependances npm, le build Vite et le
+manifest. Il peut utiliser DDEV si les outils ne sont pas installes sur le poste.
+
+## 7. Versionner les modifications
 
 Workflow Git classique :
 
 ```bash
 git status
 git add .
-git status
 git commit -m "Message clair"
 git push
 ```
 
-Workflow Git simplifie :
+Workflow simplifie :
 
 ```bash
 bin/commit "Message clair"
 bin/push
 ```
 
-Le script `bin/commit` lance `bin/check`, ajoute les fichiers, puis cree le
-commit.
+Avant un commit, verifier que les sauvegardes, exports SQL, secrets, uploads,
+`node_modules`, `vendor` et `deploy.local.env` ne sont pas inclus.
 
-Le dossier `dist` du theme doit rester versionne pour permettre un deploiement
-sans Node.js sur le serveur.
+Pour faire evoluer un projet avec une nouvelle version du boilerplate, consulter
+[docs/evolution-boilerplate.md](docs/evolution-boilerplate.md). Ne jamais fusionner
+automatiquement tout le theme du boilerplate dans un projet deja personnalise.
 
-## 8. Acces SSH cPanel
+## 8. Deployer en dev/prod
 
-Pour un deploiement SSH via cPanel, creer de preference la cle SSH sur le poste
-local, puis importer uniquement la cle publique dans cPanel.
+Le deploiement est manuel et necessite un backup avant toute intervention.
 
-Creer une cle dediee au projet :
-
-```bash
-ssh-keygen -t ed25519 -f ~/.ssh/id_ed25519_NOM_PROJET
-```
-
-Afficher la cle publique a coller dans cPanel :
+Preparer le build et la configuration locale :
 
 ```bash
-cat ~/.ssh/id_ed25519_NOM_PROJET.pub
-```
-
-Dans cPanel :
-
-```text
-Acces SSH > Gerer les cles SSH > Importer une cle
-```
-
-![Import de cle SSH dans cPanel](docs/images/cpanel-import-cle-ssh.png)
-
-Remplir les champs ainsi :
-
-```text
-Attribuez un nom a cette cle :
-id_ed25519_NOM_PROJET
-
-Collez la cle privee :
-laisser vide
-
-Phrase secrete :
-laisser vide
-
-Collez la cle publique :
-coller le contenu de ~/.ssh/id_ed25519_NOM_PROJET.pub
-```
-
-Apres l'import, revenir dans la liste des cles SSH et cliquer sur :
-
-```text
-Gerer > Autoriser
-```
-
-Tester ensuite la connexion :
-
-```bash
-ssh -i ~/.ssh/id_ed25519_NOM_PROJET -p PORT USER@HOST
-```
-
-Chaque developpeur doit avoir sa propre cle SSH. Ne jamais partager une cle
-privee.
-
-### Mot de passe demande en SSH
-
-Il y a deux cas possibles :
-
-- si le terminal demande `Enter passphrase for key`, saisir la phrase secrete de
-  la cle SSH creee sur le poste local ;
-- si le terminal demande `USER@HOST's password`, saisir le mot de passe du compte
-  cPanel/FTP/SSH fourni par l'hebergeur.
-
-Si la connexion demande toujours le mot de passe cPanel alors qu'une cle SSH est
-prevue, verifier que la cle publique est bien importee puis autorisee dans cPanel.
-
-## 9. Push en dev/prod
-
-Le serveur distant ne doit pas etre la source du code.
-
-Avant un deploiement :
-
-1. faire un backup ;
-2. verifier que le code est commit/push ;
-3. lancer `bin/build` ;
-4. verifier que `dist/manifest.json` existe ;
-5. preparer l'archive du theme.
-
-Créer l'archive :
-
-```bash
-bin/package-theme
-```
-
-Configurer les variables de deploiement :
-
-```bash
+bin/build
 cp deploy.example.env deploy.local.env
 ```
 
-Modifier `deploy.local.env` :
+Renseigner dans `deploy.local.env` :
 
 ```text
 DEPLOY_HOST="HOST"
 DEPLOY_PORT="PORT"
 DEPLOY_USER="USER"
 DEPLOY_WP_PATH="/chemin/vers/wordpress"
+DEPLOY_SSH_KEY="/chemin/vers/cle-privee"
 ```
+
+Ce fichier ne doit jamais etre committe.
 
 Afficher les commandes de deploiement :
 
@@ -422,47 +236,35 @@ Afficher les commandes de deploiement :
 bin/deploy-theme
 ```
 
-Le script `bin/deploy-theme` revient automatiquement a la racine du projet, puis
-lit `deploy.local.env` s'il existe. Il peut donc etre lance depuis la racine ou
-via son chemin absolu. Il ne se connecte pas au serveur. Il affiche les commandes
-`scp`, `ssh` et les commandes serveur a executer.
+Le script prepare l'archive et affiche les commandes `scp`, `ssh` et serveur.
+Il ne se connecte pas automatiquement et ne modifie pas la production.
 
-Suivre les instructions affichees dans le terminal, dans l'ordre :
+Suivre les commandes affichees dans le terminal :
 
-1. envoyer l'archive avec la commande `scp` affichee ;
-2. se connecter au serveur avec la commande `ssh` affichee ;
-3. executer les commandes serveur affichees pour installer ou remplacer le theme ;
-4. verifier le `manifest.json` et vider les caches.
+1. envoyer l'archive ;
+2. se connecter en SSH ;
+3. sauvegarder puis remplacer le theme `tealforge` ;
+4. appliquer les permissions indiquees ;
+5. vider les caches ;
+6. verifier le manifest et les fichiers CSS/JS.
 
-Ne jamais envoyer automatiquement :
+Apres deploiement, verifier :
 
-```text
-web/wp-config.php
-web/wp-content/uploads/
-web/wp-content/cache/
-web/wp-content/wpvivid_staging/
-sauvegardes
-exports SQL
-secrets
-```
+- le theme actif conserve le slug `tealforge` ;
+- `dist/manifest.json` repond en HTTP 200 ;
+- les CSS et JS sont charges depuis `dist/` ;
+- les groupes ACF sont synchronises avant toute modification de page.
 
-Apres deploiement :
+La procedure SSH/cPanel et les cas de depannage sont documentes dans [docs/](docs/).
 
-- verifier que le theme actif garde le slug `tealforge` ;
-- verifier que `/wp-content/themes/tealforge/dist/manifest.json` repond ;
-- verifier que les CSS/JS charges pointent vers `dist/` ;
-- vider les caches ;
-- synchroniser/importer les ACF JSON si necessaire.
+## Documentation
 
-## 10. Documentation utile
-
-```text
-docs/checklists/nouveau-projet.md
-docs/architecture-theme.md
-docs/creer-section.md
-docs/depannage.md
-```
-
-`AGENTS.md` contient les consignes generales pour Codex.
-
-`PROJECT.md` contient les informations propres au projet courant.
+- [Architecture du theme](docs/architecture-theme.md)
+- [Creer une section](docs/creer-section.md)
+- [Checklist nouveau projet](docs/checklists/nouveau-projet.md)
+- [Checklist recette production](docs/checklists/recette-production.md)
+- [Evolution du boilerplate](docs/evolution-boilerplate.md)
+- [Depannage](docs/depannage.md)
+- [Presentation technique](docs/presentation-boilerplate.md)
+- [AGENTS.md](AGENTS.md)
+- [CLAUDE.md](CLAUDE.md)
