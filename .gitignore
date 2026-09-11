@@ -21,9 +21,24 @@ web/wp-content/cache/
 web/wp-content/upgrade/
 web/wp-content/upgrade-temp-backup/
 web/wp-content/wpvivid_staging/
+web/wp-content/plugins/
+web/wp-content/languages/
+web/wp-content/wpvividbackups/
+web/wp-content/aiowps_backups/
 web/wp-content/ai1wm-backups/
 web/wp-content/backups*/
 web/wp-content/debug.log
+
+# WordPress Core
+web/wp-admin/
+web/wp-includes/
+web/*.php
+web/license.txt
+web/readme.html
+
+# DDEV local certificates and private keys
+.ddev/traefik/certs/
+*.key
 
 # Dependencies
 node_modules/
