@@ -18,6 +18,16 @@ La base de donnees, les medias, les plugins tiers et les secrets ne le sont pas.
 Les regles de developpement sont dans [AGENTS.md](AGENTS.md).
 Les informations propres a un projet sont dans [PROJECT.md](PROJECT.md).
 
+## Sommaire
+
+- [Prerequis et installation des outils](#1-prerequis)
+- [Installation d'un nouveau projet](#installation-dun-nouveau-projet)
+- [Reprise d'un projet existant](#reprise-dun-projet-existant)
+- [Developper et builder](#developper-et-builder)
+- [Versionner les modifications](#versionner-les-modifications)
+- [Deployer en dev/prod](#deployer-en-devprod)
+- [Documentation](#documentation)
+
 ## 1. Prerequis
 
 Installer ou obtenir :
@@ -51,11 +61,25 @@ docker --version
 ddev version
 ```
 
-Docker Desktop doit etre demarre avant d'utiliser DDEV.
+> **Important : demarrer Docker Desktop avant toute commande DDEV.**
+> Attendre que Docker indique qu'il est pret, puis seulement lancer `ddev start`.
 
-## 2. Creer le projet
+## Installation d'un nouveau projet
+
+### 1. Creer le projet
 
 Creer d'abord un depot Git vide, sans README ni commit initial.
+
+Avant de copier les commandes ci-dessous, remplacer :
+
+- `ORGANISATION` par le nom de l'organisation ou du compte GitHub ;
+- `NOM_PROJET` par le nom du projet, utilise aussi pour le dossier local et le depot distant.
+
+> **Ne pas executer les commandes avec les valeurs `ORGANISATION` et `NOM_PROJET` telles quelles.**
+> Adapter les deux valeurs dans les lignes `git clone` et `git remote add` avant de les coller.
+
+Exemple : pour un projet `maison-du-bonheur`, le depot du boilerplate est clone dans
+un dossier `maison-du-bonheur`, puis le remote est remplace par le depot du projet.
 
 Depuis le dossier des projets :
 
@@ -68,14 +92,19 @@ git remote add origin git@github.com:ORGANISATION/NOM_PROJET.git
 cp PROJECT.md.example PROJECT.md
 ```
 
-Adapter ensuite :
+Apres le clonage, adapter ensuite :
 
 - `PROJECT.md` ;
-- `.ddev/config.yaml`, avec `name: NOM_PROJET`.
+- `.ddev/config.yaml`, avec `name: NOM_PROJET` (le meme nom de projet, sans espace).
 
-## 3. Installer WordPress en local
+### 2. Installer WordPress en local
 
 Depuis la racine du projet :
+
+> **Avant `ddev start`, verifier que Docker Desktop est bien demarre.**
+
+Remplacer `NOM_PROJET` dans l'URL et le titre ci-dessous par le nom choisi pour le
+projet. Cette valeur doit correspondre au nom defini dans `.ddev/config.yaml`.
 
 ```bash
 ddev start
@@ -97,7 +126,7 @@ ddev wp rewrite flush --path=/var/www/html/web
 
 Le mot de passe ci-dessus est reserve au local et doit etre remplace.
 
-## 4. Installer le theme et les plugins
+### 3. Installer le theme et les plugins
 
 Installer les dependances du theme :
 
@@ -133,29 +162,63 @@ Sens recommande :
 dev/prod -> local
 ```
 
-## 5. Reprendre un projet existant
+## Reprise d'un projet existant
 
-Pour travailler sur un projet deja initialise, cloner le depot du projet, et non
-le boilerplate :
+### 1. Cloner le projet
+
+Pour travailler sur un projet deja initialise, cloner le depot du projet. Les
+commandes `git remote remove origin` et `git remote add origin` du parcours
+« nouveau projet » ne sont pas necessaires.
+
+> **Avant de copier la commande, remplacer `ORGANISATION` et `NOM_PROJET` par
+> l'organisation/le compte et le nom exacts du depot existant.**
 
 ```bash
 cd ~/Sites
 git clone git@github.com:ORGANISATION/NOM_PROJET.git
 cd NOM_PROJET
+```
+
+### 2. Installer WordPress localement
+
+Le Core WordPress n'est pas versionne dans Git. L'installer dans le projet local :
+
+> **Demarrer Docker Desktop et attendre qu'il soit pret avant `ddev start`.**
+
+```bash
 ddev start
+ddev wp core download --path=/var/www/html/web --locale=fr_FR --skip-content
+ddev wp config create \
+  --path=/var/www/html/web \
+  --dbname=db --dbuser=db --dbpass=db --dbhost=db
+```
+
+### 3. Installer les dependances et les plugins
+
+Installer les dependances du theme :
+
+```bash
 ddev composer --working-dir=/var/www/html/web/wp-content/themes/tealforge install
 ddev npm --prefix /var/www/html/web/wp-content/themes/tealforge install
 bin/build
 ```
 
-WordPress n'est pas reinstalle. La base, les medias et les plugins tiers ne sont
-pas recuperes par Git : les importer depuis l'environnement de reference avec
-WPvivid.
+Les plugins tiers ne sont pas recuperes par Git. Les installer manuellement depuis
+le back-office WordPress, selon le projet.
+
+### 4. Importer la base et les medias
+
+La base et les medias ne sont pas recuperes par Git. Les importer depuis
+l'environnement de reference avec WPvivid, apres avoir fait un backup.
+
+### 5. Verifier le projet
+
+Verifier les utilisateurs, pages, menus, ACF, formulaires, medias et theme actif.
 
 Chaque developpeur doit utiliser ses propres acces Git et sa propre cle SSH.
 La procedure cPanel est decrite dans la documentation du projet.
 
-## 6. Developper et builder
+## Developper et builder
 
 Le theme se trouve dans :
 
@@ -182,7 +245,7 @@ Le dossier `dist/` doit rester versionne pour le deploiement.
 `bin/ci-check` verifie Git, PHP, les dependances npm, le build Vite et le
 manifest. Il peut utiliser DDEV si les outils ne sont pas installes sur le poste.
 
-## 7. Versionner les modifications
+## Versionner les modifications
 
 Workflow Git classique :
 
@@ -207,7 +270,7 @@ Pour faire evoluer un projet avec une nouvelle version du boilerplate, consulter
 [docs/evolution-boilerplate.md](docs/evolution-boilerplate.md). Ne jamais fusionner
 automatiquement tout le theme du boilerplate dans un projet deja personnalise.
 
-## 8. Deployer en dev/prod
+## Deployer en dev/prod
 
 Le deploiement est manuel et necessite un backup avant toute intervention.
 
