@@ -89,36 +89,32 @@ function tealforge_get_default_page_sections(): array
         ],
         [
             'acf_fc_layout' => 'recharge_steps',
-            'eyebrow' => 'Rechargez en 4 étapes simples',
             'title' => 'Comment ça marche ?',
+            'lead' => 'Quatre étapes, moins d’une minute.',
             'steps' => [
                 [
-                    'number' => '01',
+                    'number' => '1',
+                    'icon' => 'smartphone',
                     'title' => 'Choisissez votre recharge',
-                    'text' => 'Sélectionnez une offre Papito Voix ou Neti Data.',
-                    'badge' => '',
-                    'featured' => false,
+                    'text' => 'PAPITO pour les appels et SMS, NETI pour l’internet mobile.',
                 ],
                 [
-                    'number' => '02',
-                    'title' => 'Ajoutez au panier',
-                    'text' => 'Regroupez une ou plusieurs recharges dans la même commande.',
-                    'badge' => '',
-                    'featured' => false,
+                    'number' => '2',
+                    'icon' => 'hash',
+                    'title' => 'Indiquez le numéro à recharger',
+                    'text' => 'Le vôtre ou celui d’un proche, sur le réseau Manuia.',
                 ],
                 [
-                    'number' => '03',
-                    'title' => 'Payez en ligne',
-                    'text' => 'Validez votre commande avec le moyen de paiement sécurisé proposé.',
-                    'badge' => '',
-                    'featured' => true,
+                    'number' => '3',
+                    'icon' => 'credit-card',
+                    'title' => 'Payez par carte bancaire',
+                    'text' => 'Paiement sécurisé, aucun compte obligatoire.',
                 ],
                 [
-                    'number' => '04',
-                    'title' => 'Recevez vos codes',
-                    'text' => 'Les vouchers sont envoyés par email et SMS après validation du paiement.',
-                    'badge' => 'Après paiement validé',
-                    'featured' => false,
+                    'number' => '4',
+                    'icon' => 'mail',
+                    'title' => 'Recevez votre code',
+                    'text' => 'Par email et SMS, immédiatement après le paiement.',
                 ],
             ],
         ],
@@ -142,6 +138,50 @@ function tealforge_get_default_page_sections(): array
                     'text' => 'Une aide en cas de besoin',
                 ],
             ],
+        ],
+        [
+            'acf_fc_layout' => 'recharge_faq',
+            'eyebrow' => '',
+            'title' => 'Questions fréquentes',
+            'intro_text' => 'Vous ne trouvez pas votre réponse ? Notre équipe répond par email sous 24 h ouvrées.',
+            'button_label' => 'Nous contacter',
+            'button_url' => '#contact-cta',
+            'items' => [
+                [
+                    'question' => 'Quelle est la différence entre PAPITO et NETI ?',
+                    'answer' => 'PAPITO est une recharge voix : du crédit d’appel accompagné de SMS offerts. NETI est une recharge internet : de la data pour naviguer, échanger et partager votre connexion.',
+                ],
+                [
+                    'question' => 'Quand est-ce que je reçois mon code ?',
+                    'answer' => 'Le code est envoyé par email et par SMS dès la validation du paiement, en général en moins d’une minute.',
+                ],
+                [
+                    'question' => 'Puis-je recharger le téléphone de quelqu’un d’autre ?',
+                    'answer' => 'Oui. Il suffit d’indiquer le numéro Manuia du bénéficiaire au moment de la commande. Le code peut aussi être envoyé directement sur son téléphone.',
+                ],
+                [
+                    'question' => 'Quels moyens de paiement acceptez-vous ?',
+                    'answer' => 'Le paiement se fait par carte bancaire, via une plateforme sécurisée. Aucune donnée de carte n’est conservée sur le site.',
+                ],
+                [
+                    'question' => 'Je n’ai pas reçu mon code, que faire ?',
+                    'answer' => 'Vérifiez d’abord le dossier indésirables de votre messagerie. Si le code ne s’y trouve pas, écrivez-nous à contact@rechargetonmanuia.wf en précisant votre numéro de commande.',
+                ],
+                [
+                    'question' => 'Comment utiliser mon code de recharge ?',
+                    'answer' => 'Depuis le téléphone à recharger, composez la séquence indiquée dans l’email, puis validez. Le crédit ou la data est activé immédiatement.',
+                ],
+            ],
+        ],
+        [
+            'acf_fc_layout' => 'recharge_cta',
+            'eyebrow' => '',
+            'title' => 'Une question sur votre recharge ?',
+            'text' => 'Écrivez-nous en précisant votre numéro de commande, nous revenons vers vous rapidement.',
+            'button_label' => 'contact@rechargetonmanuia.wf',
+            'button_url' => 'mailto:contact@rechargetonmanuia.wf',
+            'secondary_button_label' => 'Voir l’aide',
+            'secondary_button_url' => '#faq',
         ],
     ];
 }
@@ -336,7 +376,7 @@ function tealforge_prepare_page_sections(array $sections): array
         if (($section['acf_fc_layout'] ?? '') === 'recharge_hero') {
             $sections[$section_index]['hero_image'] = tealforge_get_section_image_url(
                 $section['hero_image'] ?? null,
-                'assets/images/spt-hero-mobile-recharge.png'
+                'assets/images/visuel-lagon.png'
             );
 
             $title_parts = tealforge_split_highlighted_title(
@@ -405,17 +445,25 @@ function tealforge_prepare_page_sections(array $sections): array
         }
 
         if (($section['acf_fc_layout'] ?? '') === 'recharge_steps') {
-            $step_icons = ['smartphone', 'users', 'credit-card', 'circle-check'];
+            $sections[$section_index]['lead'] = trim((string) ($section['lead'] ?? ''))
+                ?: 'Quatre étapes, moins d’une minute.';
+            $step_icons = ['smartphone', 'hash', 'credit-card', 'mail'];
+            $step_tones = ['red', 'blue', 'turquoise', 'blue'];
 
             foreach ((array) ($section['steps'] ?? []) as $step_index => $step) {
                 $sections[$section_index]['steps'][$step_index]['icon'] = tealforge_resolve_section_icon(
                     $step['icon'] ?? '',
                     $step_icons[$step_index] ?? 'circle-check'
                 );
+                $sections[$section_index]['steps'][$step_index]['tone'] = $step_tones[$step_index] ?? 'blue';
             }
         }
 
         if (($section['acf_fc_layout'] ?? '') === 'reassurance') {
+            $sections[$section_index]['eyebrow'] = trim((string) ($section['eyebrow'] ?? ''))
+                ?: 'Recharge Ton Manuia';
+            $sections[$section_index]['title'] = trim((string) ($section['title'] ?? ''))
+                ?: 'Une recharge simple et sûre';
             $reassurance_icons = ['lock', 'zap', 'undo', 'headphones'];
 
             foreach ((array) ($section['items'] ?? []) as $item_index => $item) {
@@ -441,6 +489,7 @@ function tealforge_resolve_section_icon(mixed $icon, string $fallback = 'circle-
         'clock',
         'credit-card',
         'headphones',
+        'hash',
         'lock',
         'mail',
         'map-pin',

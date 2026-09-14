@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 180 280" width="180" height="280">
+<path d="M90 12 C 152 78 160 178 90 268 C 20 178 28 78 90 12 Z" fill="#0E8FA8"/>
+<path d="M90 24 L90 262" stroke="#FFFFFF" stroke-width="4" stroke-opacity="0.6" fill="none" stroke-linecap="round"/>
+<path d="M90 50 L65 72 M90 50 L115 72" stroke="#FFFFFF" stroke-width="3" stroke-opacity="0.45" fill="none" stroke-linecap="round"/>
+<path d="M90 76 L60 98 M90 76 L120 98" stroke="#FFFFFF" stroke-width="3" stroke-opacity="0.45" fill="none" stroke-linecap="round"/>
+<path d="M90 102 L55 124 M90 102 L125 124" stroke="#FFFFFF" stroke-width="3" stroke-opacity="0.45" fill="none" stroke-linecap="round"/>
+<path d="M90 128 L50 150 M90 128 L130 150" stroke="#FFFFFF" stroke-width="3" stroke-opacity="0.45" fill="none" stroke-linecap="round"/>
+<path d="M90 154 L55 176 M90 154 L125 176" stroke="#FFFFFF" stroke-width="3" stroke-opacity="0.45" fill="none" stroke-linecap="round"/>
+<path d="M90 180 L60 202 M90 180 L120 202" stroke="#FFFFFF" stroke-width="3" stroke-opacity="0.45" fill="none" stroke-linecap="round"/>
+<path d="M90 206 L65 228 M90 206 L115 228" stroke="#FFFFFF" stroke-width="3" stroke-opacity="0.45" fill="none" stroke-linecap="round"/>
+<path d="M90 232 L70 254 M90 232 L110 254" stroke="#FFFFFF" stroke-width="3" stroke-opacity="0.45" fill="none" stroke-linecap="round"/>
+</svg>

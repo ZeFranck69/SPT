@@ -1,13 +1,21 @@
 <section class="tf-recharge-assurance" aria-label="Informations de service">
     <div class="tf-recharge-assurance__inner">
-        {% for item in section.items %}
-            <p data-tf-reveal data-tf-reveal-delay="{{ loop.index0 % 4 }}">
-                <span class="tf-recharge-assurance__icon" aria-hidden="true">
-                    {% include 'components/icon.twig' with { name: item.icon } only %}
-                </span>
-                <strong>{{ item.title }}</strong>
-                <span>{{ item.text }}</span>
-            </p>
-        {% endfor %}
+        {% if section.title or section.eyebrow %}
+            <div class="tf-recharge-assurance__heading" data-tf-reveal>
+                {% if section.eyebrow %}<p>{{ section.eyebrow }}</p>{% endif %}
+                {% if section.title %}<h2>{{ section.title }}</h2>{% endif %}
+            </div>
+        {% endif %}
+        <div class="tf-recharge-assurance__items">
+            {% for item in section.items %}
+                <p data-tf-reveal data-tf-reveal-delay="{{ loop.index0 % 4 }}">
+                    <span class="tf-recharge-assurance__icon" aria-hidden="true">
+                        {% include 'components/icon.twig' with { name: item.icon } only %}
+                    </span>
+                    <strong>{{ item.title }}</strong>
+                    <span>{{ item.text }}</span>
+                </p>
+            {% endfor %}
+        </div>
     </div>
 </section>

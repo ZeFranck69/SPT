@@ -1,34 +1,33 @@
 <section id="fonctionnement" class="tf-recharge-steps" aria-labelledby="recharge-steps-title">
     <div class="tf-recharge-steps__inner">
-        <div class="tf-section-heading" data-tf-reveal>
-            <h2 id="recharge-steps-title" class="tf-section-heading__title">
-                {{ section.title }}
-            </h2>
-
-            {% if section.eyebrow %}
-                <p class="tf-section-heading__text">{{ section.eyebrow }}</p>
-            {% endif %}
+        <div class="tf-recharge-steps__intro" data-tf-reveal>
+            <h2 id="recharge-steps-title" class="tf-recharge-steps__title">{{ section.title }}</h2>
+            {% if section.lead %}<p class="tf-recharge-steps__lead">{{ section.lead }}</p>{% endif %}
         </div>
 
         {% if section.steps %}
             <ol class="tf-recharge-steps__list">
                 {% for step in section.steps %}
                     <li
-                        class="tf-recharge-step{% if step.featured %} tf-recharge-step--featured{% endif %}"
+                        class="tf-recharge-step tf-recharge-step--{{ step.tone }}"
                         data-tf-reveal
                         data-tf-reveal-delay="{{ loop.index0 % 4 }}"
                     >
-                        <span class="tf-recharge-step__number">{{ step.number }}</span>
-                        {% include 'components/icon.twig' with { name: step.icon, class_name: 'tf-recharge-step__icon' } only %}
-                        <h3 class="tf-recharge-step__title">{{ step.title }}</h3>
-                        <p class="tf-recharge-step__text">{{ step.text }}</p>
-
-                        {% if step.badge %}
-                            <span class="tf-recharge-step__badge">{{ step.badge }}</span>
-                        {% endif %}
+                        <span class="tf-recharge-step__decoration" aria-hidden="true"></span>
+                        <div class="tf-recharge-step__header">
+                            <span class="tf-recharge-step__number">{{ step.number }}</span>
+                            <span class="tf-recharge-step__icon-wrap" aria-hidden="true">
+                                {% include 'components/icon.twig' with { name: step.icon, class_name: 'tf-recharge-step__icon' } only %}
+                            </span>
+                        </div>
+                        <div class="tf-recharge-step__content">
+                            <h3 class="tf-recharge-step__title">{{ step.title }}</h3>
+                            <p class="tf-recharge-step__text">{{ step.text }}</p>
+                        </div>
                     </li>
                 {% endfor %}
             </ol>
+            <div class="tf-recharge-steps__frieze" aria-hidden="true"></div>
         {% endif %}
     </div>
 </section>

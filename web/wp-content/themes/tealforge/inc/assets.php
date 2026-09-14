@@ -39,6 +39,13 @@ function tealforge_enqueue_assets(): void
     $entry = tealforge_get_asset_manifest()['assets/scripts/main.js'] ?? null;
     $theme_version = wp_get_theme()->get('Version');
 
+    wp_enqueue_style(
+        'tealforge-fonts',
+        'https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap',
+        [],
+        null
+    );
+
     if (is_array($entry) && ! empty($entry['file'])) {
         if (! empty($entry['css']) && is_array($entry['css'])) {
             foreach ($entry['css'] as $index => $css_file) {

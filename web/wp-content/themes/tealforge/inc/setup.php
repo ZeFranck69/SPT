@@ -16,7 +16,9 @@ function tealforge_setup(): void
 
     register_nav_menus([
         'primary' => __('Menu principal', 'tealforge'),
-        'footer' => __('Menu pied de page', 'tealforge'),
+        'footer_recharges' => __('Footer - Recharges', 'tealforge'),
+        'footer_help' => __('Footer - Aide', 'tealforge'),
+        'footer' => __('Menu pied de page (ancien)', 'tealforge'),
     ]);
 }
 

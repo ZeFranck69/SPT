@@ -11,10 +11,11 @@ function tealforge_register_site_options_page(): void
     }
 
     acf_add_options_page([
-        'page_title' => __('Options du site', 'tealforge'),
-        'menu_title' => __('Options du site', 'tealforge'),
+        'page_title' => __('Réglages du site', 'tealforge'),
+        'menu_title' => __('Réglages du site', 'tealforge'),
         'menu_slug' => 'tealforge-site-settings',
-        'parent_slug' => 'themes.php',
+        'icon_url' => 'dashicons-admin-generic',
+        'position' => 59,
         'capability' => 'edit_theme_options',
         'redirect' => false,
         'autoload' => true,

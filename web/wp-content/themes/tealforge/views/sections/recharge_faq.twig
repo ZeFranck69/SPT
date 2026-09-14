@@ -1,0 +1,35 @@
+<section id="faq" class="tf-recharge-faq" aria-labelledby="recharge-faq-title">
+    <span class="tf-recharge-faq__decoration" aria-hidden="true"></span>
+    <div class="tf-recharge-faq__inner">
+        <div class="tf-recharge-faq__intro" data-tf-reveal>
+            {% if section.eyebrow %}
+                <p class="tf-recharge-faq__eyebrow">{{ section.eyebrow }}</p>
+            {% endif %}
+            <h2 id="recharge-faq-title" class="tf-recharge-faq__title">{{ section.title }}</h2>
+            {% if section.intro_text %}
+                <p class="tf-recharge-faq__intro-text">{{ section.intro_text }}</p>
+            {% endif %}
+            {% if section.button_label and section.button_url %}
+                <a class="tf-recharge-faq__button" href="{{ function('esc_url', section.button_url) }}">
+                    {{ section.button_label }}
+                </a>
+            {% endif %}
+        </div>
+
+        {% if section.items %}
+            <div class="tf-recharge-faq__items">
+                {% for item in section.items %}
+                    <details class="tf-recharge-faq__item" data-tf-reveal data-tf-reveal-delay="{{ loop.index0 % 3 }}">
+                        <summary class="tf-recharge-faq__question">
+                            <span>{{ item.question }}</span>
+                            <span class="tf-recharge-faq__toggle" aria-hidden="true"></span>
+                        </summary>
+                        <div class="tf-recharge-faq__answer">
+                            {{ function('wp_kses_post', item.answer)|raw }}
+                        </div>
+                    </details>
+                {% endfor %}
+            </div>
+        {% endif %}
+    </div>
+</section>

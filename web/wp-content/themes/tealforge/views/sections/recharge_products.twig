@@ -13,12 +13,15 @@
         {% if section.product_groups %}
             <div class="tf-recharge-products__groups">
                 {% for group in section.product_groups %}
-                    <section class="tf-recharge-products__group tf-recharge-products__group--{{ group.tone }}" aria-labelledby="recharge-group-{{ group.tone }}">
+                    <section id="{{ group.tone }}" class="tf-recharge-products__group tf-recharge-products__group--{{ group.tone }}" aria-labelledby="recharge-group-{{ group.tone }}">
+                        <span class="tf-recharge-products__pattern tf-recharge-products__pattern--start" aria-hidden="true"></span>
+                        <span class="tf-recharge-products__pattern tf-recharge-products__pattern--end" aria-hidden="true"></span>
                         <div class="tf-recharge-products__group-heading" data-tf-reveal>
-                            <span class="tf-recharge-products__group-mark" aria-hidden="true">
-                                {% include 'components/icon.twig' with { name: group.icon } only %}
-                            </span>
-                            <h3 id="recharge-group-{{ group.tone }}">{{ group.title }}</h3>
+                            <span class="tf-recharge-products__group-mark" aria-hidden="true"></span>
+                            <div>
+                                <p class="tf-recharge-products__group-kicker">Recharge prépayée</p>
+                                <h3 id="recharge-group-{{ group.tone }}">{{ group.title }}</h3>
+                            </div>
                         </div>
 
                         <div class="tf-recharge-products__grid">
@@ -33,6 +36,7 @@
                                     {% endif %}
 
                                     <div class="tf-recharge-product__body">
+                                        <p class="tf-recharge-product__name">{{ product.family }} {{ product.type }}</p>
                                         <p class="tf-recharge-product__amount">{{ product.amount }}</p>
                                         <p class="tf-recharge-product__description">{{ product.description }}</p>
                                     </div>

@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 240" width="240" height="240">
+<g transform="translate(120.0,130.0)">
+<g transform="rotate(0)"><path d="M0 0 C -26 -12 -38 -46 -26 -72 C -20 -84 -10 -90 0 -96 C 10 -90 20 -84 26 -72 C 38 -46 26 -12 0 0 Z" fill="#E2001A"/><path d="M0 -8 L0 -74 M0 -30 L-13 -58 M0 -30 L13 -58 M0 -52 L-9 -74 M0 -52 L9 -74" fill="none" stroke="#FFFFFF" stroke-width="2.6" stroke-opacity="0.55" stroke-linecap="round"/></g>
+<g transform="rotate(72)"><path d="M0 0 C -26 -12 -38 -46 -26 -72 C -20 -84 -10 -90 0 -96 C 10 -90 20 -84 26 -72 C 38 -46 26 -12 0 0 Z" fill="#E2001A"/><path d="M0 -8 L0 -74 M0 -30 L-13 -58 M0 -30 L13 -58 M0 -52 L-9 -74 M0 -52 L9 -74" fill="none" stroke="#FFFFFF" stroke-width="2.6" stroke-opacity="0.55" stroke-linecap="round"/></g>
+<g transform="rotate(144)"><path d="M0 0 C -26 -12 -38 -46 -26 -72 C -20 -84 -10 -90 0 -96 C 10 -90 20 -84 26 -72 C 38 -46 26 -12 0 0 Z" fill="#E2001A"/><path d="M0 -8 L0 -74 M0 -30 L-13 -58 M0 -30 L13 -58 M0 -52 L-9 -74 M0 -52 L9 -74" fill="none" stroke="#FFFFFF" stroke-width="2.6" stroke-opacity="0.55" stroke-linecap="round"/></g>
+<g transform="rotate(216)"><path d="M0 0 C -26 -12 -38 -46 -26 -72 C -20 -84 -10 -90 0 -96 C 10 -90 20 -84 26 -72 C 38 -46 26 -12 0 0 Z" fill="#E2001A"/><path d="M0 -8 L0 -74 M0 -30 L-13 -58 M0 -30 L13 -58 M0 -52 L-9 -74 M0 -52 L9 -74" fill="none" stroke="#FFFFFF" stroke-width="2.6" stroke-opacity="0.55" stroke-linecap="round"/></g>
+<g transform="rotate(288)"><path d="M0 0 C -26 -12 -38 -46 -26 -72 C -20 -84 -10 -90 0 -96 C 10 -90 20 -84 26 -72 C 38 -46 26 -12 0 0 Z" fill="#E2001A"/><path d="M0 -8 L0 -74 M0 -30 L-13 -58 M0 -30 L13 -58 M0 -52 L-9 -74 M0 -52 L9 -74" fill="none" stroke="#FFFFFF" stroke-width="2.6" stroke-opacity="0.55" stroke-linecap="round"/></g>
+<circle r="16" fill="#FFFFFF" fill-opacity="0.9"/>
+<circle r="10" fill="#B3000F"/>
+<path d="M0 0 L44 -46" stroke="#B3000F" stroke-width="5" stroke-linecap="round" fill="none"/>
+<circle cx="44" cy="-46" r="5" fill="#B3000F"/>
+<circle cx="36" cy="-52" r="5" fill="#B3000F"/>
+<circle cx="50" cy="-38" r="5" fill="#B3000F"/>
+<circle cx="38" cy="-40" r="5" fill="#B3000F"/>
+<circle cx="48" cy="-52" r="5" fill="#B3000F"/>
+</g>
+</svg>

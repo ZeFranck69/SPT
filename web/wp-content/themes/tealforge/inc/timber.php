@@ -18,16 +18,31 @@ function tealforge_get_context(): array
 
     $context['menus'] = [
         'primary' => has_nav_menu('primary') ? Timber\Timber::get_menu('primary') : null,
+        'footer_recharges' => has_nav_menu('footer_recharges') ? Timber\Timber::get_menu('footer_recharges') : null,
+        'footer_help' => has_nav_menu('footer_help') ? Timber\Timber::get_menu('footer_help') : null,
         'footer' => has_nav_menu('footer') ? Timber\Timber::get_menu('footer') : null,
     ];
 
     $header_logo = function_exists('get_field') ? get_field('header_logo', 'option') : null;
     $footer_logo = function_exists('get_field') ? get_field('footer_logo', 'option') : null;
+    $network_logo = function_exists('get_field') ? get_field('network_logo', 'option') : null;
 
     $context['spt_branding'] = [
         'header_logo' => tealforge_prepare_image_field($header_logo),
         'header_logo_text' => function_exists('get_field') ? (string) get_field('header_logo_text', 'option') : '',
         'footer_logo' => tealforge_prepare_image_field($footer_logo),
+        'network_logo' => tealforge_prepare_image_field($network_logo),
+    ];
+
+    $context['spt_footer'] = [
+        'copyright' => function_exists('get_field') ? (string) get_field('footer_copyright', 'option') : '',
+        'created_by' => function_exists('get_field') ? (string) get_field('footer_created_by', 'option') : '',
+    ];
+
+    $context['spt_contact'] = [
+        'email' => function_exists('get_field') ? sanitize_email((string) get_field('contact_email', 'option')) : '',
+        'address' => function_exists('get_field') ? (string) get_field('contact_address', 'option') : '',
+        'hours' => function_exists('get_field') ? (string) get_field('contact_hours', 'option') : '',
     ];
 
     $context['spt_links'] = [

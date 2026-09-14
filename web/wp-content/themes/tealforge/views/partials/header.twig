@@ -14,21 +14,24 @@
                     <span class="tf-site-header__logo-text">{{ spt_branding.header_logo_text }}</span>
                 {% endif %}
             {% else %}
-                <span class="tf-site-header__brand-mark">SPT</span>
-                <span class="tf-site-header__brand-copy">
-                    <strong>{{ site.name }}</strong>
-                    <small>Wallis &amp; Futuna</small>
-                </span>
+                <img
+                    class="tf-site-header__logo"
+                    src="{{ function('get_theme_file_uri', 'assets/images/rtm-logo.png') }}"
+                    width="367"
+                    height="112"
+                    alt="Recharge Ton Manuia"
+                >
             {% endif %}
         </a>
 
-        <div class="tf-site-header__navigation">
-            {% include 'components/menu.twig' with {
-                menu: menus.primary,
-                class_name: 'tf-menu tf-menu--primary',
-                mobile_panel: true
-            } only %}
+        {% include 'components/menu.twig' with {
+            menu: menus.primary,
+            class_name: 'tf-menu tf-menu--primary',
+            mobile_panel: true,
+            aria_label: 'Navigation principale'
+        } only %}
 
+        <div class="tf-site-header__controls">
             <div class="tf-site-header__actions">
                 <a
                     class="tf-site-header__action tf-site-header__action--account{{ spt_account.is_logged_in ? ' tf-site-header__action--authenticated' : '' }}"
@@ -37,6 +40,7 @@
                     title="{{ spt_account.header_label }}"
                 >
                     {% include 'components/icon.twig' with { name: 'user-round' } only %}
+                    <span class="tf-site-header__action-label">{{ spt_account.header_label }}</span>
                 </a>
 
                 <a
@@ -46,8 +50,27 @@
                     title="Panier"
                 >
                     {% include 'components/icon.twig' with { name: 'shopping-cart' } only %}
+                    <span class="tf-site-header__action-label">Panier</span>
                     {{ function('tealforge_render_header_cart_count')|raw }}
                 </a>
+            </div>
+
+            <div class="tf-site-header__partner" aria-label="Réseau mobile Manuia">
+                {% if spt_branding.network_logo %}
+                    <img
+                        src="{{ function('esc_url', spt_branding.network_logo.url) }}"
+                        width="{{ spt_branding.network_logo.width }}"
+                        height="{{ spt_branding.network_logo.height }}"
+                        alt="{{ spt_branding.network_logo.alt ?: 'Manuia' }}"
+                    >
+                {% else %}
+                    <img
+                        src="{{ function('get_theme_file_uri', 'assets/images/manuia-logo.jpg') }}"
+                        width="600"
+                        height="240"
+                        alt="Manuia"
+                    >
+                {% endif %}
             </div>
 
             <button

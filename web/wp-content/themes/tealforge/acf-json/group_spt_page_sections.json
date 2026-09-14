@@ -229,18 +229,19 @@
                     "display": "block",
                     "sub_fields": [
                         {
-                            "key": "field_spt_steps_eyebrow",
-                            "label": "Accroche",
-                            "name": "eyebrow",
-                            "type": "text",
-                            "instructions": "Texte court affiché avec le titre de la section."
-                        },
-                        {
                             "key": "field_spt_steps_title",
                             "label": "Titre",
                             "name": "title",
                             "type": "text",
                             "instructions": "Titre principal de la section Comment ça marche."
+                        },
+                        {
+                            "key": "field_spt_steps_lead",
+                            "label": "Texte d’introduction",
+                            "name": "lead",
+                            "type": "textarea",
+                            "instructions": "Court texte affiché en regard du titre.",
+                            "rows": 3
                         },
                         {
                             "key": "field_spt_steps_items",
@@ -266,6 +267,7 @@
                                     "instructions": "Choisir le picto affiché sur cette étape. Laisser vide pour conserver le picto automatique.",
                                     "choices": {
                                         "smartphone": "Téléphone",
+                                        "hash": "Numéro",
                                         "users": "Utilisateurs",
                                         "credit-card": "Carte bancaire",
                                         "shopping-cart": "Panier",
@@ -301,21 +303,6 @@
                                     "type": "textarea",
                                     "instructions": "Courte explication affichée sous le titre.",
                                     "rows": 3
-                                },
-                                {
-                                    "key": "field_spt_step_badge",
-                                    "label": "Badge",
-                                    "name": "badge",
-                                    "type": "text",
-                                    "instructions": "Mention facultative affichée en bas de la carte."
-                                },
-                                {
-                                    "key": "field_spt_step_featured",
-                                    "label": "Mise en avant",
-                                    "name": "featured",
-                                    "type": "true_false",
-                                    "instructions": "Activer pour mettre visuellement cette étape en avant.",
-                                    "ui": 1
                                 }
                             ]
                         }
@@ -329,6 +316,20 @@
                     "label": "Réassurance",
                     "display": "block",
                     "sub_fields": [
+                        {
+                            "key": "field_spt_reassurance_eyebrow",
+                            "label": "Accroche",
+                            "name": "eyebrow",
+                            "type": "text",
+                            "instructions": "Texte court affiché au-dessus du titre."
+                        },
+                        {
+                            "key": "field_spt_reassurance_heading",
+                            "label": "Titre",
+                            "name": "title",
+                            "type": "text",
+                            "instructions": "Titre principal de la section de réassurance."
+                        },
                         {
                             "key": "field_spt_reassurance_items",
                             "label": "Éléments",
@@ -387,6 +388,137 @@
                     "min": "",
                     "max": ""
                 },
+                "layout_spt_recharge_faq": {
+                    "key": "layout_spt_recharge_faq",
+                    "name": "recharge_faq",
+                    "label": "Questions fréquentes",
+                    "display": "block",
+                    "sub_fields": [
+                        {
+                            "key": "field_spt_faq_eyebrow",
+                            "label": "Accroche",
+                            "name": "eyebrow",
+                            "type": "text",
+                            "instructions": "Texte court affiché au-dessus du titre."
+                        },
+                        {
+                            "key": "field_spt_faq_title",
+                            "label": "Titre",
+                            "name": "title",
+                            "type": "text",
+                            "instructions": "Titre principal de la section FAQ."
+                        },
+                        {
+                            "key": "field_spt_faq_intro_text",
+                            "label": "Texte d’introduction",
+                            "name": "intro_text",
+                            "type": "textarea",
+                            "instructions": "Texte affiché sous le titre, dans la colonne de gauche.",
+                            "rows": 3
+                        },
+                        {
+                            "key": "field_spt_faq_button_label",
+                            "label": "Libellé du bouton",
+                            "name": "button_label",
+                            "type": "text",
+                            "instructions": "Exemple : Nous contacter."
+                        },
+                        {
+                            "key": "field_spt_faq_button_url",
+                            "label": "Lien du bouton",
+                            "name": "button_url",
+                            "type": "text",
+                            "instructions": "Utiliser une URL complète ou une ancre de la page, par exemple #contact-cta."
+                        },
+                        {
+                            "key": "field_spt_faq_items",
+                            "label": "Questions",
+                            "name": "items",
+                            "type": "repeater",
+                            "instructions": "Ajouter les questions dans l’ordre d’affichage.",
+                            "layout": "block",
+                            "button_label": "Ajouter une question",
+                            "sub_fields": [
+                                {
+                                    "key": "field_spt_faq_question",
+                                    "label": "Question",
+                                    "name": "question",
+                                    "type": "text",
+                                    "required": 1
+                                },
+                                {
+                                    "key": "field_spt_faq_answer",
+                                    "label": "Réponse",
+                                    "name": "answer",
+                                    "type": "textarea",
+                                    "rows": 4,
+                                    "required": 1
+                                }
+                            ]
+                        }
+                    ],
+                    "min": "",
+                    "max": ""
+                },
+                "layout_spt_recharge_cta": {
+                    "key": "layout_spt_recharge_cta",
+                    "name": "recharge_cta",
+                    "label": "Appel au contact",
+                    "display": "block",
+                    "sub_fields": [
+                        {
+                            "key": "field_spt_cta_eyebrow",
+                            "label": "Accroche",
+                            "name": "eyebrow",
+                            "type": "text",
+                            "instructions": "Texte court affiché au-dessus du titre."
+                        },
+                        {
+                            "key": "field_spt_cta_title",
+                            "label": "Titre",
+                            "name": "title",
+                            "type": "text",
+                            "required": 1
+                        },
+                        {
+                            "key": "field_spt_cta_text",
+                            "label": "Texte",
+                            "name": "text",
+                            "type": "textarea",
+                            "rows": 3
+                        },
+                        {
+                            "key": "field_spt_cta_button_label",
+                            "label": "Libellé du bouton principal",
+                            "name": "button_label",
+                            "type": "text",
+                            "instructions": "Dans la maquette, ce bouton affiche l’adresse email de contact."
+                        },
+                        {
+                            "key": "field_spt_cta_button_url",
+                            "label": "Lien du bouton principal",
+                            "name": "button_url",
+                            "type": "text",
+                            "instructions": "Utiliser une URL complète ou un lien email commençant par mailto:."
+                        },
+                        {
+                            "key": "field_spt_cta_secondary_button_label",
+                            "label": "Libellé du bouton secondaire",
+                            "name": "secondary_button_label",
+                            "type": "text",
+                            "instructions": "Exemple : Voir l’aide."
+                        },
+                        {
+                            "key": "field_spt_cta_secondary_button_url",
+                            "label": "Lien du bouton secondaire",
+                            "name": "secondary_button_url",
+                            "type": "text",
+                            "instructions": "Utiliser une URL complète ou une ancre de la page, par exemple #faq."
+                        }
+                    ],
+                    "min": "",
+                    "max": ""
+                },
                 "layout_spt_text_content": {
                     "key": "layout_spt_text_content",
                     "name": "text_content",
@@ -439,5 +571,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1788741525
+    "modified": 1789427518
 }

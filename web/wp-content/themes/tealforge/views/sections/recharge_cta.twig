@@ -1,0 +1,23 @@
+<section id="contact-cta" class="tf-recharge-cta" aria-labelledby="recharge-cta-title">
+    <div class="tf-recharge-cta__inner" data-tf-reveal>
+        <span class="tf-recharge-cta__decoration" aria-hidden="true"></span>
+        <div class="tf-recharge-cta__content">
+            <h2 id="recharge-cta-title" class="tf-recharge-cta__title">{{ section.title }}</h2>
+            {% if section.text %}
+                <p class="tf-recharge-cta__text">{{ section.text }}</p>
+            {% endif %}
+        </div>
+        <div class="tf-recharge-cta__actions">
+            {% if section.button_label and section.button_url %}
+                <a class="tf-recharge-cta__button tf-recharge-cta__button--primary" href="{{ function('esc_url', section.button_url) }}">
+                    {{ section.button_label }}
+                </a>
+            {% endif %}
+            {% if section.secondary_button_label and section.secondary_button_url %}
+                <a class="tf-recharge-cta__button tf-recharge-cta__button--secondary" href="{{ function('esc_url', section.secondary_button_url) }}">
+                    {{ section.secondary_button_label }}
+                </a>
+            {% endif %}
+        </div>
+    </div>
+</section>

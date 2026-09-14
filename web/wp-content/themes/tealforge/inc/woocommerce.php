@@ -181,20 +181,7 @@ function tealforge_woocommerce_empty_cart_block(string $block_content, array $bl
         esc_html__('Découvrir les recharges', 'tealforge')
     );
 
-    $block_content = (string) preg_replace(
-        '/<h2[^>]*class="[^"]*wc-block-cart__empty-cart__title[^"]*"[^>]*>.*?<\/h2>/s',
-        $empty_cart_panel,
-        $block_content,
-        1
-    );
-
-    $block_content = str_replace(
-        '>New in store</h2>',
-        '>' . esc_html__('Quelques recharges disponibles', 'tealforge') . '</h2>',
-        $block_content
-    );
-
-    return $block_content;
+    return '<div class="wp-block-woocommerce-empty-cart-block">' . $empty_cart_panel . '</div>';
 }
 
 add_filter('render_block_woocommerce/empty-cart-block', 'tealforge_woocommerce_empty_cart_block', 10, 2);

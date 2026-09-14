@@ -1,6 +1,6 @@
 {
     "key": "group_spt_site_identity",
-    "title": "Options du site",
+    "title": "Réglages du site",
     "fields": [
         {
             "key": "field_spt_header_tab",
@@ -66,6 +66,31 @@
             "append": ""
         },
         {
+            "key": "field_spt_network_logo",
+            "label": "Logo partenaire Manuia",
+            "name": "network_logo",
+            "aria-label": "",
+            "type": "image",
+            "instructions": "Logo affiché à droite dans le header et dans le footer. Si le champ est vide, le logo Manuia fourni avec le thème est utilisé.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "33",
+                "class": "",
+                "id": ""
+            },
+            "return_format": "array",
+            "library": "all",
+            "min_width": "",
+            "min_height": "",
+            "min_size": "",
+            "max_width": "",
+            "max_height": "",
+            "max_size": "",
+            "mime_types": "jpg,jpeg,png,webp,svg",
+            "preview_size": "medium"
+        },
+        {
             "key": "field_spt_footer_tab",
             "label": "Footer",
             "name": "",
@@ -109,6 +134,46 @@
             "preview_size": "medium"
         },
         {
+            "key": "field_spt_footer_copyright",
+            "label": "Copyright",
+            "name": "footer_copyright",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "Texte affiché dans la partie basse du footer. Le texte par défaut est utilisé si ce champ est vide.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": 180,
+            "placeholder": "© 2026 rechargetonmanuia.wf. Service partenaire du réseau mobile Manuia.",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_spt_footer_created_by",
+            "label": "Créé par",
+            "name": "footer_created_by",
+            "aria-label": "",
+            "type": "wysiwyg",
+            "instructions": "Texte ou lien de crédit affiché sous le copyright. Laisser vide pour ne rien afficher.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "tabs": "visual",
+            "toolbar": "basic",
+            "media_upload": 0,
+            "delay": 0
+        },
+        {
             "key": "field_spt_contact_tab",
             "label": "Contact",
             "name": "",
@@ -140,7 +205,7 @@
                 "class": "",
                 "id": ""
             },
-            "default_value": "",
+            "default_value": "contact@rechargetonmanuia.wf",
             "placeholder": "support@spt.wf",
             "prepend": "",
             "append": ""
@@ -159,7 +224,7 @@
                 "class": "",
                 "id": ""
             },
-            "default_value": "",
+            "default_value": "Mata-Utu, Wallis et Futuna",
             "maxlength": 250,
             "rows": 3,
             "placeholder": "Wallis et Futuna",
@@ -179,7 +244,7 @@
                 "class": "",
                 "id": ""
             },
-            "default_value": "",
+            "default_value": "Du lundi au vendredi, de 8 h à 16 h",
             "maxlength": 250,
             "rows": 3,
             "placeholder": "Du lundi au vendredi, de 8h à 16h",
@@ -204,5 +269,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1788750000
+    "modified": 1789425308
 }

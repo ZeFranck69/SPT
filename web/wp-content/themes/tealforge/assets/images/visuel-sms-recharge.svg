@@ -1,0 +1,70 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="50 14 620 492" width="720" height="520">
+<defs>
+<linearGradient id="fond" x1="0" y1="0" x2="1" y2="1">
+  <stop offset="0" stop-color="#FFF6EF"/><stop offset="0.55" stop-color="#FDE8E4"/>
+  <stop offset="1" stop-color="#FBD8D4"/>
+</linearGradient>
+<linearGradient id="chassis" x1="0" y1="0" x2="1" y2="1">
+  <stop offset="0" stop-color="#123A6B"/><stop offset="1" stop-color="#08325F"/>
+</linearGradient>
+<linearGradient id="ecranHaut" x1="0" y1="0" x2="0" y2="1">
+  <stop offset="0" stop-color="#FDF1F2"/><stop offset="1" stop-color="#FFFFFF"/>
+</linearGradient>
+<filter id="ombre" x="-30%" y="-30%" width="160%" height="160%">
+  <feDropShadow dx="0" dy="16" stdDeviation="18" flood-color="#8A2A22" flood-opacity="0.22"/>
+</filter>
+<filter id="ombreDouce" x="-40%" y="-40%" width="180%" height="180%">
+  <feDropShadow dx="0" dy="4" stdDeviation="6" flood-color="#8A2A22" flood-opacity="0.16"/>
+</filter>
+<clipPath id="ecran"><rect x="256" y="86" width="208" height="356" rx="20"/></clipPath>
+<pattern id="tapa" width="110" height="110" patternUnits="userSpaceOnUse">
+  <g fill="none" stroke="#E1051E" stroke-opacity="0.5" stroke-width="2" stroke-linejoin="round">
+    <path d="M0 2 H110 M0 6 H110"/>
+    <path d="M0 40 L13.75 14 L27.5 40 M27.5 40 L41.25 14 L55 40 M55 40 L68.75 14 L82.5 40 M82.5 40 L96.25 14 L110 40"/>
+    <path d="M0 44 H110"/>
+    <path d="M13.75 52 L27.5 68 L13.75 84 L0 68 Z M41.25 52 L55 68 L41.25 84 L27.5 68 Z M68.75 52 L82.5 68 L68.75 84 L55 68 Z M96.25 52 L110 68 L96.25 84 L82.5 68 Z"/>
+    <path d="M0 92 H110 M0 96 H110"/>
+  </g>
+</pattern>
+</defs>
+<rect width="720" height="520" fill="url(#fond)"/>
+<circle cx="360" cy="250" r="215" fill="#FFFFFF" fill-opacity="0.55"/>
+<rect x="0" y="0" width="96" height="520" fill="url(#tapa)" opacity="0.55"/>
+<rect x="624" y="0" width="96" height="520" fill="url(#tapa)" opacity="0.4"/>
+<g transform="translate(150,150) rotate(-12) scale(0.62)" fill="#E1051E" fill-opacity="0.95"><g transform="rotate(0)"><path d="M0 0 C -22 -10 -31 -38 -20 -60 C -14 -71 -7 -76 0 -83 C 7 -76 14 -71 20 -60 C 31 -38 22 -10 0 0 Z"/></g><g transform="rotate(72)"><path d="M0 0 C -22 -10 -31 -38 -20 -60 C -14 -71 -7 -76 0 -83 C 7 -76 14 -71 20 -60 C 31 -38 22 -10 0 0 Z"/></g><g transform="rotate(144)"><path d="M0 0 C -22 -10 -31 -38 -20 -60 C -14 -71 -7 -76 0 -83 C 7 -76 14 -71 20 -60 C 31 -38 22 -10 0 0 Z"/></g><g transform="rotate(216)"><path d="M0 0 C -22 -10 -31 -38 -20 -60 C -14 -71 -7 -76 0 -83 C 7 -76 14 -71 20 -60 C 31 -38 22 -10 0 0 Z"/></g><g transform="rotate(288)"><path d="M0 0 C -22 -10 -31 -38 -20 -60 C -14 -71 -7 -76 0 -83 C 7 -76 14 -71 20 -60 C 31 -38 22 -10 0 0 Z"/></g><circle r="13" fill="#FFFFFF" fill-opacity="0.85"/></g>
+<g transform="translate(586,402) rotate(18) scale(0.5)" fill="#0A7A98" fill-opacity="0.8"><g transform="rotate(0)"><path d="M0 0 C -22 -10 -31 -38 -20 -60 C -14 -71 -7 -76 0 -83 C 7 -76 14 -71 20 -60 C 31 -38 22 -10 0 0 Z"/></g><g transform="rotate(72)"><path d="M0 0 C -22 -10 -31 -38 -20 -60 C -14 -71 -7 -76 0 -83 C 7 -76 14 -71 20 -60 C 31 -38 22 -10 0 0 Z"/></g><g transform="rotate(144)"><path d="M0 0 C -22 -10 -31 -38 -20 -60 C -14 -71 -7 -76 0 -83 C 7 -76 14 -71 20 -60 C 31 -38 22 -10 0 0 Z"/></g><g transform="rotate(216)"><path d="M0 0 C -22 -10 -31 -38 -20 -60 C -14 -71 -7 -76 0 -83 C 7 -76 14 -71 20 -60 C 31 -38 22 -10 0 0 Z"/></g><g transform="rotate(288)"><path d="M0 0 C -22 -10 -31 -38 -20 -60 C -14 -71 -7 -76 0 -83 C 7 -76 14 -71 20 -60 C 31 -38 22 -10 0 0 Z"/></g><circle r="13" fill="#FFFFFF" fill-opacity="0.85"/></g>
+<g transform="translate(576,258) rotate(25) scale(0.28)" fill="#E1051E" fill-opacity="0.32"><g transform="rotate(0)"><path d="M0 0 C -22 -10 -31 -38 -20 -60 C -14 -71 -7 -76 0 -83 C 7 -76 14 -71 20 -60 C 31 -38 22 -10 0 0 Z"/></g><g transform="rotate(72)"><path d="M0 0 C -22 -10 -31 -38 -20 -60 C -14 -71 -7 -76 0 -83 C 7 -76 14 -71 20 -60 C 31 -38 22 -10 0 0 Z"/></g><g transform="rotate(144)"><path d="M0 0 C -22 -10 -31 -38 -20 -60 C -14 -71 -7 -76 0 -83 C 7 -76 14 -71 20 -60 C 31 -38 22 -10 0 0 Z"/></g><g transform="rotate(216)"><path d="M0 0 C -22 -10 -31 -38 -20 -60 C -14 -71 -7 -76 0 -83 C 7 -76 14 -71 20 -60 C 31 -38 22 -10 0 0 Z"/></g><g transform="rotate(288)"><path d="M0 0 C -22 -10 -31 -38 -20 -60 C -14 -71 -7 -76 0 -83 C 7 -76 14 -71 20 -60 C 31 -38 22 -10 0 0 Z"/></g><circle r="13" fill="#FFFFFF" fill-opacity="0.85"/></g>
+<g transform="translate(128,392) rotate(-24)" opacity="0.75"><path d="M0 -74 C 36 -30 38 26 0 74 C -38 26 -36 -30 0 -74 Z" fill="#0B4DA2"/><path d="M0 -64 L0 64" stroke="#FFFFFF" stroke-opacity="0.55" stroke-width="3"/><path d="M0 -46 L-9 -30 M0 -46 L9 -30" stroke="#FFFFFF" stroke-opacity="0.4" stroke-width="2.2" fill="none" stroke-linecap="round"/><path d="M0 -26 L-12 -10 M0 -26 L12 -10" stroke="#FFFFFF" stroke-opacity="0.4" stroke-width="2.2" fill="none" stroke-linecap="round"/><path d="M0 -6 L-14 10 M0 -6 L14 10" stroke="#FFFFFF" stroke-opacity="0.4" stroke-width="2.2" fill="none" stroke-linecap="round"/><path d="M0 14 L-13 30 M0 14 L13 30" stroke="#FFFFFF" stroke-opacity="0.4" stroke-width="2.2" fill="none" stroke-linecap="round"/><path d="M0 34 L-11 50 M0 34 L11 50" stroke="#FFFFFF" stroke-opacity="0.4" stroke-width="2.2" fill="none" stroke-linecap="round"/></g>
+<g transform="rotate(-5 360 264)" filter="url(#ombre)">
+<rect x="242" y="72" width="236" height="384" rx="34" fill="url(#chassis)"/>
+<rect x="250" y="80" width="220" height="368" rx="28" fill="#FFFFFF"/>
+<g clip-path="url(#ecran)">
+<rect x="256" y="86" width="208" height="356" fill="url(#ecranHaut)"/>
+<text x="274" y="106" font-family="'Plus Jakarta Sans', 'Segoe UI', system-ui, -apple-system, sans-serif" font-size="11" font-weight="700" fill="#08325F" fill-opacity="0.7">9:41</text>
+<g fill="#08325F" fill-opacity="0.55"><rect x="412" y="98" width="3" height="6" rx="1"/><rect x="418" y="95" width="3" height="9" rx="1"/><rect x="424" y="92" width="3" height="12" rx="1"/><rect x="434" y="93" width="16" height="9" rx="2.5" fill="none" stroke="#08325F" stroke-opacity="0.55" stroke-width="1.4"/><rect x="436" y="95" width="11" height="5" rx="1.5"/></g>
+<line x1="256" y1="150" x2="464" y2="150" stroke="#F0D9DC" stroke-width="1.5"/>
+<circle cx="288" cy="130" r="15" fill="#E1051E"/>
+<text x="288" y="136" font-family="'Plus Jakarta Sans', 'Segoe UI', system-ui, -apple-system, sans-serif" font-size="17" font-weight="800" fill="#FFFFFF" text-anchor="middle">m</text>
+<text x="312" y="127" font-family="'Plus Jakarta Sans', 'Segoe UI', system-ui, -apple-system, sans-serif" font-size="14" font-weight="800" fill="#08325F">Manuia</text>
+<text x="312" y="141" font-family="'Plus Jakarta Sans', 'Segoe UI', system-ui, -apple-system, sans-serif" font-size="10.5" font-weight="500" fill="#7C8FA3">SMS, maintenant</text>
+<rect x="272" y="170" width="176" height="96" rx="18" fill="#FFFFFF" filter="url(#ombreDouce)"/>
+<path d="M272 246 L272 262 L288 250 Z" fill="#FFFFFF"/>
+<text x="290" y="196" font-family="'Plus Jakarta Sans', 'Segoe UI', system-ui, -apple-system, sans-serif" font-size="13" font-weight="600" fill="#28405A" textLength="128" lengthAdjust="spacingAndGlyphs">Votre recharge PAPITO</text>
+<text x="290" y="214" font-family="'Plus Jakarta Sans', 'Segoe UI', system-ui, -apple-system, sans-serif" font-size="13" font-weight="600" fill="#28405A" textLength="133" lengthAdjust="spacingAndGlyphs">de 3 000 F CFP est bien</text>
+<text x="290" y="232" font-family="'Plus Jakarta Sans', 'Segoe UI', system-ui, -apple-system, sans-serif" font-size="13" font-weight="600" fill="#28405A" textLength="43" lengthAdjust="spacingAndGlyphs">activée.</text>
+<text x="290" y="252" font-family="'Plus Jakarta Sans', 'Segoe UI', system-ui, -apple-system, sans-serif" font-size="11" font-weight="600" fill="#8A9BAD" textLength="86" lengthAdjust="spacingAndGlyphs">Bonus : 200 SMS</text>
+<rect x="272" y="282" width="176" height="70" rx="16" fill="#E1051E"/>
+<text x="360" y="305" font-family="'Plus Jakarta Sans', 'Segoe UI', system-ui, -apple-system, sans-serif" font-size="10.5" font-weight="700" fill="#FFFFFF" fill-opacity="0.85" text-anchor="middle" letter-spacing="1.2" textLength="104" lengthAdjust="spacingAndGlyphs">VOTRE CODE</text>
+<text x="360" y="333" font-family="'Plus Jakarta Sans', 'Segoe UI', system-ui, -apple-system, sans-serif" font-size="21" font-weight="800" fill="#FFFFFF" text-anchor="middle" letter-spacing="1.5" textLength="150" lengthAdjust="spacingAndGlyphs">4821 7390</text>
+<rect x="272" y="372" width="176" height="40" rx="14" fill="#F3F7FB"/>
+<circle cx="294" cy="392" r="11" fill="#0A7A98"/>
+<path d="M289 392 L293 396 L300 388" stroke="#FFFFFF" stroke-width="2.2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="312" y="396" font-family="'Plus Jakarta Sans', 'Segoe UI', system-ui, -apple-system, sans-serif" font-size="11.5" font-weight="700" fill="#08325F" textLength="112" lengthAdjust="spacingAndGlyphs">Paiement confirmé</text>
+</g>
+<rect x="332" y="84" width="56" height="9" rx="4.5" fill="#08325F"/>
+</g>
+<g transform="translate(512,146)" filter="url(#ombreDouce)">
+<circle r="31" fill="#0A7A98"/>
+<path d="M-13 1 L-4 11 L14 -10" stroke="#FFFFFF" stroke-width="5.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+</g>
+</svg>
