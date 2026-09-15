@@ -1,6 +1,5 @@
 .tf-recharge-hero {
   min-height: min(760px, calc(100vh - 72px));
-  overflow: hidden;
   background:
     linear-gradient(135deg, rgb(230 20 31 / 8%), transparent 45%),
     linear-gradient(315deg, rgb(230 20 31 / 10%), transparent 46%),
@@ -13,33 +12,23 @@
   min-height: min(760px, calc(100vh - 72px));
   margin-inline: auto;
   align-items: center;
-  gap: 56px;
   grid-template-columns: minmax(0, 1fr) minmax(320px, 0.82fr);
   padding-block: 72px;
-}
-
-.tf-recharge-hero__content {
-  max-width: 680px;
 }
 
 .tf-recharge-hero__eyebrow {
   margin: 0;
   color: var(--tf-color-neti-dark);
-  font-size: 13px;
-  font-weight: 800;
   letter-spacing: 0.12em;
   text-transform: uppercase;
 }
 
 .tf-recharge-hero__title {
-  max-width: 760px;
   margin: 14px 0 0;
   font-size: clamp(46px, 7vw, 88px);
-  line-height: 0.98;
 }
 
 .tf-recharge-hero__text {
-  max-width: 620px;
   margin: 24px 0 0;
   color: #1d1b1c;
   font-size: clamp(18px, 2vw, 22px);
@@ -47,7 +36,6 @@
 
 .tf-recharge-hero__actions {
   display: flex;
-  margin-top: 34px;
   flex-wrap: wrap;
   gap: 14px;
 }
@@ -70,38 +58,27 @@
 .tf-recharge-hero__inner {
   min-height: min(720px, calc(100vh - 72px));
   align-items: start;
-  gap: 48px;
   grid-template-columns: minmax(0, 1fr) minmax(360px, 480px);
   padding-block: 56px 46px;
 }
 
-.tf-recharge-hero__content {
-  max-width: 620px;
-}
-
 .tf-recharge-hero__eyebrow {
-  display: inline-flex;
   align-items: center;
   gap: 8px;
-  border-radius: 4px;
   padding: 7px 12px;
   background: var(--tf-color-lime);
   color: #ffffff;
 }
 
 .tf-recharge-hero__title {
-  max-width: 600px;
   margin-top: 24px;
   color: #ffffff;
   font-size: clamp(48px, 7vw, 72px);
-  line-height: 1;
   text-shadow: 0 2px 14px rgb(0 0 0 / 28%);
 }
 
 .tf-recharge-hero__text {
-  max-width: 460px;
   color: rgb(255 255 255 / 88%);
-  font-size: 18px;
   text-shadow: 0 1px 6px rgb(0 0 0 / 22%);
 }
 
@@ -208,13 +185,11 @@
 .tf-recharge-hero .tf-button {
   border-color: var(--tf-color-lime);
   background: var(--tf-color-lime);
-  color: #ffffff;
 }
 
 .tf-recharge-hero .tf-button:hover,
 .tf-recharge-hero .tf-button:focus-visible {
   background: transparent;
-  color: #ffffff;
 }
 
 .tf-recharge-hero .tf-button--secondary {
@@ -430,10 +405,6 @@
   padding-block: 72px 88px;
 }
 
-.tf-recharge-hero__content {
-  max-width: 650px;
-}
-
 .tf-recharge-hero__eyebrow {
   display: inline-flex;
   margin: 0 0 28px;
@@ -441,7 +412,6 @@
   padding: 9px 16px;
   background: var(--tf-color-secondary);
   color: var(--tf-color-primary);
-  font-size: 14px;
   letter-spacing: 0;
   text-transform: none;
 }
@@ -452,12 +422,9 @@
 }
 
 .tf-recharge-hero__title {
-  max-width: 650px;
   margin: 0;
   color: var(--tf-color-text);
   font-family: var(--tf-font-heading);
-  font-size: 56px;
-  line-height: 1.08;
   text-shadow: none;
 }
 
@@ -470,23 +437,15 @@
 }
 
 .tf-recharge-hero__text {
-  max-width: 610px;
-  margin-top: 24px;
   color: var(--tf-color-muted);
-  font-size: 18px;
   line-height: 1.7;
   text-shadow: none;
-}
-
-.tf-recharge-hero__actions {
-  margin-top: 32px;
 }
 
 .tf-recharge-hero .tf-button {
   min-height: 54px;
   border-color: var(--tf-color-primary);
   background: linear-gradient(90deg, var(--tf-color-primary), var(--tf-color-coral));
-  color: #ffffff;
 }
 
 .tf-recharge-hero .tf-button:hover,
@@ -511,9 +470,7 @@
 .tf-recharge-hero__signals {
   display: grid;
   max-width: 620px;
-  margin-top: 44px;
   border-top: 1px solid var(--tf-color-border);
-  padding-top: 28px;
   gap: 24px;
   grid-template-columns: repeat(3, minmax(0, 1fr));
 }
@@ -592,14 +549,6 @@
     padding-block: 52px 64px;
   }
 
-  .tf-recharge-hero__title {
-    font-size: 40px;
-  }
-
-  .tf-recharge-hero__actions {
-    align-items: stretch;
-  }
-
   .tf-recharge-hero__signals {
     grid-template-columns: 1fr;
   }
@@ -629,10 +578,6 @@
 .tf-recharge-hero__content {
   position: relative;
   z-index: 1;
-}
-
-.tf-recharge-hero__eyebrow {
-  margin-bottom: 20px;
 }
 
 .tf-recharge-hero__text {
@@ -702,7 +647,6 @@
 }
 
 .tf-recharge-hero[data-tf-parallax-hero]::before {
-  z-index: -2;
   inset: -56px 0;
   background: var(--tf-hero-image) 68% center / cover no-repeat;
   transform: translate3d(0, var(--tf-hero-parallax-y, 0), 0);
@@ -710,7 +654,6 @@
 }
 
 .tf-recharge-hero[data-tf-parallax-hero]::after {
-  z-index: -1;
   inset: 0;
   background:
     linear-gradient(90deg, rgb(255 255 255 / 98%) 0%, rgb(255 255 255 / 92%) 42%, rgb(255 255 255 / 40%) 72%, rgb(255 255 255 / 12%) 100%),
@@ -816,8 +759,8 @@
 
 .tf-recharge-hero .tf-button,
 .tf-recharge-hero .tf-button:not(.tf-button--secondary) {
-  border-color: #e1051e;
-  background: #e1051e !important;
+  border-color: var(--tf-color-primary);
+  background: var(--tf-color-primary) !important;
   color: #ffffff;
 }
 
@@ -827,7 +770,7 @@
 .tf-recharge-hero .tf-button:not(.tf-button--secondary):focus-visible {
   border-color: #ffffff;
   background: #ffffff !important;
-  color: #08325f;
+  color: var(--tf-color-lime);
 }
 
 .tf-recharge-hero .tf-button--secondary {

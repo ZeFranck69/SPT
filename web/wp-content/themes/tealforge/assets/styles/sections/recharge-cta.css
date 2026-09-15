@@ -3,9 +3,6 @@
 }
 
 .home .tf-recharge-cta__inner {
-  position: relative;
-  isolation: isolate;
-  overflow: hidden;
   grid-template-columns: 86px minmax(0, 1fr) auto;
   background:
     linear-gradient(110deg, rgb(10 46 107 / 97%), rgb(11 61 145 / 94%) 64%, rgb(14 143 168 / 92%)),
@@ -57,7 +54,7 @@
 
 .tf-recharge-cta__eyebrow {
   margin: 0 0 12px;
-  color: #e1051e;
+  color: var(--tf-color-primary);
   font-size: 12px;
   font-weight: 800;
   text-transform: uppercase;
@@ -78,7 +75,7 @@
   align-items: center;
   gap: 28px;
   grid-template-columns: 64px minmax(0, 1fr) auto;
-  background: linear-gradient(115deg, #08325f 0%, #0b4da2 68%, #0a7a98 100%);
+  background: linear-gradient(115deg, var(--tf-color-lime) 0%, #0b4da2 68%, var(--tf-color-coral) 100%);
   color: #ffffff;
 }
 
@@ -115,13 +112,13 @@
 .tf-recharge-cta__button {
   border-color: #ffffff;
   background: #ffffff;
-  color: #08325f;
+  color: var(--tf-color-lime);
 }
 
 .tf-recharge-cta__button:hover,
 .tf-recharge-cta__button:focus-visible {
-  border-color: #e1051e;
-  background: #e1051e;
+  border-color: var(--tf-color-primary);
+  background: var(--tf-color-primary);
   color: #ffffff;
 }
 
@@ -245,8 +242,8 @@
 }
 
 .home .tf-recharge-cta__button--primary {
-  border-color: #e1051e;
-  background: #e1051e;
+  border-color: var(--tf-color-primary);
+  background: var(--tf-color-primary);
 }
 
 .home .tf-recharge-cta__button--secondary {
@@ -258,7 +255,7 @@
 .home .tf-recharge-cta__button:focus-visible {
   border-color: #ffffff;
   background: #ffffff;
-  color: #08325f;
+  color: var(--tf-color-lime);
   transform: translateY(-2px);
 }
 

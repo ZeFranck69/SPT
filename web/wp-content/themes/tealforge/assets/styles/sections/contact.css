@@ -1,14 +1,8 @@
-.tf-contact-page__inner {
-  width: var(--tf-container);
-  margin-inline: auto;
-}
-
 .tf-contact-page {
   padding-block: 56px;
 }
 
 .tf-contact-page__inner {
-  display: grid;
   gap: 48px;
   grid-template-columns: minmax(0, 1fr) minmax(300px, 360px);
 }
@@ -16,7 +10,6 @@
 .tf-contact-card,
 .tf-contact-info {
   border: 1px solid var(--tf-color-border);
-  border-radius: 12px;
   background: var(--tf-color-card);
   box-shadow: 0 2px 16px rgb(29 27 28 / 5%);
 }
@@ -136,7 +129,6 @@
 
 .tf-contact-info__list {
   display: grid;
-  gap: 18px;
   margin: 0;
 }
 
@@ -213,8 +205,6 @@
 
 .tf-contact-page__intro .tf-contact-info {
   border: 1px solid rgb(255 255 255 / 14%);
-  border-radius: 12px;
-  padding: 22px;
   background: rgb(255 255 255 / 10%);
   box-shadow: none;
 }
@@ -231,7 +221,6 @@
 .tf-contact-card {
   min-height: 100%;
   border: 0;
-  border-radius: 16px;
   padding: clamp(26px, 4vw, 42px);
   box-shadow: 0 18px 48px rgb(29 27 28 / 10%);
 }
@@ -274,7 +263,6 @@
 .tf-contact-card .wpforms-field textarea {
   min-height: 54px !important;
   border: 1px solid #dedadb !important;
-  border-radius: 10px !important;
   padding: 15px 16px !important;
   background: #faf8f8 !important;
   box-shadow: none !important;
@@ -286,14 +274,6 @@
   resize: vertical;
 }
 
-.tf-contact-card .wpforms-field input:focus,
-.tf-contact-card .wpforms-field select:focus,
-.tf-contact-card .wpforms-field textarea:focus {
-  border-color: var(--tf-color-primary) !important;
-  outline: 3px solid rgb(230 20 31 / 14%) !important;
-  background: #ffffff !important;
-}
-
 .tf-contact-card .wpforms-submit-container {
   padding: 8px 0 0 !important;
 }
@@ -301,7 +281,6 @@
 .tf-contact-card .wpforms-submit,
 .tf-contact-card button[type="submit"] {
   width: 100% !important;
-  min-height: 56px !important;
   border-radius: 10px !important;
   background: var(--tf-color-coral) !important;
   color: #ffffff !important;
@@ -312,26 +291,16 @@
 .tf-contact-faq {
   margin-top: clamp(42px, 7vw, 82px);
   padding-block: clamp(42px, 6vw, 72px);
-  background: #ffffff;
-}
-
-.tf-contact-faq__inner {
-  width: var(--tf-container);
-  margin-inline: auto;
 }
 
 .tf-contact-faq__grid {
   display: grid;
-  gap: 18px;
   grid-template-columns: repeat(4, minmax(0, 1fr));
   margin-top: 30px;
 }
 
 .tf-contact-faq .tf-faq-item {
   min-height: 100%;
-  border: 1px solid var(--tf-color-border);
-  border-radius: 12px;
-  padding: 22px;
   background: var(--tf-color-card);
 }
 
@@ -357,10 +326,6 @@
   .tf-contact-page__inner,
   .tf-contact-faq__inner {
     width: min(100% - 32px, 1120px);
-  }
-
-  .tf-contact-card #wpforms-90 .wpforms-field-container {
-    grid-template-columns: 1fr !important;
   }
 
   .tf-contact-page__title {

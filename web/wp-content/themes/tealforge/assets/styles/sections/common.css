@@ -34,10 +34,7 @@ img {
 .tf-section-heading__eyebrow {
   margin: 0;
   color: var(--tf-color-neti-dark);
-  font-size: 13px;
-  font-weight: 800;
   letter-spacing: 0.12em;
-  text-transform: uppercase;
 }
 
 .tf-section-heading {
@@ -47,13 +44,10 @@ img {
 .tf-section-heading__title {
   margin: 12px 0 0;
   font-size: clamp(34px, 5vw, 56px);
-  line-height: 1.05;
 }
 
 .tf-section-heading__text {
   margin: 18px 0 0;
-  color: var(--tf-color-muted);
-  font-size: 18px;
 }
 
 .tf-section-heading__eyebrow {
@@ -68,17 +62,10 @@ img {
 
 .tf-section-heading__title {
   font-family: var(--tf-font-heading);
-  font-size: 40px;
 }
 
 .tf-section-heading__text {
   margin-top: 12px;
-}
-
-@media (max-width: 680px) {
-  .tf-section-heading__title {
-    font-size: 32px;
-  }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -93,7 +80,7 @@ img {
 }
 
 .tf-section-heading__title {
-  color: #08325f;
+  color: var(--tf-color-lime);
   font-size: 42px;
   line-height: 1.15;
 }
@@ -105,7 +92,7 @@ img {
 
 .tf-section-heading__eyebrow {
   margin: 0 0 12px;
-  color: #e1051e;
+  color: var(--tf-color-primary);
   font-size: 12px;
   font-weight: 800;
   text-transform: uppercase;

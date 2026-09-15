@@ -7,30 +7,20 @@
   text-transform: uppercase;
 }
 
-.tf-recharge-products {
-  padding-block: 88px;
-}
-
 .tf-recharge-products__inner {
-  width: var(--tf-container);
   margin-inline: auto;
 }
 
 .tf-recharge-products__grid {
   display: grid;
   margin-top: 38px;
-  gap: 18px;
   grid-template-columns: repeat(3, minmax(0, 1fr));
 }
 
 .tf-recharge-product {
   display: flex;
-  min-height: 240px;
   flex-direction: column;
   justify-content: space-between;
-  border: 1px solid var(--tf-color-border);
-  border-radius: 8px;
-  padding: 22px;
   background: #ffffff;
   box-shadow: 0 12px 36px rgb(17 17 17 / 7%);
 }
@@ -52,12 +42,9 @@
 
 .tf-recharge-product__type {
   margin: 0;
-  border-radius: 999px;
   padding: 5px 10px;
   background: var(--tf-color-surface);
   color: #1d1b1c;
-  font-size: 13px;
-  font-weight: 800;
 }
 
 .tf-recharge-product__amount {
@@ -69,13 +56,10 @@
 
 .tf-recharge-product__button {
   display: inline-flex;
-  min-height: 48px;
   align-items: center;
   justify-content: center;
-  border-radius: 8px;
   padding: 0 18px;
   background: var(--tf-color-text);
-  color: #ffffff;
   font-weight: 800;
   text-decoration: none;
 }
@@ -93,7 +77,6 @@
   display: inline-flex;
   align-items: center;
   align-self: flex-start;
-  border-radius: 4px;
   padding: 5px 10px;
   background: var(--tf-color-lime);
   color: #ffffff;
@@ -103,10 +86,8 @@
 
 .tf-recharge-product {
   position: relative;
-  min-height: 252px;
   justify-content: initial;
   border-top: 1px solid var(--tf-color-border);
-  border-radius: 12px;
   padding: 24px;
   background: var(--tf-color-card);
   box-shadow: 0 2px 10px rgb(29 27 28 / 5%);
@@ -118,13 +99,11 @@
 
 .tf-recharge-product__popular {
   position: absolute;
-  top: -13px;
   left: 24px;
   margin: 0;
   border-radius: 4px;
   padding: 5px 11px;
   background: var(--tf-color-lime);
-  color: #ffffff;
   font-size: 12px;
   font-weight: 800;
 }
@@ -160,29 +139,17 @@
   color: var(--tf-color-coral);
 }
 
-.tf-recharge-product__body {
-  margin-top: 32px;
-}
-
 .tf-recharge-product__amount {
   margin: 0;
-  font-size: 42px;
 }
 
 .tf-recharge-product__description {
   margin: 8px 0 0;
-  color: var(--tf-color-muted);
   font-size: 14px;
 }
 
 .tf-recharge-product__bonus {
   margin: 18px 0 0;
-}
-
-.tf-recharge-product__button {
-  min-height: 46px;
-  margin-top: auto;
-  background: var(--tf-color-primary);
 }
 
 .tf-recharge-product--featured .tf-recharge-product__button {
@@ -277,7 +244,7 @@
 
 .home .tf-recharge-products__group-kicker {
   margin: 0 0 3px;
-  color: #617087;
+  color: var(--tf-color-muted);
   font-size: 11px;
   font-weight: 800;
   text-transform: uppercase;
@@ -527,8 +494,6 @@
 
 .tf-recharge-products__group-mark {
   display: inline-flex;
-  width: 40px;
-  height: 40px;
   align-items: center;
   justify-content: center;
   border-radius: 8px;
@@ -548,19 +513,14 @@
 .tf-recharge-products__group-heading h3 {
   margin: 0;
   font-family: var(--tf-font-heading);
-  font-size: 24px;
 }
 
 .tf-recharge-products__grid {
   margin-top: 0;
-  gap: 24px;
 }
 
 .tf-recharge-product {
-  min-height: 270px;
   border: 1px solid var(--tf-color-border);
-  border-radius: 16px;
-  padding: 28px 24px 24px;
   box-shadow: none;
   transition: border-color 0.2s ease, transform 0.2s ease;
 }
@@ -593,7 +553,6 @@
   right: 18px;
   left: auto;
   background: rgb(255 255 255 / 20%);
-  color: #ffffff;
 }
 
 .tf-recharge-product__body {
@@ -602,7 +561,6 @@
 
 .tf-recharge-product__amount {
   font-family: var(--tf-font-heading);
-  font-size: 40px;
 }
 
 .tf-recharge-product__description {
@@ -824,7 +782,7 @@
 }
 
 .tf-recharge-products__group--papito {
-  background: #fdf1f2;
+  background: var(--tf-color-secondary);
 }
 
 .tf-recharge-products__group--neti {
@@ -839,22 +797,22 @@
 .tf-recharge-products__group-mark {
   width: 48px;
   height: 48px;
-  background: #e1051e;
+  background: var(--tf-color-primary);
 }
 
 .tf-recharge-products__group--neti .tf-recharge-products__group-mark {
-  background: #0a7a98;
+  background: var(--tf-color-coral);
 }
 
 .tf-recharge-products__group-heading h3 {
-  color: #e1051e;
+  color: var(--tf-color-primary);
   font-size: 32px;
   font-weight: 800;
   text-transform: uppercase;
 }
 
 .tf-recharge-products__group--neti .tf-recharge-products__group-heading h3 {
-  color: #0a7a98;
+  color: var(--tf-color-coral);
 }
 
 .tf-recharge-products__grid {
@@ -870,34 +828,34 @@
   border-radius: 8px;
   padding: 28px 24px 24px;
   background: #ffffff;
-  color: #15233b;
+  color: var(--tf-color-text);
   box-shadow: 0 16px 36px rgb(8 50 95 / 7%);
   transform: none;
 }
 
 .tf-recharge-product:hover,
 .tf-recharge-product--featured:hover {
-  border-color: #e1051e;
+  border-color: var(--tf-color-primary);
   box-shadow: 0 20px 42px rgb(8 50 95 / 12%);
   transform: translateY(-4px);
 }
 
 .tf-recharge-product--neti:hover,
 .tf-recharge-product--neti.tf-recharge-product--featured:hover {
-  border-color: #0a7a98;
+  border-color: var(--tf-color-coral);
 }
 
 .tf-recharge-product__popular {
-  background: #e1051e;
+  background: var(--tf-color-primary);
   color: #ffffff;
 }
 
 .tf-recharge-product--neti .tf-recharge-product__popular {
-  background: #0a7a98;
+  background: var(--tf-color-coral);
 }
 
 .tf-recharge-product__amount {
-  color: #08325f;
+  color: var(--tf-color-lime);
   font-size: 38px;
 }
 
@@ -909,34 +867,34 @@
 
 .tf-recharge-product__bonus,
 .tf-recharge-product--featured .tf-recharge-product__bonus {
-  background: #fdf1f2;
-  color: #a90016;
+  background: var(--tf-color-secondary);
+  color: var(--tf-color-papito-dark);
 }
 
 .tf-recharge-product--neti .tf-recharge-product__bonus,
 .tf-recharge-product--neti.tf-recharge-product--featured .tf-recharge-product__bonus {
   background: #eaf7fb;
-  color: #075b73;
+  color: var(--tf-color-neti-dark);
 }
 
 .tf-recharge-product__button,
 .tf-recharge-product--featured .tf-recharge-product__button {
-  background: #e1051e;
+  background: var(--tf-color-primary);
   color: #ffffff;
 }
 
 .tf-recharge-product--neti .tf-recharge-product__button,
 .tf-recharge-product--neti.tf-recharge-product--featured .tf-recharge-product__button {
-  background: #0a7a98;
+  background: var(--tf-color-coral);
   color: #ffffff;
 }
 
 .tf-recharge-product__quantity-button {
-  color: #e1051e;
+  color: var(--tf-color-primary);
 }
 
 .tf-recharge-product--neti .tf-recharge-product__quantity-button {
-  color: #0a7a98;
+  color: var(--tf-color-coral);
 }
 
 @media (max-width: 680px) {

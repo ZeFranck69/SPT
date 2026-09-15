@@ -42,7 +42,6 @@
 }
 
 .home .tf-recharge-faq {
-  position: relative;
   isolation: isolate;
   overflow: hidden;
   background:
@@ -59,10 +58,6 @@
   opacity: 0.08;
   top: -90px;
   right: -70px;
-}
-
-.home .tf-recharge-faq__item {
-  box-shadow: none;
 }
 
 .tf-recharge-faq {
@@ -86,7 +81,7 @@
 }
 
 .tf-recharge-faq__item {
-  border: 1px solid #dce4ec;
+  border: 1px solid var(--tf-color-border);
   border-radius: 8px;
   background: #ffffff;
   box-shadow: 0 10px 24px rgb(8 50 95 / 4%);
@@ -99,7 +94,7 @@
   justify-content: space-between;
   gap: 20px;
   padding: 18px 22px;
-  color: #08325f;
+  color: var(--tf-color-lime);
   cursor: pointer;
   font-weight: 800;
   list-style: none;
@@ -123,7 +118,7 @@
   left: 3px;
   width: 14px;
   height: 2px;
-  background: #e1051e;
+  background: var(--tf-color-primary);
   content: "";
   transition: transform 0.25s ease;
 }
@@ -182,7 +177,7 @@
 
 .home .tf-recharge-faq__eyebrow {
   margin: 0 0 10px;
-  color: #e1051e;
+  color: var(--tf-color-primary);
   font-size: 12px;
   font-weight: 800;
   text-transform: uppercase;

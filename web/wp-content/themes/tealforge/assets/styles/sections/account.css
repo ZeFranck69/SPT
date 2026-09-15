@@ -68,11 +68,6 @@
 .tf-myaccount-nav-heading__eyebrow,
 .tf-myaccount-dashboard-intro__eyebrow {
   margin: 0 0 10px;
-  color: var(--tf-color-coral);
-  font-size: 12px;
-  font-weight: 900;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
 }
 
 .woocommerce-account .woocommerce {
@@ -146,8 +141,6 @@
   float: none !important;
   width: auto !important;
   border: 0 !important;
-  border-radius: 12px !important;
-  background: #ffffff !important;
   box-shadow: 0 14px 38px rgb(29 27 28 / 8%) !important;
 }
 
@@ -156,7 +149,6 @@
   top: 94px;
   grid-column: 1;
   grid-row: 2;
-  padding: 20px !important;
 }
 
 .woocommerce-account .woocommerce-MyAccount-content {
@@ -204,7 +196,6 @@
   min-height: 50px;
   align-items: center;
   justify-content: space-between;
-  border-radius: 8px;
   padding: 11px 13px;
   background: var(--tf-color-surface);
   color: var(--tf-color-text);
@@ -403,7 +394,6 @@
 }
 
 .tf-account-login-card {
-  max-width: 620px;
   margin-inline: auto;
   padding: 36px;
 }

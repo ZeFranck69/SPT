@@ -45,10 +45,6 @@
 
 @media (max-width: 680px) {
   :root {
-    --tf-container: min(100% - 32px, 1280px);
-  }
-
-  :root {
     --tf-container: min(100% - 36px, 1440px);
   }
 }

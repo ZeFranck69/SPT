@@ -10,7 +10,6 @@
 
 .tf-recharge-assurance__inner {
   display: grid;
-  gap: 1px;
   grid-template-columns: repeat(3, minmax(0, 1fr));
 }
 
@@ -29,7 +28,6 @@
 }
 
 .tf-recharge-assurance__inner {
-  gap: 24px;
   grid-template-columns: repeat(4, minmax(0, 1fr));
   padding-block: 32px;
 }
@@ -50,14 +48,7 @@
   display: block;
 }
 
-.tf-recharge-assurance__inner strong {
-  font-size: 14px;
-}
-
 .tf-recharge-assurance__inner span {
-  margin-top: 2px;
-  color: var(--tf-color-muted);
-  font-size: 12px;
   font-weight: 500;
 }
 
@@ -185,7 +176,6 @@
 
 .tf-recharge-assurance {
   border: 0;
-  padding-block: 68px;
   background: var(--tf-color-surface);
   color: var(--tf-color-text);
 }
@@ -256,9 +246,9 @@
 .tf-recharge-assurance__icon,
 .tf-recharge-assurance__inner .tf-recharge-assurance__icon {
   background: #eaf7fb;
-  color: #0a7a98;
+  color: var(--tf-color-coral);
 }
 
 .tf-recharge-assurance__inner strong {
-  color: #08325f;
+  color: var(--tf-color-lime);
 }
