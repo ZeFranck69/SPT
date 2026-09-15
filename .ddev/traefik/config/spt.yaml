@@ -7,7 +7,7 @@ http:
   routers:
     spt-web-80-http:
       entrypoints:
-        - http-80
+        - http-33000
       rule: HostRegexp(`^spt\.ddev\.site$`)
       
       service: "spt-web-80"
