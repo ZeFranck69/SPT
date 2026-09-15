@@ -37,7 +37,6 @@ web/license.txt
 web/readme.html
 
 # DDEV local certificates and private keys
-.ddev/*
 .ddev/traefik/certs/
 *.key
 
