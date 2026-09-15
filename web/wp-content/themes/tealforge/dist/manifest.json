@@ -1,8 +1,4 @@
 {
-  "assets/images/motif-tapa-bleu-transparent.svg": {
-    "file": "assets/motif-tapa-bleu-transparent.D8__oFOG.svg",
-    "src": "assets/images/motif-tapa-bleu-transparent.svg"
-  },
   "assets/images/motif-tapa-bleu.svg": {
     "file": "assets/motif-tapa-bleu.DVKd7QWh.svg",
     "src": "assets/images/motif-tapa-bleu.svg"
@@ -16,18 +12,17 @@
     "src": "assets/images/motif-tapa-turquoise.svg"
   },
   "assets/scripts/main.js": {
-    "file": "assets/scripts/main.C7qtj0G5.js",
+    "file": "assets/scripts/main.Vsnq6kbC.js",
     "name": "main",
     "src": "assets/scripts/main.js",
     "isEntry": true,
     "css": [
-      "assets/styles/main.CpjKQcQc.css"
+      "assets/styles/main.BFoi2eoj.css"
     ],
     "assets": [
       "assets/motif-tapa-bleu.DVKd7QWh.svg",
       "assets/motif-tapa-rouge.DtxHlp44.svg",
-      "assets/motif-tapa-turquoise.CAHBL8I9.svg",
-      "assets/motif-tapa-bleu-transparent.D8__oFOG.svg"
+      "assets/motif-tapa-turquoise.CAHBL8I9.svg"
     ]
   }
 }
