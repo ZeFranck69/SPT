@@ -14,13 +14,7 @@
                     <span class="tf-site-header__logo-text">{{ spt_branding.header_logo_text }}</span>
                 {% endif %}
             {% else %}
-                <img
-                    class="tf-site-header__logo"
-                    src="{{ function('get_theme_file_uri', 'assets/images/rtm-logo.png') }}"
-                    width="367"
-                    height="112"
-                    alt="Recharge Ton Manuia"
-                >
+                <span>Recharge Ton Manuia</span>
             {% endif %}
         </a>
 
@@ -28,6 +22,8 @@
             menu: menus.primary,
             class_name: 'tf-menu tf-menu--primary',
             mobile_panel: true,
+            account_url: spt_links.account,
+            account_label: spt_account.header_label,
             aria_label: 'Navigation principale'
         } only %}
 
@@ -64,12 +60,7 @@
                         alt="{{ spt_branding.network_logo.alt ?: 'Manuia' }}"
                     >
                 {% else %}
-                    <img
-                        src="{{ function('get_theme_file_uri', 'assets/images/manuia-logo.jpg') }}"
-                        width="600"
-                        height="240"
-                        alt="Manuia"
-                    >
+                    <span>Manuia</span>
                 {% endif %}
             </div>
 
@@ -87,9 +78,3 @@
         </div>
     </div>
 </header>
-<button
-    class="tf-site-menu-backdrop"
-    type="button"
-    aria-label="{{ function('__', 'Fermer le menu', 'tealforge') }}"
-    data-tf-menu-close
-></button>

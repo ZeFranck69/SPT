@@ -354,6 +354,9 @@ function tealforge_get_recharge_product_data(int $product_id): array
         'family' => (string) (tealforge_get_recharge_product_field($product_id, 'recharge_family') ?: ($fallback['family'] ?? $title)),
         'type' => (string) (tealforge_get_recharge_product_field($product_id, 'recharge_type') ?: ($fallback['type'] ?? '')),
         'amount' => (string) (tealforge_get_recharge_product_field($product_id, 'recharge_amount') ?: ($fallback['amount'] ?? ($price !== '' ? number_format((float) $price, 0, ',', ' ') . ' F' : ''))),
+        'purchase_price' => $product && $price !== ''
+            ? number_format_i18n(wc_get_price_to_display($product), wc_get_price_decimals())
+            : '',
         'description' => (string) (tealforge_get_recharge_product_field($product_id, 'recharge_description') ?: ($fallback['description'] ?? get_the_excerpt($product_id))),
         'bonus' => (string) (tealforge_get_recharge_product_field($product_id, 'recharge_bonus') ?: ($fallback['bonus'] ?? '')),
         'featured' => $featured === '' ? (bool) ($fallback['featured'] ?? false) : (bool) $featured,
@@ -365,25 +368,58 @@ function tealforge_get_recharge_product_data(int $product_id): array
         'stock_quantity' => $voucher_stock,
         'stock_label' => $stock_label,
         'unavailable_label' => $unavailable_label,
-        'quantity_options' => $max_quantity > 0 ? range(1, $max_quantity) : [],
+        'max_quantity' => $max_quantity,
         'add_to_cart_action' => home_url('/#recharges'),
     ];
 }
 
 function tealforge_prepare_page_sections(array $sections): array
 {
+    $has_page_heading = in_array('recharge_hero', array_column($sections, 'acf_fc_layout'), true);
+
     foreach ($sections as $section_index => $section) {
+        if (($section['acf_fc_layout'] ?? '') === 'text_content') {
+            $title = trim((string) ($section['title'] ?? ''));
+            $sections[$section_index]['title'] = $title;
+            $sections[$section_index]['heading_level'] = $has_page_heading ? 2 : 1;
+
+            if ($title !== '') {
+                $has_page_heading = true;
+            }
+        }
+
         if (($section['acf_fc_layout'] ?? '') === 'recharge_hero') {
+            $image = $section['hero_image'] ?? null;
+            $image_id = is_array($image) ? (int) ($image['ID'] ?? 0) : (is_numeric($image) ? (int) $image : 0);
+            $sections[$section_index]['hero_image_html'] = $image_id > 0
+                ? wp_get_attachment_image($image_id, 'full', false, [
+                    'class' => 'tf-recharge-hero__image',
+                    'alt' => '',
+                    'sizes' => '(max-width: 1000px) 100vw, 50vw',
+                    'loading' => 'eager',
+                    'decoding' => 'async',
+                    'fetchpriority' => 'high',
+                ])
+                : '';
             $sections[$section_index]['hero_image'] = tealforge_get_section_image_url(
                 $section['hero_image'] ?? null,
-                'assets/images/visuel-lagon.png'
+                'assets/images/visuel-lagon.svg'
             );
 
-            $title_parts = tealforge_split_highlighted_title(
-                (string) ($section['title'] ?? ''),
-                'connecté'
+            $sections[$section_index]['hero_text_html'] = str_replace(
+                ['PAPITO', 'NETI'],
+                ['<strong class="tf-recharge-hero__papito">PAPITO</strong>', '<strong class="tf-recharge-hero__neti">NETI</strong>'],
+                esc_html((string) ($section['text'] ?? ''))
             );
-            $sections[$section_index] = array_merge($sections[$section_index], $title_parts);
+            $sections[$section_index]['benefits'] = [];
+
+            foreach (['benefit_simple' => 'phone', 'benefit_fast' => 'zap', 'benefit_secure' => 'shield-check'] as $field => $icon) {
+                $label = trim((string) ($section[$field] ?? ''));
+
+                if ($label !== '') {
+                    $sections[$section_index]['benefits'][] = ['label' => $label, 'icon' => $icon];
+                }
+            }
         }
 
         if (($section['acf_fc_layout'] ?? '') === 'recharge_products') {
@@ -415,15 +451,23 @@ function tealforge_prepare_page_sections(array $sections): array
             $sections[$section_index]['products'] = $prepared_products;
             $product_groups = [
                 'papito' => [
-                    'title' => 'Papito Voix',
+                    'title' => (string) ($section['papito_title'] ?? 'PAPITO'),
+                    'subtitle' => (string) ($section['papito_subtitle'] ?? ''),
+                    'description' => (string) ($section['papito_description'] ?? ''),
+                    'delivery' => (string) ($section['papito_delivery'] ?? ''),
                     'tone' => 'papito',
                     'icon' => 'phone',
+                    'bonus_icon' => 'message-circle',
                     'products' => [],
                 ],
                 'neti' => [
-                    'title' => 'Neti Data',
+                    'title' => (string) ($section['neti_title'] ?? 'NETI'),
+                    'subtitle' => (string) ($section['neti_subtitle'] ?? ''),
+                    'description' => (string) ($section['neti_description'] ?? ''),
+                    'delivery' => (string) ($section['neti_delivery'] ?? ''),
                     'tone' => 'neti',
-                    'icon' => 'wifi',
+                    'icon' => 'globe',
+                    'bonus_icon' => 'wifi',
                     'products' => [],
                 ],
             ];
@@ -442,6 +486,10 @@ function tealforge_prepare_page_sections(array $sections): array
                 $product_groups,
                 static fn(array $group): bool => $group['products'] !== []
             ));
+            $currency = function_exists('get_woocommerce_currency') ? get_woocommerce_currency() : '';
+            $sections[$section_index]['currency_label'] = $currency === 'XPF'
+                ? 'F CFP'
+                : (function_exists('get_woocommerce_currency_symbol') ? get_woocommerce_currency_symbol($currency) : '');
         }
 
         if (($section['acf_fc_layout'] ?? '') === 'recharge_steps') {
@@ -460,11 +508,7 @@ function tealforge_prepare_page_sections(array $sections): array
         }
 
         if (($section['acf_fc_layout'] ?? '') === 'reassurance') {
-            $sections[$section_index]['eyebrow'] = trim((string) ($section['eyebrow'] ?? ''))
-                ?: 'Recharge Ton Manuia';
-            $sections[$section_index]['title'] = trim((string) ($section['title'] ?? ''))
-                ?: 'Une recharge simple et sûre';
-            $reassurance_icons = ['lock', 'zap', 'undo', 'headphones'];
+            $reassurance_icons = ['shield-check', 'mail', 'smartphone', 'headphones'];
 
             foreach ((array) ($section['items'] ?? []) as $item_index => $item) {
                 $sections[$section_index]['items'][$item_index]['icon'] = tealforge_resolve_section_icon(
@@ -495,6 +539,7 @@ function tealforge_resolve_section_icon(mixed $icon, string $fallback = 'circle-
         'map-pin',
         'message-circle',
         'shopping-cart',
+        'shield-check',
         'smartphone',
         'undo',
         'users',

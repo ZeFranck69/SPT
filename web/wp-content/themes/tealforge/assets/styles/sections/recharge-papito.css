@@ -1,0 +1,13 @@
+.tf-recharge-offers--papito {
+  --tf-offer-color: var(--tf-color-primary);
+  --tf-offer-dark: #b3041a;
+  --tf-offer-surface: var(--tf-color-secondary);
+  --tf-offer-border: #f6dadd;
+  --tf-offer-bonus-surface: #fde9eb;
+  --tf-offer-bonus-text: #b3121f;
+  --tf-offer-icon-shadow: rgb(225 5 30 / 28%);
+  --tf-offer-card-shadow: rgb(225 5 30 / 15%);
+  --tf-offer-pattern: url('../../images/motif-tapa-rouge.svg');
+  --tf-offer-flower: url('../../images/motif-hibiscus-rouge.svg');
+  --tf-offer-flower-opacity: 0.16;
+}

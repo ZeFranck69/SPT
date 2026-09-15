@@ -126,6 +126,34 @@
                                     "type": "text"
                                 }
                             ]
+                        },
+                        {
+                            "key": "field_spt_hero_benefit_simple",
+                            "label": "Avantage : simplicité",
+                            "name": "benefit_simple",
+                            "type": "text",
+                            "default_value": "Simple"
+                        },
+                        {
+                            "key": "field_spt_hero_benefit_fast",
+                            "label": "Avantage : rapidité",
+                            "name": "benefit_fast",
+                            "type": "text",
+                            "default_value": "Rapide"
+                        },
+                        {
+                            "key": "field_spt_hero_benefit_secure",
+                            "label": "Avantage : sécurité",
+                            "name": "benefit_secure",
+                            "type": "text",
+                            "default_value": "Sécurisé"
+                        },
+                        {
+                            "key": "field_spt_hero_note",
+                            "label": "Note sous les boutons",
+                            "name": "note",
+                            "type": "textarea",
+                            "default_value": "Aucun compte obligatoire. Vous pouvez aussi recharger le numéro d'un proche."
                         }
                     ],
                     "min": "",
@@ -166,6 +194,62 @@
                             "return_format": "id",
                             "min": "",
                             "max": ""
+                        },
+                        {
+                            "key": "field_spt_papito_title",
+                            "label": "Titre Papito",
+                            "name": "papito_title",
+                            "type": "text",
+                            "default_value": "PAPITO"
+                        },
+                        {
+                            "key": "field_spt_papito_subtitle",
+                            "label": "Sous-titre Papito",
+                            "name": "papito_subtitle",
+                            "type": "text",
+                            "default_value": "Recharges voix et SMS"
+                        },
+                        {
+                            "key": "field_spt_papito_description",
+                            "label": "Présentation Papito",
+                            "name": "papito_description",
+                            "type": "textarea",
+                            "default_value": "Du crédit d'appel avec des SMS offerts, pour rester en contact avec vos proches."
+                        },
+                        {
+                            "key": "field_spt_papito_delivery",
+                            "label": "Livraison Papito",
+                            "name": "papito_delivery",
+                            "type": "textarea",
+                            "default_value": "Code envoyé par email et SMS juste après le paiement."
+                        },
+                        {
+                            "key": "field_spt_neti_title",
+                            "name": "neti_title",
+                            "label": "Titre Neti",
+                            "type": "text",
+                            "default_value": "NETI"
+                        },
+                        {
+                            "key": "field_spt_neti_subtitle",
+                            "name": "neti_subtitle",
+                            "label": "Sous-titre Neti",
+                            "type": "text",
+                            "default_value": "Recharges internet"
+                        },
+                        {
+                            "key": "field_spt_neti_description",
+                            "name": "neti_description",
+                            "label": "Présentation Neti",
+                            "type": "textarea",
+                            "default_value": "De la data à utiliser comme vous voulez : navigation, messagerie, partage de connexion."
+                        },
+                        {
+                            "key": "field_spt_neti_delivery",
+                            "name": "neti_delivery",
+                            "label": "Livraison Neti",
+                            "type": "textarea",
+                            "default_value": "Code envoyé par email et SMS juste après le paiement."
                         }
                     ],
                     "min": "",
@@ -335,7 +419,7 @@
                             "label": "Éléments",
                             "name": "items",
                             "type": "repeater",
-                            "instructions": "Ajouter les engagements de réassurance affichés avant le footer.",
+                            "instructions": "Engagements affichés dans le bloc Nos garanties.",
                             "layout": "table",
                             "button_label": "Ajouter un élément",
                             "sub_fields": [
@@ -358,7 +442,8 @@
                                         "clock": "Horloge",
                                         "map-pin": "Localisation",
                                         "wifi": "Réseau",
-                                        "undo": "Retour"
+                                        "undo": "Retour",
+                                        "shield-check": "Bouclier de sécurité"
                                     },
                                     "default_value": false,
                                     "return_format": "value",
@@ -383,6 +468,20 @@
                                     "instructions": "Précision courte affichée sous le titre."
                                 }
                             ]
+                        },
+                        {
+                            "key": "field_spt_reassurance_quote",
+                            "label": "Message de bienvenue",
+                            "name": "quote",
+                            "type": "text",
+                            "default_value": "Manuia e lelei !"
+                        },
+                        {
+                            "key": "field_spt_reassurance_quote_translation",
+                            "label": "Traduction du message",
+                            "name": "quote_translation",
+                            "type": "text",
+                            "default_value": "Bienvenue à Wallis et Futuna"
                         }
                     ],
                     "min": "",
@@ -571,5 +670,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1789427518
+    "modified": 1789447410
 }

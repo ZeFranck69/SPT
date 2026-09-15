@@ -4,9 +4,6 @@
 
 .home .tf-recharge-cta__inner {
   grid-template-columns: 86px minmax(0, 1fr) auto;
-  background:
-    linear-gradient(110deg, rgb(10 46 107 / 97%), rgb(11 61 145 / 94%) 64%, rgb(14 143 168 / 92%)),
-    url("../../images/motif-tapa-bleu.svg") center / 200px repeat;
 }
 
 .home .tf-recharge-cta__inner::after {
@@ -20,12 +17,6 @@
   right: 18%;
   bottom: -130px;
   transform: rotate(68deg);
-}
-
-.home .tf-recharge-cta__mark {
-  width: 76px;
-  height: auto;
-  filter: drop-shadow(0 10px 18px rgb(0 0 0 / 16%));
 }
 
 @media (max-width: 900px) {
@@ -43,10 +34,6 @@
     grid-template-columns: 1fr;
   }
 
-  .home .tf-recharge-cta__mark {
-    margin-inline: auto;
-  }
-
   .home .tf-recharge-cta__button {
     grid-column: 1;
   }
@@ -54,7 +41,6 @@
 
 .tf-recharge-cta__eyebrow {
   margin: 0 0 12px;
-  color: var(--tf-color-primary);
   font-size: 12px;
   font-weight: 800;
   text-transform: uppercase;

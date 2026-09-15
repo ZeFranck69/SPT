@@ -3,11 +3,16 @@
         <ul class="tf-menu__list">
             {% for item in menu.items %}
                 <li class="tf-menu__item">
-                    <a class="tf-menu__link" href="{{ function('esc_url', item.link) }}">
+                    <a class="tf-menu__link" href="{{ function('esc_url', item.link) }}"{% if item.current and '#' not in item.link %} aria-current="page"{% endif %}>
                         {{ item.title }}
                     </a>
                 </li>
             {% endfor %}
         </ul>
+        {% if mobile_panel and account_url %}
+            <div class="tf-menu__account">
+                <a class="tf-menu__link" href="{{ function('esc_url', account_url) }}">{{ account_label|e }}</a>
+            </div>
+        {% endif %}
     </nav>
 {% endif %}

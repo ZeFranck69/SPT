@@ -14,13 +14,7 @@
                             alt="{{ footer_logo.alt ?: site.name }}"
                         >
                     {% else %}
-                        <img
-                            class="tf-site-footer__logo"
-                            src="{{ function('get_theme_file_uri', 'assets/images/rtm-logo.png') }}"
-                            width="367"
-                            height="112"
-                            alt="Recharge Ton Manuia"
-                        >
+                        <span>Recharge Ton Manuia</span>
                     {% endif %}
                 </a>
                 <p>Service de recharges mobiles prépayées en ligne à Wallis et Futuna.</p>
@@ -36,14 +30,7 @@
                             loading="lazy"
                         >
                     {% else %}
-                        <img
-                            class="tf-site-footer__network-logo"
-                            src="{{ function('get_theme_file_uri', 'assets/images/manuia-logo.jpg') }}"
-                            width="600"
-                            height="240"
-                            alt="Manuia, le réseau mobile de Wallis et Futuna"
-                            loading="lazy"
-                        >
+                        <span>Manuia</span>
                     {% endif %}
                 </div>
                 <small>Recharges du réseau mobile Manuia</small>

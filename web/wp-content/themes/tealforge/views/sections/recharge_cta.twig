@@ -2,20 +2,20 @@
     <div class="tf-recharge-cta__inner" data-tf-reveal>
         <span class="tf-recharge-cta__decoration" aria-hidden="true"></span>
         <div class="tf-recharge-cta__content">
-            <h2 id="recharge-cta-title" class="tf-recharge-cta__title">{{ section.title }}</h2>
+            <h2 id="recharge-cta-title" class="tf-recharge-cta__title">{{ section.title|e }}</h2>
             {% if section.text %}
-                <p class="tf-recharge-cta__text">{{ section.text }}</p>
+                <p class="tf-recharge-cta__text">{{ section.text|e }}</p>
             {% endif %}
         </div>
         <div class="tf-recharge-cta__actions">
             {% if section.button_label and section.button_url %}
                 <a class="tf-recharge-cta__button tf-recharge-cta__button--primary" href="{{ function('esc_url', section.button_url) }}">
-                    {{ section.button_label }}
+                    {{ section.button_label|e }}
                 </a>
             {% endif %}
             {% if section.secondary_button_label and section.secondary_button_url %}
                 <a class="tf-recharge-cta__button tf-recharge-cta__button--secondary" href="{{ function('esc_url', section.secondary_button_url) }}">
-                    {{ section.secondary_button_label }}
+                    {{ section.secondary_button_label|e }}
                 </a>
             {% endif %}
         </div>

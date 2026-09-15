@@ -6,25 +6,23 @@
 @import './sections/inner-pages.css';
 @import './sections/recharge-hero.css';
 @import './sections/recharge-products.css';
+@import './sections/home-notices.css';
+@import './sections/recharge-offers.css';
+@import './sections/recharge-papito.css';
+@import './sections/recharge-neti.css';
 @import './sections/recharge-families.css';
 @import './sections/recharge-steps.css';
 @import './sections/recharge-faq.css';
 @import './sections/recharge-cta.css';
 @import './sections/reassurance.css';
 @import './sections/text-content.css';
-@import './sections/woocommerce.css';
-@import './sections/product-detail.css';
-@import './sections/cart.css';
-@import './sections/checkout.css';
-@import './sections/account.css';
-@import './sections/contact.css';
-@import './sections/error-page.css';
-@import './sections/animations.css';
 
 :root {
   --tf-color-text: #15233b;
   --tf-color-muted: #617087;
   --tf-color-border: #dce4ec;
+  --tf-color-offer-description: #3c5a7a;
+  --tf-color-offer-muted: #5a7490;
   --tf-color-surface: #f5f8fb;
   --tf-color-background: #ffffff;
   --tf-color-card: #ffffff;
