@@ -1,254 +1,123 @@
-.tf-recharge-assurance__inner {
-  width: var(--tf-container);
-  margin-inline: auto;
-}
-
 .tf-recharge-assurance {
-  border-top: 1px solid var(--tf-color-border);
-  background: #ffffff;
+  max-width: 1440px;
+  margin: 64px auto 0;
+  padding-inline: 24px;
 }
 
 .tf-recharge-assurance__inner {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  padding: 30px;
+  grid-template-columns: repeat(auto-fit, minmax(min(210px, 100%), 1fr));
+  gap: 26px;
+  border: 1px solid #e2eef5;
+  border-radius: 20px;
+  background: #fbfdfe;
 }
 
-.tf-recharge-assurance__inner p {
-  margin: 0;
-  padding: 28px 20px;
-  background: var(--tf-color-surface);
-  font-weight: 800;
+.tf-recharge-assurance__heading {
+  grid-column: 1 / -1;
+  color: var(--tf-color-lime);
   text-align: center;
 }
 
-.tf-recharge-assurance {
-  border-top: 0;
-  background: var(--tf-color-text);
-  color: #ffffff;
+.tf-recharge-assurance__heading p,
+.tf-recharge-assurance__heading h2 {
+  margin: 0;
 }
 
-.tf-recharge-assurance__inner {
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  padding-block: 32px;
-}
-
-.tf-recharge-assurance__inner p {
-  border-right: 1px solid rgb(255 255 255 / 12%);
-  padding: 0 24px 0 0;
-  background: transparent;
-  text-align: left;
-}
-
-.tf-recharge-assurance__inner p:last-child {
-  border-right: 0;
-}
-
-.tf-recharge-assurance__inner strong,
-.tf-recharge-assurance__inner span {
-  display: block;
-}
-
-.tf-recharge-assurance__inner span {
-  font-weight: 500;
-}
-
-.home .tf-recharge-assurance {
-  position: relative;
-  overflow: hidden;
-  padding-block: 78px;
-  background:
-    linear-gradient(90deg, rgb(10 46 107 / 98%), rgb(11 61 145 / 97%)),
-    url("../../images/motif-tapa-bleu.svg") center / 200px repeat;
-  color: #ffffff;
-}
-
-.home .tf-recharge-assurance::after {
-  position: absolute;
-  width: 270px;
-  height: 270px;
-  background: url("../../images/motif-hibiscus-bleu.svg") center / contain no-repeat;
-  content: "";
-  opacity: 0.15;
-  right: -70px;
-  bottom: -90px;
-}
-
-.home .tf-recharge-assurance__inner {
-  position: relative;
-  z-index: 1;
-  display: grid;
+.tf-recharge-assurance__item {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
   align-items: center;
-  gap: 52px;
-  grid-template-columns: minmax(230px, 0.72fr) minmax(0, 2fr);
-}
-
-.home .tf-recharge-assurance__heading p {
-  margin: 0 0 12px;
-  color: #ffffff;
-  font-size: 11px;
-  font-weight: 800;
-  text-transform: uppercase;
-}
-
-.home .tf-recharge-assurance__heading h2 {
-  margin: 0;
-  color: #ffffff;
-  font-size: 32px;
-  line-height: 1.2;
-}
-
-.home .tf-recharge-assurance__items {
-  display: grid;
-  gap: 22px;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-}
-
-.home .tf-recharge-assurance__items p {
-  margin: 0;
-  color: #ffffff;
-}
-
-.home .tf-recharge-assurance__icon,
-.home .tf-recharge-assurance__inner .tf-recharge-assurance__icon {
-  width: 54px;
-  height: 54px;
-  margin-bottom: 14px;
-  background: rgb(255 255 255 / 12%);
-  color: #ffffff;
-}
-
-.home .tf-recharge-assurance__icon .tf-icon {
-  width: 26px;
-  height: 26px;
-}
-
-.home .tf-recharge-assurance__items strong {
-  color: #ffffff;
-  font-size: 15px;
-}
-
-.home .tf-recharge-assurance__items span:not(.tf-recharge-assurance__icon) {
-  color: rgb(255 255 255 / 68%);
-}
-
-@media (max-width: 1100px) {
-  .home .tf-recharge-assurance__inner {
-    grid-template-columns: 1fr;
-  }
-
-  .home .tf-recharge-assurance__heading {
-    max-width: 520px;
-    text-align: center;
-    margin-inline: auto;
-  }
-}
-
-@media (max-width: 900px) {
-  .home .tf-recharge-assurance__items {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-}
-
-@media (max-width: 680px) {
-  .home .tf-recharge-assurance {
-    padding-block: 62px;
-  }
-
-  .home .tf-recharge-assurance__items {
-    gap: 28px 16px;
-  }
-
-  .home .tf-recharge-assurance__items p {
-    text-align: center;
-  }
-}
-
-@media (max-width: 900px) {
-  .tf-recharge-assurance__inner {
-    grid-template-columns: 1fr;
-  }
-
-  .tf-recharge-assurance__inner p {
-    border-right: 0;
-    padding-right: 0;
-  }
-}
-
-.tf-recharge-assurance {
-  border: 0;
-  background: var(--tf-color-surface);
-  color: var(--tf-color-text);
-}
-
-.tf-recharge-assurance__inner {
-  gap: 40px;
-  padding-block: 0;
-}
-
-.tf-recharge-assurance__inner p {
-  border: 0;
-  padding: 0;
+  gap: 16px;
   text-align: center;
 }
 
 .tf-recharge-assurance__icon {
-  display: inline-flex;
-  width: 64px;
-  height: 64px;
-  margin-bottom: 16px;
+  display: flex;
+  width: 78px;
+  height: 78px;
+  flex-shrink: 0;
   align-items: center;
   justify-content: center;
-  border-radius: 50%;
-  background: linear-gradient(135deg, rgb(230 20 31 / 14%), rgb(29 27 28 / 14%));
-  color: var(--tf-color-primary);
-}
-
-.tf-recharge-assurance__inner .tf-recharge-assurance__icon {
-  display: flex;
-  margin: 0 auto 16px;
-  background: var(--tf-color-secondary);
-  color: var(--tf-color-primary);
+  border-radius: 23px;
+  background: #eaf2fa;
+  color: #0b4da2;
 }
 
 .tf-recharge-assurance__icon .tf-icon {
-  width: 32px;
-  height: 32px;
+  width: 40px;
+  height: 40px;
+  stroke-width: 1.85;
 }
 
-.tf-recharge-assurance__inner strong {
-  font-family: var(--tf-font-heading);
-  font-size: 16px;
+.tf-recharge-assurance__title {
+  margin: 0;
+  color: #0b4da2;
+  font-size: 14.5px;
+  font-weight: 700;
 }
 
-.tf-recharge-assurance__inner span {
-  margin-top: 6px;
-  color: var(--tf-color-muted);
-  font-size: 13px;
+.tf-recharge-assurance__text {
+  margin: 5px 0 0;
+  color: var(--tf-color-offer-muted);
+  font-size: 13.5px;
+  line-height: 1.55;
 }
 
-@media (max-width: 980px) {
-  .tf-recharge-assurance__inner {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
+.tf-recharge-assurance__welcome {
+  display: flex;
+  min-width: 0;
+  padding-left: 22px;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  border-left: 1px solid #e2eef5;
+  text-align: center;
 }
 
-@media (max-width: 680px) {
-  .tf-recharge-assurance__inner {
-    grid-template-columns: 1fr;
-  }
+.tf-recharge-assurance__flower {
+  width: 44px;
+  height: 44px;
+  flex-shrink: 0;
+  background: url('../../images/motif-hibiscus-turquoise.svg') center / contain no-repeat;
 }
 
-.tf-recharge-assurance {
-  padding-block: 62px;
-  background: #f5f8fb;
-}
-
-.tf-recharge-assurance__icon,
-.tf-recharge-assurance__inner .tf-recharge-assurance__icon {
-  background: #eaf7fb;
+.tf-recharge-assurance__quote {
+  margin: 0;
   color: var(--tf-color-coral);
+  font-size: 24px;
+  font-weight: 700;
+  font-style: italic;
+  letter-spacing: -0.01em;
 }
 
-.tf-recharge-assurance__inner strong {
-  color: var(--tf-color-lime);
+.tf-recharge-assurance__translation {
+  margin: 6px 0 0;
+  color: var(--tf-color-offer-muted);
+  font-size: 13.5px;
+  font-style: italic;
+}
+
+@media (max-width: 1254px) {
+  .tf-recharge-assurance__welcome {
+    grid-column: 1 / -1;
+    padding-top: 22px;
+    padding-left: 0;
+    border-top: 1px solid #e2eef5;
+    border-left: 0;
+  }
+}
+
+.tf-recharge-assurance__welcome--alone {
+  grid-column: 1 / -1;
+  padding: 0;
+  border: 0;
+}
+
+@media (max-width: 640px) {
+  .tf-recharge-assurance {
+    margin-top: 48px;
+  }
 }

@@ -1,21 +1,32 @@
-<section class="tf-recharge-assurance" aria-label="Informations de service">
-    <div class="tf-recharge-assurance__inner">
-        {% if section.title or section.eyebrow %}
-            <div class="tf-recharge-assurance__heading" data-tf-reveal>
-                {% if section.eyebrow %}<p>{{ section.eyebrow }}</p>{% endif %}
-                {% if section.title %}<h2>{{ section.title }}</h2>{% endif %}
-            </div>
-        {% endif %}
-        <div class="tf-recharge-assurance__items">
+{% if section.items or section.quote or section.quote_translation or section.title or section.eyebrow %}
+    <section class="tf-recharge-assurance" aria-label="Nos garanties">
+        <div class="tf-recharge-assurance__inner">
+            {% if section.title or section.eyebrow %}
+                <div class="tf-recharge-assurance__heading">
+                    {% if section.eyebrow %}<p>{{ section.eyebrow|e }}</p>{% endif %}
+                    {% if section.title %}<h2>{{ section.title|e }}</h2>{% endif %}
+                </div>
+            {% endif %}
             {% for item in section.items %}
-                <p data-tf-reveal data-tf-reveal-delay="{{ loop.index0 % 4 }}">
-                    <span class="tf-recharge-assurance__icon" aria-hidden="true">
+                <div class="tf-recharge-assurance__item">
+                    <span class="tf-recharge-assurance__icon">
                         {% include 'components/icon.twig' with { name: item.icon } only %}
                     </span>
-                    <strong>{{ item.title }}</strong>
-                    <span>{{ item.text }}</span>
-                </p>
+                    <div>
+                        {% if item.title %}<p class="tf-recharge-assurance__title">{{ item.title|e }}</p>{% endif %}
+                        {% if item.text %}<p class="tf-recharge-assurance__text">{{ item.text|e }}</p>{% endif %}
+                    </div>
+                </div>
             {% endfor %}
+            {% if section.quote or section.quote_translation %}
+                <div class="tf-recharge-assurance__welcome{% if not section.items %} tf-recharge-assurance__welcome--alone{% endif %}">
+                    <span class="tf-recharge-assurance__flower" aria-hidden="true"></span>
+                    <div>
+                        {% if section.quote %}<p class="tf-recharge-assurance__quote">{{ section.quote|e }}</p>{% endif %}
+                        {% if section.quote_translation %}<p class="tf-recharge-assurance__translation">{{ section.quote_translation|e }}</p>{% endif %}
+                    </div>
+                </div>
+            {% endif %}
         </div>
-    </div>
-</section>
+    </section>
+{% endif %}

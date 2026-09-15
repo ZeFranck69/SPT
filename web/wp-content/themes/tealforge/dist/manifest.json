@@ -16,12 +16,12 @@
     "src": "assets/images/motif-tapa-turquoise.svg"
   },
   "assets/scripts/main.js": {
-    "file": "assets/scripts/main.B1zTSzqh.js",
+    "file": "assets/scripts/main.C7qtj0G5.js",
     "name": "main",
     "src": "assets/scripts/main.js",
     "isEntry": true,
     "css": [
-      "assets/styles/main.D7JcbF_U.css"
+      "assets/styles/main.CpjKQcQc.css"
     ],
     "assets": [
       "assets/motif-tapa-bleu.DVKd7QWh.svg",

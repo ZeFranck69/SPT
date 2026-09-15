@@ -496,11 +496,7 @@ function tealforge_prepare_page_sections(array $sections): array
         }
 
         if (($section['acf_fc_layout'] ?? '') === 'reassurance') {
-            $sections[$section_index]['eyebrow'] = trim((string) ($section['eyebrow'] ?? ''))
-                ?: 'Recharge Ton Manuia';
-            $sections[$section_index]['title'] = trim((string) ($section['title'] ?? ''))
-                ?: 'Une recharge simple et sûre';
-            $reassurance_icons = ['lock', 'zap', 'undo', 'headphones'];
+            $reassurance_icons = ['shield-check', 'mail', 'smartphone', 'headphones'];
 
             foreach ((array) ($section['items'] ?? []) as $item_index => $item) {
                 $sections[$section_index]['items'][$item_index]['icon'] = tealforge_resolve_section_icon(
@@ -531,6 +527,7 @@ function tealforge_resolve_section_icon(mixed $icon, string $fallback = 'circle-
         'map-pin',
         'message-circle',
         'shopping-cart',
+        'shield-check',
         'smartphone',
         'undo',
         'users',

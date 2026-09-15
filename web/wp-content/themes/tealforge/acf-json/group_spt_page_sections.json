@@ -419,7 +419,7 @@
                             "label": "Éléments",
                             "name": "items",
                             "type": "repeater",
-                            "instructions": "Ajouter les engagements de réassurance affichés avant le footer.",
+                            "instructions": "Engagements affichés dans le bloc Nos garanties.",
                             "layout": "table",
                             "button_label": "Ajouter un élément",
                             "sub_fields": [
@@ -442,7 +442,8 @@
                                         "clock": "Horloge",
                                         "map-pin": "Localisation",
                                         "wifi": "Réseau",
-                                        "undo": "Retour"
+                                        "undo": "Retour",
+                                        "shield-check": "Bouclier de sécurité"
                                     },
                                     "default_value": false,
                                     "return_format": "value",
@@ -467,6 +468,20 @@
                                     "instructions": "Précision courte affichée sous le titre."
                                 }
                             ]
+                        },
+                        {
+                            "key": "field_spt_reassurance_quote",
+                            "label": "Message de bienvenue",
+                            "name": "quote",
+                            "type": "text",
+                            "default_value": "Manuia e lelei !"
+                        },
+                        {
+                            "key": "field_spt_reassurance_quote_translation",
+                            "label": "Traduction du message",
+                            "name": "quote_translation",
+                            "type": "text",
+                            "default_value": "Bienvenue à Wallis et Futuna"
                         }
                     ],
                     "min": "",
@@ -655,5 +670,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1789446688
+    "modified": 1789447410
 }
