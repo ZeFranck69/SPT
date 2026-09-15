@@ -14,13 +14,7 @@
                     <span class="tf-site-header__logo-text">{{ spt_branding.header_logo_text }}</span>
                 {% endif %}
             {% else %}
-                <img
-                    class="tf-site-header__logo"
-                    src="{{ function('get_theme_file_uri', 'assets/images/rtm-logo.png') }}"
-                    width="367"
-                    height="112"
-                    alt="Recharge Ton Manuia"
-                >
+                <span>Recharge Ton Manuia</span>
             {% endif %}
         </a>
 
@@ -64,12 +58,7 @@
                         alt="{{ spt_branding.network_logo.alt ?: 'Manuia' }}"
                     >
                 {% else %}
-                    <img
-                        src="{{ function('get_theme_file_uri', 'assets/images/manuia-logo.jpg') }}"
-                        width="600"
-                        height="240"
-                        alt="Manuia"
-                    >
+                    <span>Manuia</span>
                 {% endif %}
             </div>
 
