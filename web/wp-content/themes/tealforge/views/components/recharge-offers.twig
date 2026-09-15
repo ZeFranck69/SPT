@@ -1,6 +1,6 @@
 <section id="{{ group.tone|e('html_attr') }}" class="tf-recharge-offers tf-recharge-offers--{{ group.tone|e('html_attr') }}" aria-labelledby="{{ group.tone|e('html_attr') }}-title">
     <div class="tf-recharge-offers__panel">
-        <div class="tf-recharge-offers__intro">
+        <div class="tf-recharge-offers__intro" data-tf-reveal>
             <span class="tf-recharge-offers__icon">
                 {% include 'components/icon.twig' with { name: group.icon } only %}
             </span>
@@ -15,7 +15,7 @@
         </div>
         <div class="tf-recharge-offers__cards">
             {% for product in group.products %}
-                <article class="tf-recharge-offers__card">
+                <article class="tf-recharge-offers__card" data-tf-reveal data-tf-reveal-delay="{{ loop.index0 % 3 }}">
                     {% if product.purchase_price != '' %}
                         <p class="tf-recharge-offers__price">
                             <span>{{ product.purchase_price|e }}</span>
