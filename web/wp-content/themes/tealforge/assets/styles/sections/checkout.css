@@ -1,0 +1,227 @@
+.woocommerce-checkout .woocommerce {
+  max-width: 1120px;
+}
+
+.woocommerce-checkout #order_review,
+.woocommerce-checkout #customer_details {
+  border: 1px solid var(--tf-color-border);
+  border-radius: 12px;
+  padding: 24px;
+  background: var(--tf-color-card);
+  box-shadow: 0 2px 10px rgb(29 27 28 / 5%);
+}
+
+.woocommerce-checkout .tf-content {
+  padding-block: clamp(42px, 6vw, 72px) clamp(64px, 8vw, 96px);
+  background:
+    linear-gradient(180deg, rgb(251 232 233 / 64%), transparent 420px),
+    var(--tf-color-background);
+}
+
+.woocommerce-checkout .tf-content__inner {
+  width: var(--tf-container);
+  margin-inline: auto;
+}
+
+.woocommerce-checkout .tf-content__inner > h1 {
+  margin: 0 0 clamp(26px, 4vw, 42px);
+}
+
+.woocommerce-checkout .tf-content__inner > h1 {
+  margin: 0;
+  color: var(--tf-color-text);
+  font-size: clamp(38px, 5vw, 56px);
+  font-weight: 900;
+  line-height: 1;
+}
+
+.woocommerce-checkout .tf-wysiwyg > .woocommerce {
+  border: 0;
+  border-radius: 16px;
+  padding: clamp(22px, 4vw, 34px);
+  background: #ffffff;
+  box-shadow: 0 18px 48px rgb(29 27 28 / 9%);
+}
+
+.woocommerce-checkout .tf-wysiwyg > .woocommerce {
+  max-width: none;
+}
+
+.woocommerce-checkout h3 {
+  margin-top: 0;
+  color: var(--tf-color-text);
+  font-size: 24px;
+  line-height: 1.2;
+}
+
+.woocommerce-checkout form.checkout {
+  display: grid;
+  align-items: start;
+  gap: 26px;
+  grid-template-columns: minmax(0, 1fr) minmax(320px, 420px);
+}
+
+.woocommerce-checkout #customer_details,
+.woocommerce-checkout #order_review_heading,
+.woocommerce-checkout #order_review {
+  float: none !important;
+  width: auto !important;
+}
+
+.woocommerce-checkout #customer_details {
+  grid-column: 1;
+}
+
+.woocommerce-checkout #order_review_heading,
+.woocommerce-checkout #order_review {
+  grid-column: 2;
+}
+
+.woocommerce-checkout #order_review_heading {
+  margin: 0 0 -8px;
+}
+
+.woocommerce-checkout #customer_details,
+.woocommerce-checkout #order_review {
+  border: 0 !important;
+  padding: clamp(22px, 3vw, 30px) !important;
+  box-shadow: 0 18px 48px rgb(29 27 28 / 8%) !important;
+}
+
+.wp-block-woocommerce-checkout {
+  margin: 0 !important;
+}
+
+.wp-block-woocommerce-checkout-fields-block {
+  border-radius: 16px;
+  padding: clamp(22px, 4vw, 32px) !important;
+  background: #ffffff;
+  box-shadow: 0 18px 48px rgb(29 27 28 / 8%);
+}
+
+.wp-block-woocommerce-checkout-totals-block {
+  border-radius: 16px;
+  padding: clamp(20px, 3vw, 28px) !important;
+  background: #ffffff;
+  box-shadow: 0 18px 48px rgb(29 27 28 / 8%);
+}
+
+@media (max-width: 920px) {
+  .woocommerce-checkout form.checkout {
+    grid-template-columns: 1fr;
+  }
+
+  .woocommerce-checkout #customer_details,
+  .woocommerce-checkout #order_review_heading,
+  .woocommerce-checkout #order_review {
+    grid-column: auto;
+  }
+}
+
+@media (max-width: 680px) {
+  .woocommerce-checkout .tf-content {
+    padding-block: 34px 64px;
+  }
+
+  .woocommerce-checkout .tf-content__inner {
+    width: min(100% - 32px, 1120px);
+  }
+
+  .woocommerce-checkout .tf-wysiwyg > .woocommerce,
+  .woocommerce-checkout #customer_details,
+  .woocommerce-checkout #order_review {
+    border-radius: 12px;
+    padding: 18px !important;
+  }
+}
+
+.woocommerce-checkout .wc-block-components-main,
+.woocommerce-checkout .wc-block-components-sidebar,
+.woocommerce-checkout #customer_details,
+.woocommerce-checkout #order_review {
+  border: 1px solid var(--tf-color-border) !important;
+  border-radius: 16px !important;
+  background: #ffffff !important;
+  box-shadow: none !important;
+}
+
+.woocommerce-checkout .wc-block-components-checkout-step,
+.woocommerce-checkout .wc-block-components-totals-wrapper {
+  border-color: var(--tf-color-border) !important;
+}
+
+.woocommerce-checkout .wc-block-components-order-summary-item__image img {
+  border-radius: 8px;
+}
+
+.woocommerce-checkout .wc-block-components-product-name {
+  font-family: var(--tf-font-heading);
+  font-size: 17px;
+}
+
+.woocommerce-checkout .wc-block-components-checkout-step__title,
+.woocommerce-checkout .wc-block-components-order-summary__button-text {
+  font-family: var(--tf-font-heading);
+}
+
+.woocommerce-checkout .tf-inner-page__content,
+.woocommerce-checkout .wp-block-woocommerce-checkout {
+  width: 100% !important;
+  max-width: none !important;
+}
+
+.woocommerce-checkout .wc-block-components-sidebar-layout {
+  display: grid !important;
+  width: 100% !important;
+  max-width: none !important;
+  align-items: start !important;
+  gap: 32px !important;
+}
+
+.woocommerce-checkout .wc-block-components-sidebar-layout {
+  grid-template-columns: minmax(0, 1fr) minmax(380px, 440px) !important;
+}
+
+.woocommerce-checkout .wc-block-components-main,
+.woocommerce-checkout .wc-block-checkout__main,
+.woocommerce-checkout .wp-block-woocommerce-checkout-fields-block {
+  width: 100% !important;
+  max-width: none !important;
+  margin: 0 !important;
+  grid-column: 1 !important;
+}
+
+.woocommerce-checkout .wc-block-components-sidebar,
+.woocommerce-checkout .wc-block-checkout__sidebar,
+.woocommerce-checkout .wp-block-woocommerce-checkout-totals-block {
+  width: 100% !important;
+  max-width: none !important;
+  margin: 0 !important;
+  grid-column: 2 !important;
+}
+
+.woocommerce-checkout .wc-block-checkout__sidebar,
+.woocommerce-checkout .wp-block-woocommerce-checkout-totals-block {
+  position: sticky;
+  top: 112px;
+}
+
+@media (max-width: 920px) {
+  .woocommerce-checkout .wc-block-components-sidebar-layout {
+    grid-template-columns: minmax(0, 1fr) !important;
+  }
+
+  .woocommerce-checkout .wc-block-components-main,
+  .woocommerce-checkout .wc-block-checkout__main,
+  .woocommerce-checkout .wp-block-woocommerce-checkout-fields-block,
+  .woocommerce-checkout .wc-block-components-sidebar,
+  .woocommerce-checkout .wc-block-checkout__sidebar,
+  .woocommerce-checkout .wp-block-woocommerce-checkout-totals-block {
+    grid-column: 1 !important;
+  }
+
+  .woocommerce-checkout .wc-block-checkout__sidebar,
+  .woocommerce-checkout .wp-block-woocommerce-checkout-totals-block {
+    position: static;
+  }
+}

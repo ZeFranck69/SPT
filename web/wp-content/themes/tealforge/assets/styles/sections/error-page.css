@@ -1,0 +1,82 @@
+.tf-error-page {
+  display: flex;
+  min-height: min(720px, calc(100vh - 72px));
+  align-items: center;
+  padding-block: 96px;
+}
+
+.tf-error-page__inner {
+  display: grid;
+  width: var(--tf-container);
+  margin-inline: auto;
+  align-items: center;
+  gap: 56px;
+  grid-template-columns: minmax(220px, 0.8fr) minmax(0, 1fr);
+}
+
+.tf-error-page__code {
+  margin: 0;
+  color: color-mix(in srgb, var(--tf-color-text) 8%, transparent);
+  font-size: clamp(120px, 22vw, 280px);
+  font-weight: 800;
+  letter-spacing: 0;
+  line-height: 0.8;
+}
+
+.tf-error-page__content {
+  max-width: 640px;
+}
+
+.tf-error-page__eyebrow {
+  margin: 0 0 16px;
+  color: var(--tf-color-muted);
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.tf-error-page__title {
+  margin: 0;
+  font-size: clamp(42px, 6vw, 76px);
+  line-height: 1;
+}
+
+.tf-error-page__text {
+  max-width: 560px;
+  margin: 24px 0 0;
+  color: var(--tf-color-muted);
+  font-size: 20px;
+}
+
+.tf-error-page__actions {
+  display: flex;
+  margin-top: 36px;
+  flex-wrap: wrap;
+  gap: 14px;
+}
+
+@media (max-width: 900px) {
+  .tf-error-page__actions {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .tf-error-page {
+    min-height: auto;
+    padding-block: 72px;
+  }
+
+  .tf-error-page__inner {
+    gap: 28px;
+    grid-template-columns: 1fr;
+  }
+
+  .tf-error-page__code {
+    font-size: clamp(92px, 34vw, 160px);
+  }
+
+  .tf-error-page__text {
+    font-size: 18px;
+  }
+}

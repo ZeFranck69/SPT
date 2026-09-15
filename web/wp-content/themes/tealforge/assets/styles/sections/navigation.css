@@ -1,0 +1,24 @@
+.tf-menu {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+.tf-menu__list {
+  display: flex;
+  margin: 0;
+  padding: 0;
+  align-items: center;
+  gap: 24px;
+  list-style: none;
+}
+
+.tf-menu__link {
+  color: var(--tf-color-muted);
+  text-decoration: none;
+}
+
+.tf-menu__link:hover,
+.tf-menu__link:focus-visible {
+  color: var(--tf-color-text);
+}
