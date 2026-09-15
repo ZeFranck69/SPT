@@ -115,44 +115,9 @@ const initScrollReveals = () => {
   elements.forEach((element) => observer.observe(element));
 };
 
-const initHeroParallax = () => {
-  const hero = document.querySelector('[data-tf-parallax-hero]');
-
-  if (!hero || window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-    return;
-  }
-
-  let frame = null;
-
-  const updatePosition = () => {
-    frame = null;
-    const bounds = hero.getBoundingClientRect();
-    const viewportHeight = window.innerHeight;
-
-    if (bounds.bottom <= 0 || bounds.top >= viewportHeight) {
-      return;
-    }
-
-    const progress = (viewportHeight - bounds.top) / (viewportHeight + bounds.height);
-    const offset = (progress - 0.5) * 64;
-    hero.style.setProperty('--tf-hero-parallax-y', `${offset.toFixed(2)}px`);
-  };
-
-  const requestUpdate = () => {
-    if (frame === null) {
-      frame = window.requestAnimationFrame(updatePosition);
-    }
-  };
-
-  window.addEventListener('scroll', requestUpdate, { passive: true });
-  window.addEventListener('resize', requestUpdate);
-  requestUpdate();
-};
-
 document.addEventListener('DOMContentLoaded', () => {
   initMobileNavigation();
   initHistoryBackButtons();
   initQuantityControls();
   initScrollReveals();
-  initHeroParallax();
 });

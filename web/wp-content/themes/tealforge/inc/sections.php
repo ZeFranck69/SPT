@@ -374,16 +374,37 @@ function tealforge_prepare_page_sections(array $sections): array
 {
     foreach ($sections as $section_index => $section) {
         if (($section['acf_fc_layout'] ?? '') === 'recharge_hero') {
+            $image = $section['hero_image'] ?? null;
+            $image_id = is_array($image) ? (int) ($image['ID'] ?? 0) : (is_numeric($image) ? (int) $image : 0);
+            $sections[$section_index]['hero_image_html'] = $image_id > 0
+                ? wp_get_attachment_image($image_id, 'full', false, [
+                    'class' => 'tf-recharge-hero__image',
+                    'alt' => '',
+                    'sizes' => '(max-width: 1000px) 100vw, 50vw',
+                    'loading' => 'eager',
+                    'decoding' => 'async',
+                    'fetchpriority' => 'high',
+                ])
+                : '';
             $sections[$section_index]['hero_image'] = tealforge_get_section_image_url(
                 $section['hero_image'] ?? null,
-                'assets/images/visuel-lagon.png'
+                'assets/images/visuel-lagon.svg'
             );
 
-            $title_parts = tealforge_split_highlighted_title(
-                (string) ($section['title'] ?? ''),
-                'connecté'
+            $sections[$section_index]['hero_text_html'] = str_replace(
+                ['PAPITO', 'NETI'],
+                ['<strong class="tf-recharge-hero__papito">PAPITO</strong>', '<strong class="tf-recharge-hero__neti">NETI</strong>'],
+                esc_html((string) ($section['text'] ?? ''))
             );
-            $sections[$section_index] = array_merge($sections[$section_index], $title_parts);
+            $sections[$section_index]['benefits'] = [];
+
+            foreach (['benefit_simple' => 'phone', 'benefit_fast' => 'zap', 'benefit_secure' => 'shield-check'] as $field => $icon) {
+                $label = trim((string) ($section[$field] ?? ''));
+
+                if ($label !== '') {
+                    $sections[$section_index]['benefits'][] = ['label' => $label, 'icon' => $icon];
+                }
+            }
         }
 
         if (($section['acf_fc_layout'] ?? '') === 'recharge_products') {

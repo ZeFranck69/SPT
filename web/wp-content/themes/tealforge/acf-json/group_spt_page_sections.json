@@ -126,6 +126,34 @@
                                     "type": "text"
                                 }
                             ]
+                        },
+                        {
+                            "key": "field_spt_hero_benefit_simple",
+                            "label": "Avantage : simplicité",
+                            "name": "benefit_simple",
+                            "type": "text",
+                            "default_value": "Simple"
+                        },
+                        {
+                            "key": "field_spt_hero_benefit_fast",
+                            "label": "Avantage : rapidité",
+                            "name": "benefit_fast",
+                            "type": "text",
+                            "default_value": "Rapide"
+                        },
+                        {
+                            "key": "field_spt_hero_benefit_secure",
+                            "label": "Avantage : sécurité",
+                            "name": "benefit_secure",
+                            "type": "text",
+                            "default_value": "Sécurisé"
+                        },
+                        {
+                            "key": "field_spt_hero_note",
+                            "label": "Note sous les boutons",
+                            "name": "note",
+                            "type": "textarea",
+                            "default_value": "Aucun compte obligatoire. Vous pouvez aussi recharger le numéro d'un proche."
                         }
                     ],
                     "min": "",
@@ -571,5 +599,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1789427518
+    "modified": 1789444057
 }
