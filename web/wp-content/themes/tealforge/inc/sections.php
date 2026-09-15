@@ -375,7 +375,19 @@ function tealforge_get_recharge_product_data(int $product_id): array
 
 function tealforge_prepare_page_sections(array $sections): array
 {
+    $has_page_heading = in_array('recharge_hero', array_column($sections, 'acf_fc_layout'), true);
+
     foreach ($sections as $section_index => $section) {
+        if (($section['acf_fc_layout'] ?? '') === 'text_content') {
+            $title = trim((string) ($section['title'] ?? ''));
+            $sections[$section_index]['title'] = $title;
+            $sections[$section_index]['heading_level'] = $has_page_heading ? 2 : 1;
+
+            if ($title !== '') {
+                $has_page_heading = true;
+            }
+        }
+
         if (($section['acf_fc_layout'] ?? '') === 'recharge_hero') {
             $image = $section['hero_image'] ?? null;
             $image_id = is_array($image) ? (int) ($image['ID'] ?? 0) : (is_numeric($image) ? (int) $image : 0);

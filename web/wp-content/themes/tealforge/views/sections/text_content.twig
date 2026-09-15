@@ -1,9 +1,11 @@
-<section class="tf-text-content" aria-labelledby="text-content-title-{{ section_index|default(1) }}">
+{% if section.title or section.content %}
+{% set heading_tag = section.heading_level == 1 ? 'h1' : 'h2' %}
+<section class="tf-text-content"{% if section.title %} aria-labelledby="text-content-title-{{ section_index|default(1)|e('html_attr') }}"{% endif %}>
     <div class="tf-text-content__inner">
         {% if section.title %}
-            <h1 id="text-content-title-{{ section_index|default(1) }}" class="tf-text-content__title" data-tf-reveal>
+            <{{ heading_tag }} id="text-content-title-{{ section_index|default(1)|e('html_attr') }}" class="tf-text-content__title" data-tf-reveal>
                 {{ section.title|e }}
-            </h1>
+            </{{ heading_tag }}>
         {% endif %}
 
         {% if section.content %}
@@ -13,3 +15,4 @@
         {% endif %}
     </div>
 </section>
+{% endif %}
