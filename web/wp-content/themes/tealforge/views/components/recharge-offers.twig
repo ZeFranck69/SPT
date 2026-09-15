@@ -34,6 +34,7 @@
                     {% endif %}
                     {% if product.can_quick_add %}
                         <form class="tf-recharge-offers__purchase" method="post" action="{{ function('esc_url', product.add_to_cart_action) }}">
+                            <input type="hidden" name="tf_recharge_purchase" value="1">
                             <div class="tf-recharge-offers__quantity" data-tf-quantity>
                                 <button class="tf-recharge-offers__quantity-button" type="button" aria-label="Diminuer la quantité" data-tf-quantity-decrease>−</button>
                                 <input class="tf-recharge-offers__quantity-input" id="recharge-quantity-{{ product.id|e('html_attr') }}" type="number" name="quantity" value="1" min="1" max="{{ product.max_quantity|e('html_attr') }}" step="1" inputmode="numeric" aria-label="Quantité de recharges {{ product.family|e('html_attr') }} de {{ product.purchase_price|e('html_attr') }} {{ section.currency_label|e('html_attr') }}">

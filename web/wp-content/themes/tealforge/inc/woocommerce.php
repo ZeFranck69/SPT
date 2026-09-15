@@ -58,6 +58,19 @@ function tealforge_woocommerce_add_to_cart_text(): string
 add_filter('woocommerce_product_add_to_cart_text', 'tealforge_woocommerce_add_to_cart_text');
 add_filter('woocommerce_product_single_add_to_cart_text', 'tealforge_woocommerce_add_to_cart_text');
 
+function tealforge_woocommerce_recharge_add_to_cart_redirect($url)
+{
+    if (($_SERVER['REQUEST_METHOD'] ?? '') === 'POST'
+        && isset($_POST['tf_recharge_purchase'])
+        && $_POST['tf_recharge_purchase'] === '1') {
+        return home_url('/#recharges');
+    }
+
+    return $url;
+}
+
+add_filter('woocommerce_add_to_cart_redirect', 'tealforge_woocommerce_recharge_add_to_cart_redirect');
+
 function tealforge_get_cart_count(): int
 {
     if (! function_exists('WC') || ! WC()->cart) {
