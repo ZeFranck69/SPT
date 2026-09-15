@@ -8,6 +8,10 @@
   scroll-margin-top: 96px;
 }
 
+.tf-recharge-products:has(> .tf-home-notices) {
+  padding-top: 32px;
+}
+
 .tf-recharge-products__separator {
   display: flex;
   align-items: center;
@@ -33,5 +37,13 @@
   .tf-recharge-products {
     padding-top: 44px;
     gap: 20px;
+  }
+
+  .tf-recharge-products:has(> .tf-home-notices) {
+    padding-top: 24px;
+  }
+
+  .tf-recharge-products > .tf-home-notices {
+    margin-bottom: 4px;
   }
 }

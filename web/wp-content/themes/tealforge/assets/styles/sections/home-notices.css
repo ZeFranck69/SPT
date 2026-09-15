@@ -1,32 +1,37 @@
 .tf-home-notices {
   position: relative;
-  z-index: 19;
-  width: 100%;
-  margin: 0;
-  border-top: 3px solid var(--tf-color-primary);
+  width: min(100%, 960px);
+  margin: 0 auto 8px;
+  border-radius: 999px;
   background: var(--tf-color-text);
+  box-shadow: 0 12px 32px rgb(21 35 59 / 18%);
 }
 
 .tf-home-notices .woocommerce-message,
 .tf-home-notices .woocommerce-error,
 .tf-home-notices .woocommerce-info {
-  width: var(--tf-container);
-  min-height: 58px;
+  width: 100%;
+  min-height: 76px;
   margin: 0 auto !important;
   border: 0 !important;
   border-radius: 0;
-  padding: 16px 0 16px 38px;
+  padding: 16px 20px 16px 56px;
   background: transparent !important;
   box-shadow: none;
   color: #ffffff;
+  overflow-wrap: anywhere;
+}
+
+.tf-home-notices .woocommerce-message:focus {
+  outline: none;
 }
 
 .tf-home-notices .woocommerce-message::before,
 .tf-home-notices .woocommerce-error::before,
 .tf-home-notices .woocommerce-info::before {
   top: 50%;
-  left: 0;
-  color: var(--tf-color-primary);
+  left: 24px;
+  color: #ffffff;
   transform: translateY(-50%);
 }
 
@@ -46,19 +51,34 @@
   order: 2;
   flex: 0 0 auto;
   float: none !important;
-  margin: -7px 0 -7px auto !important;
-  border: 1px solid #ffffff !important;
-  background: transparent !important;
+  margin: 0 0 0 auto !important;
+  border: 0 !important;
+  border-radius: 999px;
+  padding: 12px 22px;
+  background: var(--tf-color-primary) !important;
   color: #ffffff !important;
+  font-weight: 800;
+  line-height: 1.4;
+  text-align: center;
+  text-decoration: none;
+  white-space: nowrap;
 }
 
 .tf-home-notices .button:hover,
 .tf-home-notices .button:focus-visible {
-  border-color: var(--tf-color-primary) !important;
-  background: var(--tf-color-primary) !important;
+  background: #b90419 !important;
+}
+
+.tf-home-notices .button:focus-visible {
+  outline: 2px solid #ffffff;
+  outline-offset: 3px;
 }
 
 @media (max-width: 680px) {
+  .tf-home-notices {
+    border-radius: 24px;
+  }
+
   .tf-home-notices .woocommerce-message,
   .tf-home-notices .woocommerce-info {
     flex-wrap: wrap;

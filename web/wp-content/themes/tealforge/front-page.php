@@ -22,6 +22,22 @@ if (function_exists('wc_print_notices')) {
     ob_start();
     wc_print_notices();
     $context['woocommerce_notices'] = (string) ob_get_clean();
+
+    // Success confirmations must not trigger WooCommerce's delayed alert focus.
+    $notices_html = new WP_HTML_Tag_Processor($context['woocommerce_notices']);
+    while ($notices_html->next_tag(['class_name' => 'woocommerce-message'])) {
+        $notices_html->set_attribute('role', 'status');
+    }
+    $context['woocommerce_notices'] = $notices_html->get_updated_html();
+
+    foreach ($context['sections'] as &$section) {
+        if (($section['acf_fc_layout'] ?? '') === 'recharge_products' && ! empty($section['product_groups'])) {
+            $section['woocommerce_notices'] = $context['woocommerce_notices'];
+            $context['woocommerce_notices'] = '';
+            break;
+        }
+    }
+    unset($section);
 }
 
 tealforge_render('pages/front-page.twig', $context);
