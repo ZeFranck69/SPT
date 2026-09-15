@@ -1,5 +1,5 @@
 <svg
-    class="tf-icon{{ class_name ? ' ' ~ class_name : '' }}"
+    class="tf-icon{{ (class_name ? ' ' ~ class_name : '')|e('html_attr') }}"
     viewBox="0 0 24 24"
     fill="none"
     stroke="currentColor"
