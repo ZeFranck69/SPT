@@ -1,11 +1,14 @@
 const initMobileNavigation = () => {
   const toggles = document.querySelectorAll('[data-tf-menu-toggle]');
   const panel = document.querySelector('.tf-site-header [data-tf-menu-panel]');
-  const closeButtons = document.querySelectorAll('[data-tf-menu-close]');
+  const mobileViewport = window.matchMedia('(max-width: 640px)');
 
   if (!toggles.length || !panel) {
     return;
   }
+
+  panel.id ||= 'tf-primary-menu';
+  toggles.forEach((toggle) => toggle.setAttribute('aria-controls', panel.id));
 
   const setOpen = (isOpen) => {
     document.documentElement.classList.toggle('tf-menu-is-open', isOpen);
@@ -20,21 +23,34 @@ const initMobileNavigation = () => {
 
   toggles.forEach((toggle) => {
     toggle.addEventListener('click', () => {
-      setOpen(!document.documentElement.classList.contains('tf-menu-is-open'));
+      const isOpen = !document.documentElement.classList.contains('tf-menu-is-open');
+      setOpen(isOpen);
+      if (isOpen) panel.querySelector('a')?.focus();
     });
   });
 
-  closeButtons.forEach((button) => {
-    button.addEventListener('click', () => setOpen(false));
+  document.addEventListener('pointerdown', (event) => {
+    if (!panel.contains(event.target) && ![...toggles].some((toggle) => toggle.contains(event.target))) {
+      setOpen(false);
+    }
   });
+
+  document.addEventListener('focusin', (event) => {
+    if (!panel.contains(event.target) && ![...toggles].some((toggle) => toggle.contains(event.target))) {
+      setOpen(false);
+    }
+  });
+
+  mobileViewport.addEventListener('change', () => setOpen(false));
 
   panel.querySelectorAll('a').forEach((link) => {
     link.addEventListener('click', () => setOpen(false));
   });
 
   document.addEventListener('keydown', (event) => {
-    if (event.key === 'Escape') {
+    if (event.key === 'Escape' && document.documentElement.classList.contains('tf-menu-is-open')) {
       setOpen(false);
+      toggles[0].focus();
     }
   });
 };

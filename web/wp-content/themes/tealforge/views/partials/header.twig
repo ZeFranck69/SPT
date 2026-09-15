@@ -22,6 +22,8 @@
             menu: menus.primary,
             class_name: 'tf-menu tf-menu--primary',
             mobile_panel: true,
+            account_url: spt_links.account,
+            account_label: spt_account.header_label,
             aria_label: 'Navigation principale'
         } only %}
 
@@ -76,9 +78,3 @@
         </div>
     </div>
 </header>
-<button
-    class="tf-site-menu-backdrop"
-    type="button"
-    aria-label="{{ function('__', 'Fermer le menu', 'tealforge') }}"
-    data-tf-menu-close
-></button>
