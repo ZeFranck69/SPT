@@ -12,17 +12,89 @@
     "src": "assets/images/motif-tapa-turquoise.svg"
   },
   "assets/scripts/main.js": {
-    "file": "assets/scripts/main.Vsnq6kbC.js",
+    "file": "assets/scripts/main.CDJpf6CD.js",
     "name": "main",
     "src": "assets/scripts/main.js",
     "isEntry": true,
     "css": [
-      "assets/styles/main.BFoi2eoj.css"
+      "assets/styles/main.TXaouvxH.css"
     ],
     "assets": [
       "assets/motif-tapa-bleu.DVKd7QWh.svg",
       "assets/motif-tapa-rouge.DtxHlp44.svg",
       "assets/motif-tapa-turquoise.CAHBL8I9.svg"
     ]
+  },
+  "assets/styles/sections/account.css": {
+    "file": "assets/styles/account.Gb1JCYFe.css",
+    "name": "account",
+    "names": [
+      "account.css"
+    ],
+    "src": "assets/styles/sections/account.css",
+    "isEntry": true
+  },
+  "assets/styles/sections/animations.css": {
+    "file": "assets/styles/animations.Ctv3XCiu.css",
+    "name": "animations",
+    "names": [
+      "animations.css"
+    ],
+    "src": "assets/styles/sections/animations.css",
+    "isEntry": true
+  },
+  "assets/styles/sections/cart.css": {
+    "file": "assets/styles/cart.2zqWS65I.css",
+    "name": "cart",
+    "names": [
+      "cart.css"
+    ],
+    "src": "assets/styles/sections/cart.css",
+    "isEntry": true
+  },
+  "assets/styles/sections/checkout.css": {
+    "file": "assets/styles/checkout.DEC8ThcH.css",
+    "name": "checkout",
+    "names": [
+      "checkout.css"
+    ],
+    "src": "assets/styles/sections/checkout.css",
+    "isEntry": true
+  },
+  "assets/styles/sections/contact.css": {
+    "file": "assets/styles/contact.c1LGxawu.css",
+    "name": "contact",
+    "names": [
+      "contact.css"
+    ],
+    "src": "assets/styles/sections/contact.css",
+    "isEntry": true
+  },
+  "assets/styles/sections/error-page.css": {
+    "file": "assets/styles/error-page.CwRaNYU8.css",
+    "name": "error-page",
+    "names": [
+      "error-page.css"
+    ],
+    "src": "assets/styles/sections/error-page.css",
+    "isEntry": true
+  },
+  "assets/styles/sections/product-detail.css": {
+    "file": "assets/styles/product-detail.DylQgDCA.css",
+    "name": "product-detail",
+    "names": [
+      "product-detail.css"
+    ],
+    "src": "assets/styles/sections/product-detail.css",
+    "isEntry": true
+  },
+  "assets/styles/sections/woocommerce.css": {
+    "file": "assets/styles/woocommerce.CW-fTPJ3.css",
+    "name": "woocommerce",
+    "names": [
+      "woocommerce.css"
+    ],
+    "src": "assets/styles/sections/woocommerce.css",
+    "isEntry": true
   }
 }

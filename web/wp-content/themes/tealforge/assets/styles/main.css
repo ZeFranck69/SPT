@@ -16,14 +16,6 @@
 @import './sections/recharge-cta.css';
 @import './sections/reassurance.css';
 @import './sections/text-content.css';
-@import './sections/woocommerce.css';
-@import './sections/product-detail.css';
-@import './sections/cart.css';
-@import './sections/checkout.css';
-@import './sections/account.css';
-@import './sections/contact.css';
-@import './sections/error-page.css';
-@import './sections/animations.css';
 
 :root {
   --tf-color-text: #15233b;

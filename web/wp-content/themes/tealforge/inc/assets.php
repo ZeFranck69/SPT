@@ -66,6 +66,8 @@ function tealforge_enqueue_assets(): void
             true
         );
 
+        tealforge_enqueue_page_styles();
+
         return;
     }
 
@@ -83,6 +85,56 @@ function tealforge_enqueue_assets(): void
         $theme_version,
         true
     );
+
+    tealforge_enqueue_page_styles();
 }
 
 add_action('wp_enqueue_scripts', 'tealforge_enqueue_assets');
+
+function tealforge_enqueue_page_styles(): void
+{
+    $post = get_queried_object();
+    $content = $post instanceof WP_Post ? $post->post_content : '';
+    $cart = function_exists('is_cart') && (is_cart() || has_shortcode($content, 'woocommerce_cart') || has_block('woocommerce/cart', $content));
+    $checkout = function_exists('is_checkout') && (is_checkout() || has_shortcode($content, 'woocommerce_checkout') || has_block('woocommerce/checkout', $content));
+    $account = is_page('mon-compte') || (function_exists('is_account_page') && is_account_page()) || has_shortcode($content, 'woocommerce_my_account');
+    $woocommerce = function_exists('is_woocommerce') && (is_woocommerce() || $cart || $checkout || $account || str_contains($content, '<!-- wp:woocommerce/'));
+
+    foreach (['products', 'product', 'product_page', 'product_category', 'product_categories', 'add_to_cart', 'woocommerce_order_tracking'] as $shortcode) {
+        $woocommerce = $woocommerce || has_shortcode($content, $shortcode);
+    }
+
+    // Synced patterns can contain forms or shop blocks outside the page content.
+    $synced_pattern = has_block('core/block', $content);
+    $styles = [
+        'woocommerce' => $woocommerce || $synced_pattern,
+        'product-detail' => (function_exists('is_product') && is_product()) || has_shortcode($content, 'product_page'),
+        'cart' => $cart || $synced_pattern,
+        'checkout' => $checkout || $synced_pattern,
+        'account' => $account || $synced_pattern,
+        'contact' => is_page('contact') || has_shortcode($content, 'wpforms') || str_contains($content, '<!-- wp:wpforms/') || $synced_pattern,
+        'error-page' => is_404(),
+        'animations' => true,
+    ];
+    $styles = apply_filters('tealforge_page_styles', $styles);
+    $manifest = tealforge_get_asset_manifest();
+    $dependencies = wp_style_is('tealforge-main-0', 'enqueued') ? ['tealforge-main-0'] : ['tealforge-main'];
+
+    foreach ($styles as $name => $enabled) {
+        if (! $enabled) {
+            continue;
+        }
+
+        $source = 'assets/styles/sections/' . $name . '.css';
+        $entry = $manifest[$source] ?? null;
+        $compiled = is_array($entry) && ! empty($entry['file']);
+        $handle = 'tealforge-' . $name;
+        wp_enqueue_style(
+            $handle,
+            get_theme_file_uri($compiled ? 'dist/' . $entry['file'] : $source),
+            $dependencies,
+            $compiled ? null : wp_get_theme()->get('Version')
+        );
+        $dependencies[] = $handle;
+    }
+}

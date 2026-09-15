@@ -8,7 +8,11 @@ export default defineConfig({
     emptyOutDir: true,
     manifest: 'manifest.json',
     rollupOptions: {
-      input: 'assets/scripts/main.js',
+      input: [
+        'assets/scripts/main.js',
+        ...['woocommerce', 'product-detail', 'cart', 'checkout', 'account', 'contact', 'error-page', 'animations']
+          .map((name) => `assets/styles/sections/${name}.css`),
+      ],
       output: {
         entryFileNames: 'assets/scripts/[name].[hash].js',
         chunkFileNames: 'assets/scripts/[name].[hash].js',
