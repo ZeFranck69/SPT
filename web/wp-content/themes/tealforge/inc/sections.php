@@ -354,6 +354,9 @@ function tealforge_get_recharge_product_data(int $product_id): array
         'family' => (string) (tealforge_get_recharge_product_field($product_id, 'recharge_family') ?: ($fallback['family'] ?? $title)),
         'type' => (string) (tealforge_get_recharge_product_field($product_id, 'recharge_type') ?: ($fallback['type'] ?? '')),
         'amount' => (string) (tealforge_get_recharge_product_field($product_id, 'recharge_amount') ?: ($fallback['amount'] ?? ($price !== '' ? number_format((float) $price, 0, ',', ' ') . ' F' : ''))),
+        'purchase_price' => $product && $price !== ''
+            ? number_format_i18n(wc_get_price_to_display($product), wc_get_price_decimals())
+            : '',
         'description' => (string) (tealforge_get_recharge_product_field($product_id, 'recharge_description') ?: ($fallback['description'] ?? get_the_excerpt($product_id))),
         'bonus' => (string) (tealforge_get_recharge_product_field($product_id, 'recharge_bonus') ?: ($fallback['bonus'] ?? '')),
         'featured' => $featured === '' ? (bool) ($fallback['featured'] ?? false) : (bool) $featured,
@@ -365,7 +368,7 @@ function tealforge_get_recharge_product_data(int $product_id): array
         'stock_quantity' => $voucher_stock,
         'stock_label' => $stock_label,
         'unavailable_label' => $unavailable_label,
-        'quantity_options' => $max_quantity > 0 ? range(1, $max_quantity) : [],
+        'max_quantity' => $max_quantity,
         'add_to_cart_action' => home_url('/#recharges'),
     ];
 }
@@ -436,15 +439,23 @@ function tealforge_prepare_page_sections(array $sections): array
             $sections[$section_index]['products'] = $prepared_products;
             $product_groups = [
                 'papito' => [
-                    'title' => 'Papito Voix',
+                    'title' => (string) ($section['papito_title'] ?? 'PAPITO'),
+                    'subtitle' => (string) ($section['papito_subtitle'] ?? ''),
+                    'description' => (string) ($section['papito_description'] ?? ''),
+                    'delivery' => (string) ($section['papito_delivery'] ?? ''),
                     'tone' => 'papito',
                     'icon' => 'phone',
+                    'bonus_icon' => 'message-circle',
                     'products' => [],
                 ],
                 'neti' => [
-                    'title' => 'Neti Data',
+                    'title' => (string) ($section['neti_title'] ?? 'NETI'),
+                    'subtitle' => (string) ($section['neti_subtitle'] ?? ''),
+                    'description' => (string) ($section['neti_description'] ?? ''),
+                    'delivery' => (string) ($section['neti_delivery'] ?? ''),
                     'tone' => 'neti',
-                    'icon' => 'wifi',
+                    'icon' => 'globe',
+                    'bonus_icon' => 'wifi',
                     'products' => [],
                 ],
             ];
@@ -463,6 +474,10 @@ function tealforge_prepare_page_sections(array $sections): array
                 $product_groups,
                 static fn(array $group): bool => $group['products'] !== []
             ));
+            $currency = function_exists('get_woocommerce_currency') ? get_woocommerce_currency() : '';
+            $sections[$section_index]['currency_label'] = $currency === 'XPF'
+                ? 'F CFP'
+                : (function_exists('get_woocommerce_currency_symbol') ? get_woocommerce_currency_symbol($currency) : '');
         }
 
         if (($section['acf_fc_layout'] ?? '') === 'recharge_steps') {

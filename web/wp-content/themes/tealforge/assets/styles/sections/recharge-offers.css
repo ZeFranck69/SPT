@@ -1,0 +1,310 @@
+.tf-recharge-offers {
+  min-width: 0;
+  scroll-margin-top: 96px;
+}
+
+.tf-recharge-offers__panel {
+  position: relative;
+  display: flex;
+  overflow: hidden;
+  padding: 36px 36px 36px 112px;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  gap: 24px;
+  border-radius: 24px;
+  background: var(--tf-offer-surface);
+}
+
+.tf-recharge-offers__panel::before {
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: 72px;
+  background: var(--tf-offer-pattern) 0 0 / 120px 120px repeat;
+  mask-image: linear-gradient(90deg, #000 0%, #000 74%, transparent 100%);
+  pointer-events: none;
+  content: '';
+}
+
+.tf-recharge-offers__intro {
+  position: relative;
+  max-width: 310px;
+  padding: 8px 6px;
+  flex: 1 1 220px;
+}
+
+.tf-recharge-offers__icon {
+  display: flex;
+  width: 64px;
+  height: 64px;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: var(--tf-offer-color);
+  color: #ffffff;
+  box-shadow: 0 8px 20px var(--tf-offer-icon-shadow);
+}
+
+.tf-recharge-offers__icon .tf-icon {
+  width: 30px;
+  height: 30px;
+}
+
+.tf-recharge-offers__title {
+  margin: 18px 0 2px;
+  color: var(--tf-offer-color);
+  font-size: 38px;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+}
+
+.tf-recharge-offers__subtitle {
+  margin: 0;
+  color: var(--tf-offer-dark);
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.tf-recharge-offers__description {
+  margin: 16px 0 0;
+  color: var(--tf-color-offer-description);
+  font-size: 15px;
+  line-height: 1.6;
+}
+
+.tf-recharge-offers__decoration {
+  display: block;
+  width: 84px;
+  height: 84px;
+  margin-top: 22px;
+  background: var(--tf-offer-flower) center / contain no-repeat;
+}
+
+.tf-recharge-offers__cards {
+  position: relative;
+  display: grid;
+  min-width: 0;
+  flex: 1 1 440px;
+  grid-template-columns: repeat(auto-fit, minmax(min(222px, 100%), 1fr));
+  gap: 20px;
+  align-items: stretch;
+}
+
+.tf-recharge-offers__card {
+  position: relative;
+  display: flex;
+  min-width: 0;
+  overflow: hidden;
+  padding: 24px;
+  flex-direction: column;
+  gap: 13px;
+  border: 1px solid var(--tf-offer-border);
+  border-radius: 18px;
+  background: #ffffff;
+  transition: transform 0.18s ease, box-shadow 0.18s ease;
+}
+
+.tf-recharge-offers__card::before {
+  position: absolute;
+  right: -30px;
+  bottom: 52px;
+  width: 130px;
+  height: 130px;
+  background: var(--tf-offer-flower) center / contain no-repeat;
+  opacity: var(--tf-offer-flower-opacity);
+  pointer-events: none;
+  content: '';
+}
+
+.tf-recharge-offers__card > * {
+  position: relative;
+}
+
+.tf-recharge-offers__card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 16px 36px var(--tf-offer-card-shadow);
+}
+
+.tf-recharge-offers__price {
+  display: flex;
+  margin: 0;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 8px;
+  color: var(--tf-offer-color);
+  font-size: 36px;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+}
+
+.tf-recharge-offers__currency {
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: normal;
+}
+
+.tf-recharge-offers__name {
+  margin: -9px 0 0;
+  color: var(--tf-offer-dark);
+  font-size: 16px;
+  font-weight: 800;
+}
+
+.tf-recharge-offers__bonus {
+  display: flex;
+  margin: 0;
+  padding: 9px 15px;
+  align-self: flex-start;
+  align-items: center;
+  gap: 8px;
+  border-radius: 999px;
+  background: var(--tf-offer-bonus-surface);
+  color: var(--tf-offer-bonus-text);
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.tf-recharge-offers__bonus .tf-icon {
+  flex-shrink: 0;
+  width: 16px;
+  height: 16px;
+  color: var(--tf-offer-color);
+}
+
+.tf-recharge-offers__delivery,
+.tf-recharge-offers__stock {
+  margin: 0;
+  color: var(--tf-color-offer-muted);
+  font-size: 13.5px;
+  line-height: 1.5;
+}
+
+.tf-recharge-offers__purchase {
+  display: grid;
+  margin-top: auto;
+  gap: 10px;
+}
+
+.tf-recharge-offers__quantity-label {
+  font-size: 13px;
+  color: var(--tf-color-muted);
+}
+
+.tf-recharge-offers__quantity {
+  display: flex;
+  width: fit-content;
+  max-width: 100%;
+  border: 1px solid var(--tf-offer-border);
+  border-radius: 10px;
+}
+
+.tf-recharge-offers__quantity-button,
+.tf-recharge-offers__quantity-input {
+  width: 44px;
+  min-width: 0;
+  height: 44px;
+  padding: 0;
+  border: 0;
+  border-radius: 10px;
+  background: transparent;
+  color: var(--tf-offer-color);
+  font: inherit;
+  text-align: center;
+}
+
+.tf-recharge-offers__quantity-button {
+  cursor: pointer;
+}
+
+.tf-recharge-offers__quantity-button:disabled {
+  opacity: 0.4;
+  cursor: default;
+}
+
+.tf-recharge-offers__quantity-input {
+  appearance: textfield;
+}
+
+.tf-recharge-offers__quantity-input::-webkit-inner-spin-button,
+.tf-recharge-offers__quantity-input::-webkit-outer-spin-button {
+  appearance: none;
+  margin: 0;
+}
+
+.tf-recharge-offers__button {
+  display: flex;
+  width: 100%;
+  padding: 14px 18px;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  border: 0;
+  border-radius: 12px;
+  background: var(--tf-offer-color);
+  color: #ffffff;
+  font: inherit;
+  font-size: 14.5px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.tf-recharge-offers__button:hover {
+  background: var(--tf-offer-dark);
+}
+
+.tf-recharge-offers__arrow {
+  width: 17px;
+  height: 17px;
+  flex-shrink: 0;
+}
+
+.tf-recharge-offers__button:focus-visible,
+.tf-recharge-offers__quantity-button:focus-visible,
+.tf-recharge-offers__quantity-input:focus-visible {
+  outline: 3px solid var(--tf-offer-color);
+  outline-offset: 3px;
+}
+
+.tf-recharge-offers__unavailable {
+  margin: auto 0 0;
+  padding: 14px;
+  border-radius: 12px;
+  background: var(--tf-offer-surface);
+  color: var(--tf-offer-dark);
+  text-align: center;
+  font-weight: 700;
+}
+
+@media (max-width: 1200px) {
+  .tf-recharge-offers__intro {
+    max-width: none;
+    flex-basis: 100%;
+  }
+
+  .tf-recharge-offers__description {
+    max-width: 56ch;
+  }
+
+  .tf-recharge-offers__decoration {
+    display: none;
+  }
+}
+
+@media (max-width: 640px) {
+  .tf-recharge-offers__panel {
+    padding: 26px 20px;
+  }
+
+  .tf-recharge-offers__panel::before {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tf-recharge-offers__card {
+    transition: none;
+  }
+
+  .tf-recharge-offers__card:hover {
+    transform: none;
+  }
+}

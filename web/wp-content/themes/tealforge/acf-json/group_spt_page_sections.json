@@ -194,6 +194,62 @@
                             "return_format": "id",
                             "min": "",
                             "max": ""
+                        },
+                        {
+                            "key": "field_spt_papito_title",
+                            "label": "Titre Papito",
+                            "name": "papito_title",
+                            "type": "text",
+                            "default_value": "PAPITO"
+                        },
+                        {
+                            "key": "field_spt_papito_subtitle",
+                            "label": "Sous-titre Papito",
+                            "name": "papito_subtitle",
+                            "type": "text",
+                            "default_value": "Recharges voix et SMS"
+                        },
+                        {
+                            "key": "field_spt_papito_description",
+                            "label": "Présentation Papito",
+                            "name": "papito_description",
+                            "type": "textarea",
+                            "default_value": "Du crédit d'appel avec des SMS offerts, pour rester en contact avec vos proches."
+                        },
+                        {
+                            "key": "field_spt_papito_delivery",
+                            "label": "Livraison Papito",
+                            "name": "papito_delivery",
+                            "type": "textarea",
+                            "default_value": "Code envoyé par email et SMS juste après le paiement."
+                        },
+                        {
+                            "key": "field_spt_neti_title",
+                            "name": "neti_title",
+                            "label": "Titre Neti",
+                            "type": "text",
+                            "default_value": "NETI"
+                        },
+                        {
+                            "key": "field_spt_neti_subtitle",
+                            "name": "neti_subtitle",
+                            "label": "Sous-titre Neti",
+                            "type": "text",
+                            "default_value": "Recharges internet"
+                        },
+                        {
+                            "key": "field_spt_neti_description",
+                            "name": "neti_description",
+                            "label": "Présentation Neti",
+                            "type": "textarea",
+                            "default_value": "De la data à utiliser comme vous voulez : navigation, messagerie, partage de connexion."
+                        },
+                        {
+                            "key": "field_spt_neti_delivery",
+                            "name": "neti_delivery",
+                            "label": "Livraison Neti",
+                            "type": "textarea",
+                            "default_value": "Code envoyé par email et SMS juste après le paiement."
                         }
                     ],
                     "min": "",
@@ -599,5 +655,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1789444057
+    "modified": 1789446688
 }
