@@ -1,0 +1,48 @@
+.tf-button {
+  display: inline-flex;
+  min-height: 52px;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--tf-color-text);
+  border-radius: 8px;
+  padding: 0 24px;
+  background: var(--tf-color-text);
+  color: #ffffff;
+  font-weight: 700;
+  text-decoration: none;
+  transition: background-color 0.5s ease, color 0.5s ease;
+}
+
+.tf-button:hover,
+.tf-button:focus-visible {
+  background: transparent;
+  color: var(--tf-color-text);
+}
+
+.tf-button--secondary {
+  background: transparent;
+  color: var(--tf-color-text);
+}
+
+.tf-button--secondary:hover,
+.tf-button--secondary:focus-visible {
+  background: var(--tf-color-text);
+  color: #ffffff;
+}
+
+.tf-button {
+  transition:
+    transform 0.28s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.28s ease,
+    opacity 0.28s ease,
+    background-color 0.28s ease,
+    background-position 0.45s ease,
+    border-color 0.28s ease,
+    color 0.28s ease !important;
+}
+
+.tf-button:hover,
+.tf-button:focus-visible {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 24px rgb(26 26 26 / 15%) !important;
+}

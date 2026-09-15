@@ -1,0 +1,36 @@
+.tf-reveal {
+  opacity: 0;
+  translate: 0 24px;
+  transition:
+    opacity 0.65s cubic-bezier(0.22, 1, 0.36, 1),
+    translate 0.65s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.25s ease,
+    border-color 0.25s ease,
+    box-shadow 0.25s ease;
+  transition-delay: var(--tf-reveal-delay, 0ms);
+}
+
+.tf-reveal--visible {
+  opacity: 1;
+  translate: none;
+}
+
+[data-tf-reveal-delay="1"] {
+  --tf-reveal-delay: 90ms;
+}
+
+[data-tf-reveal-delay="2"] {
+  --tf-reveal-delay: 180ms;
+}
+
+[data-tf-reveal-delay="3"] {
+  --tf-reveal-delay: 270ms;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tf-reveal,
+  .tf-reveal--visible {
+    opacity: 1;
+    translate: none;
+  }
+}
