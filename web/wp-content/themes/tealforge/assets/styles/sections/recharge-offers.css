@@ -170,8 +170,7 @@
   color: var(--tf-offer-color);
 }
 
-.tf-recharge-offers__delivery,
-.tf-recharge-offers__stock {
+.tf-recharge-offers__delivery {
   margin: 0;
   color: var(--tf-color-offer-muted);
   font-size: 13.5px;
@@ -180,33 +179,30 @@
 
 .tf-recharge-offers__purchase {
   display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  align-items: center;
   margin-top: auto;
-  gap: 10px;
-}
-
-.tf-recharge-offers__quantity-label {
-  font-size: 13px;
-  color: var(--tf-color-muted);
+  padding: 4px;
+  border-radius: 12px;
+  background: var(--tf-offer-color);
+  color: #ffffff;
 }
 
 .tf-recharge-offers__quantity {
   display: flex;
-  width: fit-content;
-  max-width: 100%;
-  border: 1px solid var(--tf-offer-border);
-  border-radius: 10px;
+  border-right: 1px solid currentColor;
 }
 
 .tf-recharge-offers__quantity-button,
 .tf-recharge-offers__quantity-input {
-  width: 44px;
+  width: 28px;
   min-width: 0;
   height: 44px;
   padding: 0;
   border: 0;
-  border-radius: 10px;
+  border-radius: 8px;
   background: transparent;
-  color: var(--tf-offer-color);
+  color: inherit;
   font: inherit;
   text-align: center;
 }
@@ -233,35 +229,31 @@
 .tf-recharge-offers__button {
   display: flex;
   width: 100%;
-  padding: 14px 18px;
+  min-width: 0;
+  min-height: 44px;
+  padding: 10px 6px;
   align-items: center;
-  justify-content: space-between;
-  gap: 8px;
+  justify-content: center;
   border: 0;
-  border-radius: 12px;
-  background: var(--tf-offer-color);
-  color: #ffffff;
+  border-radius: 8px;
+  background: transparent;
+  color: inherit;
   font: inherit;
   font-size: 14.5px;
   font-weight: 700;
   cursor: pointer;
 }
 
-.tf-recharge-offers__button:hover {
+.tf-recharge-offers__button:hover,
+.tf-recharge-offers__quantity-button:hover:not(:disabled) {
   background: var(--tf-offer-dark);
-}
-
-.tf-recharge-offers__arrow {
-  width: 17px;
-  height: 17px;
-  flex-shrink: 0;
 }
 
 .tf-recharge-offers__button:focus-visible,
 .tf-recharge-offers__quantity-button:focus-visible,
 .tf-recharge-offers__quantity-input:focus-visible {
-  outline: 3px solid var(--tf-offer-color);
-  outline-offset: 3px;
+  outline: 2px solid currentColor;
+  outline-offset: -3px;
 }
 
 .tf-recharge-offers__unavailable {

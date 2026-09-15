@@ -32,20 +32,15 @@
                     {% if group.delivery %}
                         <p class="tf-recharge-offers__delivery">{{ group.delivery|e }}</p>
                     {% endif %}
-                    {% if product.voucher_managed and product.stock_label %}
-                        <p class="tf-recharge-offers__stock">{{ product.stock_label|e }}</p>
-                    {% endif %}
                     {% if product.can_quick_add %}
                         <form class="tf-recharge-offers__purchase" method="post" action="{{ function('esc_url', product.add_to_cart_action) }}">
-                            <label class="tf-recharge-offers__quantity-label" for="recharge-quantity-{{ product.id|e('html_attr') }}">Quantité</label>
                             <div class="tf-recharge-offers__quantity" data-tf-quantity>
                                 <button class="tf-recharge-offers__quantity-button" type="button" aria-label="Diminuer la quantité" data-tf-quantity-decrease>−</button>
-                                <input class="tf-recharge-offers__quantity-input" id="recharge-quantity-{{ product.id|e('html_attr') }}" type="number" name="quantity" value="1" min="1" max="{{ product.max_quantity|e('html_attr') }}" step="1" inputmode="numeric">
+                                <input class="tf-recharge-offers__quantity-input" id="recharge-quantity-{{ product.id|e('html_attr') }}" type="number" name="quantity" value="1" min="1" max="{{ product.max_quantity|e('html_attr') }}" step="1" inputmode="numeric" aria-label="Quantité de recharges {{ product.family|e('html_attr') }} de {{ product.purchase_price|e('html_attr') }} {{ section.currency_label|e('html_attr') }}">
                                 <button class="tf-recharge-offers__quantity-button" type="button" aria-label="Augmenter la quantité" data-tf-quantity-increase>+</button>
                             </div>
                             <button class="tf-recharge-offers__button" type="submit" name="add-to-cart" value="{{ product.id|e('html_attr') }}" aria-label="Ajouter au panier la recharge {{ product.family|e('html_attr') }} de {{ product.purchase_price|e('html_attr') }} {{ section.currency_label|e('html_attr') }}">
                                 Acheter
-                                <svg class="tf-recharge-offers__arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m9 5 7 7-7 7"/></svg>
                             </button>
                         </form>
                     {% else %}
