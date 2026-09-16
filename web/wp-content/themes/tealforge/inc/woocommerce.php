@@ -4,6 +4,41 @@ declare(strict_types=1);
 
 defined('ABSPATH') || exit;
 
+function tealforge_registration_form(): string
+{
+    if (is_user_logged_in()) {
+        return '';
+    }
+
+    ob_start();
+    wc_print_notices();
+    wc_get_template('myaccount/form-register.php');
+    return '<div class="woocommerce">' . ob_get_clean() . '</div>';
+}
+
+add_shortcode('tealforge_register', 'tealforge_registration_form');
+
+add_action('template_redirect', static function (): void {
+    if (! is_page('creer-un-compte')) {
+        return;
+    }
+
+    wc_maybe_define_constant('DONOTCACHEPAGE', true);
+    nocache_headers();
+
+    if (is_user_logged_in()) {
+        wp_safe_redirect(wc_get_page_permalink('myaccount'));
+        exit;
+    }
+});
+
+add_action('wp_enqueue_scripts', static function (): void {
+    if (is_page('creer-un-compte') && ! is_user_logged_in()
+        && get_option('woocommerce_registration_generate_password') === 'no') {
+        WC_Frontend_Scripts::enqueue_script('wc-password-strength-meter');
+    }
+}, 20);
+
 function tealforge_woocommerce_body_class(array $classes): array
 {
     if (function_exists('is_account_page') && is_account_page()) {

@@ -136,7 +136,7 @@ function tealforge_enqueue_page_styles(): void
     $content = $post instanceof WP_Post ? $post->post_content : '';
     $cart = function_exists('is_cart') && (is_cart() || has_shortcode($content, 'woocommerce_cart') || has_block('woocommerce/cart', $content));
     $checkout = function_exists('is_checkout') && (is_checkout() || has_shortcode($content, 'woocommerce_checkout') || has_block('woocommerce/checkout', $content));
-    $account = is_page('mon-compte') || (function_exists('is_account_page') && is_account_page()) || has_shortcode($content, 'woocommerce_my_account');
+    $account = is_page(['mon-compte', 'creer-un-compte']) || (function_exists('is_account_page') && is_account_page()) || has_shortcode($content, 'woocommerce_my_account');
     $woocommerce = function_exists('is_woocommerce') && (is_woocommerce() || $cart || $checkout || $account || str_contains($content, '<!-- wp:woocommerce/'));
 
     foreach (['products', 'product', 'product_page', 'product_category', 'product_categories', 'add_to_cart', 'woocommerce_order_tracking'] as $shortcode) {

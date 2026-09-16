@@ -4,6 +4,22 @@
   padding-block: 32px 64px;
 }
 
+.tf-account-access-link {
+  margin: 24px 0 0;
+  padding-top: 16px;
+  border-top: 1px solid var(--tf-color-border);
+  text-align: center;
+  color: var(--tf-color-muted);
+}
+
+.tf-account-access-link a {
+  display: inline-flex;
+  min-height: 44px;
+  align-items: center;
+  color: var(--tf-color-lime);
+  font-weight: 700;
+}
+
 .tf-account-page::before {
   content: '';
   position: absolute;
