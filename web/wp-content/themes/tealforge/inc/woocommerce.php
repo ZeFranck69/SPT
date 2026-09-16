@@ -85,11 +85,11 @@ function tealforge_render_header_cart_count(): string
     $count = tealforge_get_cart_count();
 
     if ($count === 0) {
-        return '<span class="tf-site-header__cart-count" hidden></span>';
+        return '<span class="tf-site-header__cart-count" data-tf-cart-count hidden></span>';
     }
 
     return sprintf(
-        '<span class="tf-site-header__cart-count" aria-label="%1$s">%2$d</span>',
+        '<span class="tf-site-header__cart-count" data-tf-cart-count aria-label="%1$s">%2$d</span>',
         esc_attr(sprintf(
             _n('%d article dans le panier', '%d articles dans le panier', $count, 'tealforge'),
             $count
@@ -148,6 +148,10 @@ function tealforge_woocommerce_gettext(string $translation, string $text, string
         return $translation;
     }
 
+    if ($text === 'Billing address' && function_exists('is_wc_endpoint_url') && is_wc_endpoint_url('order-received')) {
+        return __('Information de facturation', 'tealforge');
+    }
+
     return match ($text) {
         'Log in' => __('Connexion', 'tealforge'),
         'Login' => __('Connexion', 'tealforge'),
@@ -158,7 +162,7 @@ function tealforge_woocommerce_gettext(string $translation, string $text, string
         'Add to cart' => __('Ajouter au panier', 'tealforge'),
         'View cart' => __('Voir le panier', 'tealforge'),
         'Checkout' => __('Commande', 'tealforge'),
-        'Proceed to checkout' => __('Passer commande', 'tealforge'),
+        'Proceed to checkout' => __('Passer au paiement', 'tealforge'),
         'Apply coupon' => __('Appliquer le code', 'tealforge'),
         'Update cart' => __('Mettre à jour le panier', 'tealforge'),
         'Your cart is currently empty!' => __('Votre panier est vide.', 'tealforge'),
@@ -194,10 +198,131 @@ function tealforge_woocommerce_empty_cart_block(string $block_content, array $bl
         esc_html__('Découvrir les recharges', 'tealforge')
     );
 
-    return '<div class="wp-block-woocommerce-empty-cart-block">' . $empty_cart_panel . '</div>';
+    // Keep the block identity so WooCommerce can toggle it with the cart state.
+    return '<div data-block-name="woocommerce/empty-cart-block" class="wp-block-woocommerce-empty-cart-block">' . $empty_cart_panel . '</div>';
 }
 
 add_filter('render_block_woocommerce/empty-cart-block', 'tealforge_woocommerce_empty_cart_block', 10, 2);
+
+add_filter('render_block_woocommerce/cart-order-summary-coupon-form-block', '__return_empty_string');
+add_filter('render_block_woocommerce/checkout-order-summary-coupon-form-block', '__return_empty_string');
+
+add_filter('pre_option_woocommerce_checkout_phone_field', static fn () => 'required');
+
+function tealforge_woocommerce_contact_address_fields(array $fields): array
+{
+    if (is_admin() || (function_exists('is_account_page') && is_account_page())) {
+        return $fields;
+    }
+
+    foreach (['company', 'address_1', 'address_2', 'city', 'state', 'postcode'] as $key) {
+        $fields[$key]['required'] = false;
+        $fields[$key]['hidden'] = true;
+    }
+
+    return $fields;
+}
+
+add_filter('woocommerce_get_country_locale_default', 'tealforge_woocommerce_contact_address_fields', 20);
+
+function tealforge_woocommerce_contact_country_locales(array $locales): array
+{
+    // Blocks do not inherit the default locale for countries without an entry.
+    foreach (array_keys(WC()->countries->get_allowed_countries()) as $country) {
+        $locales[$country] ??= [];
+    }
+
+    foreach ($locales as $country => $fields) {
+        $locales[$country] = tealforge_woocommerce_contact_address_fields($fields);
+    }
+
+    return $locales;
+}
+
+add_filter('woocommerce_get_country_locale', 'tealforge_woocommerce_contact_country_locales', 20);
+
+function tealforge_woocommerce_contact_block_title(array $block): array
+{
+    if (($block['blockName'] ?? '') === 'woocommerce/checkout-billing-address-block') {
+        $block['attrs']['title'] = __('Vos coordonnées', 'tealforge');
+        $block['attrs']['description'] = '';
+    }
+
+    return $block;
+}
+
+add_filter('render_block_data', 'tealforge_woocommerce_contact_block_title');
+
+function tealforge_woocommerce_normalize_regional_phone(string $phone, string $country): string
+{
+    $prefix = ['NC' => '+687', 'WF' => '+681'][$country] ?? '';
+    $phone = (string) preg_replace('/[\s().-]+/u', '', trim($phone));
+    $phone = (string) preg_replace('/^00/', '+', $phone);
+
+    if ($prefix !== '' && preg_match('/^[0-9]{6}$/D', $phone)) {
+        $phone = $prefix . $phone;
+    }
+
+    return $phone;
+}
+
+function tealforge_woocommerce_validate_regional_phone($response, array $handler, WP_REST_Request $request)
+{
+    if ($response !== null || $request->get_method() !== 'POST'
+        || ! preg_match('#^/wc/store/v[0-9]+/checkout(?:/[0-9]+)?$#D', $request->get_route())) {
+        return $response;
+    }
+
+    $billing = $request->get_param('billing_address');
+    if (! is_array($billing)) {
+        return $response;
+    }
+
+    $country = is_string($billing['country'] ?? null) ? $billing['country'] : '';
+    $phone = tealforge_woocommerce_normalize_regional_phone(
+        is_string($billing['phone'] ?? null) ? $billing['phone'] : '',
+        $country
+    );
+
+    $error = tealforge_woocommerce_regional_phone_error($phone, $country);
+    if ($error !== null) {
+        return $error;
+    }
+
+    $billing['phone'] = $phone;
+    $request->set_param('billing_address', $billing);
+
+    return $response;
+}
+
+add_filter('rest_request_before_callbacks', 'tealforge_woocommerce_validate_regional_phone', 10, 3);
+
+function tealforge_woocommerce_regional_phone_error(string $phone, string $country): ?WP_Error
+{
+    $prefix = ['NC' => '+687', 'WF' => '+681'][$country] ?? '';
+    $phone = tealforge_woocommerce_normalize_regional_phone($phone, $country);
+
+    if ($prefix !== '' && preg_match('/^' . preg_quote($prefix, '/') . '[0-9]{6}$/D', $phone)) {
+        return null;
+    }
+
+    return new WP_Error(
+        'tealforge_invalid_phone',
+        __('Saisissez un numéro de téléphone à 6 chiffres avec l’indicatif du pays sélectionné (+687 ou +681).', 'tealforge'),
+        ['status' => 400]
+    );
+}
+
+function tealforge_woocommerce_validate_order_phone(WC_Order $order, WP_Error $errors): void
+{
+    $error = tealforge_woocommerce_regional_phone_error($order->get_billing_phone(), $order->get_billing_country());
+
+    if ($error !== null) {
+        $errors->merge_from($error);
+    }
+}
+
+add_action('woocommerce_checkout_validate_order_before_payment', 'tealforge_woocommerce_validate_order_phone', 10, 2);
 
 function tealforge_woocommerce_email_logo(mixed $currentLogo): mixed
 {
