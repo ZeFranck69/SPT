@@ -1,4 +1,5 @@
 @import './purchase-page.css';
+@import './purchase-decorations.css';
 
 .woocommerce-checkout .woocommerce {
   max-width: 1120px;

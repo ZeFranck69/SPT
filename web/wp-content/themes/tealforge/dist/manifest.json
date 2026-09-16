@@ -18,12 +18,12 @@
     "isEntry": true
   },
   "assets/scripts/main.js": {
-    "file": "assets/scripts/main.D5FCP7_A.js",
+    "file": "assets/scripts/main.Dwlj_41B.js",
     "name": "main",
     "src": "assets/scripts/main.js",
     "isEntry": true,
     "css": [
-      "assets/styles/main.gSiAALnp.css"
+      "assets/styles/main.fBv_J5sM.css"
     ],
     "assets": [
       "assets/motif-tapa-bleu.DVKd7QWh.svg",
@@ -32,7 +32,7 @@
     ]
   },
   "assets/styles/sections/account.css": {
-    "file": "assets/styles/account.Gb1JCYFe.css",
+    "file": "assets/styles/account.C7qftWQv.css",
     "name": "account",
     "names": [
       "account.css"
@@ -95,7 +95,7 @@
     "isEntry": true
   },
   "assets/styles/sections/woocommerce.css": {
-    "file": "assets/styles/woocommerce.CW-fTPJ3.css",
+    "file": "assets/styles/woocommerce.AFN9YHde.css",
     "name": "woocommerce",
     "names": [
       "woocommerce.css"

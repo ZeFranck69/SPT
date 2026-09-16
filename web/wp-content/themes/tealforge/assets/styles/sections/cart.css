@@ -1,4 +1,5 @@
 @import './purchase-page.css';
+@import './purchase-decorations.css';
 
 .woocommerce-cart {
   --tf-cart-control-size: 40px;
