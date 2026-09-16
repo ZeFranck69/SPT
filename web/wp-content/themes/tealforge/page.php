@@ -18,20 +18,29 @@ $context['heading'] = [
 ];
 
 if (function_exists('is_cart') && is_cart()) {
+    $context['is_purchase_page'] = true;
+    $context['cart_return_url'] = home_url('/#recharges');
     $context['heading'] = [
-        'icon' => 'shopping-cart',
+        'icon' => '',
         'eyebrow' => 'Votre sélection',
         'title' => 'Mon panier',
         'text' => 'Vérifiez vos recharges avant de poursuivre votre commande.',
     ];
 } elseif (function_exists('is_checkout') && is_checkout()) {
+    $context['is_purchase_page'] = true;
+    $is_confirmation = function_exists('is_wc_endpoint_url') && is_wc_endpoint_url('order-received');
+    if (! is_wc_endpoint_url()) {
+        $context['checkout_cart_url'] = wc_get_cart_url();
+    }
     $context['heading'] = [
         'icon' => 'credit-card',
         'eyebrow' => 'Paiement sécurisé',
-        'title' => function_exists('is_wc_endpoint_url') && is_wc_endpoint_url('order-received')
-            ? 'Commande confirmée'
+        'title' => $is_confirmation
+            ? 'Commande reçue'
             : 'Finaliser ma commande',
-        'text' => 'Renseignez vos coordonnées et validez votre paiement.',
+        'text' => $is_confirmation
+            ? 'Retrouvez ci-dessous le récapitulatif et les informations de votre commande.'
+            : 'Renseignez vos coordonnées, puis choisissez votre moyen de paiement.',
     ];
 }
 

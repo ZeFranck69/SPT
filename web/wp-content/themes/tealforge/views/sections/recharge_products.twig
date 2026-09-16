@@ -1,5 +1,10 @@
 {% if section.product_groups %}
     <div id="recharges" class="tf-recharge-products">
+        {% if section.woocommerce_notices %}
+            <div class="tf-home-notices">
+                {{ section.woocommerce_notices|raw }}
+            </div>
+        {% endif %}
         {% for group in section.product_groups %}
             {% if not loop.first %}
                 <div class="tf-recharge-products__separator" aria-hidden="true">

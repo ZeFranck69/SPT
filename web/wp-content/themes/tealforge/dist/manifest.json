@@ -11,13 +11,19 @@
     "file": "assets/motif-tapa-turquoise.CAHBL8I9.svg",
     "src": "assets/images/motif-tapa-turquoise.svg"
   },
+  "assets/scripts/cart.js": {
+    "file": "assets/scripts/cart.DyX05jvZ.js",
+    "name": "cart",
+    "src": "assets/scripts/cart.js",
+    "isEntry": true
+  },
   "assets/scripts/main.js": {
-    "file": "assets/scripts/main.AR_9bb20.js",
+    "file": "assets/scripts/main.D5FCP7_A.js",
     "name": "main",
     "src": "assets/scripts/main.js",
     "isEntry": true,
     "css": [
-      "assets/styles/main.BpRvNttd.css"
+      "assets/styles/main.gSiAALnp.css"
     ],
     "assets": [
       "assets/motif-tapa-bleu.DVKd7QWh.svg",
@@ -44,7 +50,7 @@
     "isEntry": true
   },
   "assets/styles/sections/cart.css": {
-    "file": "assets/styles/cart.2zqWS65I.css",
+    "file": "assets/styles/cart.CylJoqMu.css",
     "name": "cart",
     "names": [
       "cart.css"
@@ -53,7 +59,7 @@
     "isEntry": true
   },
   "assets/styles/sections/checkout.css": {
-    "file": "assets/styles/checkout.DEC8ThcH.css",
+    "file": "assets/styles/checkout.tHrKHkmu.css",
     "name": "checkout",
     "names": [
       "checkout.css"
