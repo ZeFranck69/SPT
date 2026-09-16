@@ -2,8 +2,19 @@
 
 {% block content %}
     <section class="tf-contact-page" aria-label="Contact SPT">
+        <div class="tf-contact-page__decorations" aria-hidden="true">
+            <svg class="tf-contact-page__decoration tf-contact-page__decoration--letter" viewBox="0 0 160 160" fill="none" focusable="false">
+                <circle cx="80" cy="80" r="66" stroke="currentColor" stroke-dasharray="3 10"/>
+                <rect x="34" y="51" width="92" height="62" rx="12" stroke="currentColor" stroke-width="3"/>
+                <path d="m37 56 43 33 43-33M36 108l29-28m59 28L95 80M115 27v14m-7-7h14" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            <svg class="tf-contact-page__decoration tf-contact-page__decoration--conversation" viewBox="0 0 160 160" fill="none" focusable="false">
+                <path d="M30 36h72a14 14 0 0 1 14 14v37a14 14 0 0 1-14 14H64l-23 18v-18H30a14 14 0 0 1-14-14V50a14 14 0 0 1 14-14Z" stroke="currentColor" stroke-width="3" stroke-linejoin="round"/>
+                <path d="M125 66h5a14 14 0 0 1 14 14v35a14 14 0 0 1-14 14h-3v15l-21-15H85a14 14 0 0 1-14-14M42 60h47M42 76h31" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                <circle cx="126" cy="25" r="5" fill="currentColor"/>
+            </svg>
+        </div>
         {% set contact_heading = {
-            icon: 'message-circle',
             eyebrow: 'Contact & Support',
             title: 'Une question sur une recharge ?',
             text: 'Notre équipe vous accompagne pour vos commandes et vos codes vouchers.'
@@ -24,7 +35,7 @@
                                 <div class="tf-contact-info__copy">
                                     <p class="tf-contact-info__label">{{ item.label }}</p>
                                     <p class="tf-contact-info__value">
-                                        {% if item.url %}<a href="{{ function('esc_url', item.url) }}">{{ item.value }}</a>{% else %}{{ item.value }}{% endif %}
+                                        {%- if item.url -%}<a href="{{ function('esc_url', item.url) }}">{{ item.value }}</a>{%- else -%}{{ item.value }}{%- endif -%}
                                     </p>
                                 </div>
                             </div>
@@ -35,7 +46,6 @@
 
             <div class="tf-contact-page__main">
                 <div class="tf-contact-card" data-tf-reveal data-tf-reveal-delay="1">
-                    <p class="tf-contact-card__eyebrow">Support client</p>
                     <h2 class="tf-contact-card__title">Envoyer un message</h2>
 
                     {% if post.content %}

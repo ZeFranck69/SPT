@@ -145,13 +145,18 @@ function tealforge_enqueue_page_styles(): void
 
     // Synced patterns can contain forms or shop blocks outside the page content.
     $synced_pattern = has_block('core/block', $content);
+    $section_layouts = $post instanceof WP_Post ? get_post_meta($post->ID, 'page_sections', true) : [];
+    $recharge_layouts = ['recharge_hero', 'recharge_products', 'recharge_families', 'recharge_steps', 'recharge_faq', 'recharge_cta', 'reassurance'];
+    $has_recharge_sections = is_array($section_layouts) && array_intersect($recharge_layouts, $section_layouts) !== [];
     $styles = [
+        'recharge' => is_front_page() || $has_recharge_sections,
         'woocommerce' => $woocommerce || $synced_pattern,
         'product-detail' => (function_exists('is_product') && is_product()) || has_shortcode($content, 'product_page'),
         'cart' => $cart || $synced_pattern,
         'checkout' => $checkout || $synced_pattern,
         'account' => $account || $synced_pattern,
-        'contact' => is_page('contact') || has_shortcode($content, 'wpforms') || str_contains($content, '<!-- wp:wpforms/') || $synced_pattern,
+        'forms' => is_page('contact') || has_shortcode($content, 'wpforms') || str_contains($content, '<!-- wp:wpforms/') || $synced_pattern,
+        'contact' => is_page('contact'),
         'error-page' => is_404(),
         'animations' => true,
     ];

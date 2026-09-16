@@ -18,17 +18,12 @@
     "isEntry": true
   },
   "assets/scripts/main.js": {
-    "file": "assets/scripts/main.Dwlj_41B.js",
+    "file": "assets/scripts/main.DpiJ7b3z.js",
     "name": "main",
     "src": "assets/scripts/main.js",
     "isEntry": true,
     "css": [
-      "assets/styles/main.fBv_J5sM.css"
-    ],
-    "assets": [
-      "assets/motif-tapa-bleu.DVKd7QWh.svg",
-      "assets/motif-tapa-rouge.DtxHlp44.svg",
-      "assets/motif-tapa-turquoise.CAHBL8I9.svg"
+      "assets/styles/main.OSNs2XcV.css"
     ]
   },
   "assets/styles/sections/account.css": {
@@ -68,7 +63,7 @@
     "isEntry": true
   },
   "assets/styles/sections/contact.css": {
-    "file": "assets/styles/contact.c1LGxawu.css",
+    "file": "assets/styles/contact.D229Zftj.css",
     "name": "contact",
     "names": [
       "contact.css"
@@ -85,6 +80,15 @@
     "src": "assets/styles/sections/error-page.css",
     "isEntry": true
   },
+  "assets/styles/sections/forms.css": {
+    "file": "assets/styles/forms.Q7VICZQ-.css",
+    "name": "forms",
+    "names": [
+      "forms.css"
+    ],
+    "src": "assets/styles/sections/forms.css",
+    "isEntry": true
+  },
   "assets/styles/sections/product-detail.css": {
     "file": "assets/styles/product-detail.DylQgDCA.css",
     "name": "product-detail",
@@ -93,6 +97,20 @@
     ],
     "src": "assets/styles/sections/product-detail.css",
     "isEntry": true
+  },
+  "assets/styles/sections/recharge.css": {
+    "file": "assets/styles/recharge.DEBsQZng.css",
+    "name": "recharge",
+    "names": [
+      "recharge.css"
+    ],
+    "src": "assets/styles/sections/recharge.css",
+    "isEntry": true,
+    "assets": [
+      "assets/motif-tapa-bleu.DVKd7QWh.svg",
+      "assets/motif-tapa-rouge.DtxHlp44.svg",
+      "assets/motif-tapa-turquoise.CAHBL8I9.svg"
+    ]
   },
   "assets/styles/sections/woocommerce.css": {
     "file": "assets/styles/woocommerce.AFN9YHde.css",
