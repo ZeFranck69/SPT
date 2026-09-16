@@ -322,9 +322,9 @@
 
 .woocommerce table.shop_table {
   overflow: hidden;
-  border: 0 !important;
-  border-radius: 14px !important;
-  background: #ffffff !important;
+  border: var(--tf-woo-table-border, 0) !important;
+  border-radius: var(--tf-woo-table-radius, 14px) !important;
+  background: var(--tf-woo-table-background, #ffffff) !important;
   box-shadow: 0 12px 34px rgb(29 27 28 / 7%);
 }
 
@@ -339,7 +339,7 @@
 
 .woocommerce table.shop_table td,
 .woocommerce table.shop_table th {
-  padding: 16px !important;
+  padding: var(--tf-woo-cell-padding, 16px) !important;
 }
 
 .woocommerce table.shop_table td {

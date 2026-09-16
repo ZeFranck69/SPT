@@ -4,6 +4,41 @@ declare(strict_types=1);
 
 defined('ABSPATH') || exit;
 
+function tealforge_registration_form(): string
+{
+    if (is_user_logged_in()) {
+        return '';
+    }
+
+    ob_start();
+    wc_print_notices();
+    wc_get_template('myaccount/form-register.php');
+    return '<div class="woocommerce">' . ob_get_clean() . '</div>';
+}
+
+add_shortcode('tealforge_register', 'tealforge_registration_form');
+
+add_action('template_redirect', static function (): void {
+    if (! is_page('creer-un-compte')) {
+        return;
+    }
+
+    wc_maybe_define_constant('DONOTCACHEPAGE', true);
+    nocache_headers();
+
+    if (is_user_logged_in()) {
+        wp_safe_redirect(wc_get_page_permalink('myaccount'));
+        exit;
+    }
+});
+
+add_action('wp_enqueue_scripts', static function (): void {
+    if (is_page('creer-un-compte') && ! is_user_logged_in()
+        && get_option('woocommerce_registration_generate_password') === 'no') {
+        WC_Frontend_Scripts::enqueue_script('wc-password-strength-meter');
+    }
+}, 20);
+
 function tealforge_woocommerce_body_class(array $classes): array
 {
     if (function_exists('is_account_page') && is_account_page()) {
@@ -26,7 +61,7 @@ add_filter('body_class', 'tealforge_woocommerce_body_class');
 function tealforge_woocommerce_account_menu_items(array $items): array
 {
     if (isset($items['dashboard'])) {
-        $items['dashboard'] = __('Tableau de bord', 'tealforge');
+        $items['dashboard'] = __('Vue d’ensemble', 'tealforge');
     }
 
     if (isset($items['orders'])) {
@@ -40,6 +75,8 @@ function tealforge_woocommerce_account_menu_items(array $items): array
     if (isset($items['downloads'])) {
         unset($items['downloads']);
     }
+
+    unset($items['edit-address']);
 
     if (isset($items['customer-logout'])) {
         $items['customer-logout'] = __('Déconnexion', 'tealforge');
@@ -107,21 +144,11 @@ function tealforge_woocommerce_cart_count_fragment(array $fragments): array
 
 add_filter('woocommerce_add_to_cart_fragments', 'tealforge_woocommerce_cart_count_fragment');
 
-function tealforge_woocommerce_before_account_navigation(): void
-{
-    echo '<div class="tf-myaccount-nav-heading">';
-    echo '<p class="tf-myaccount-nav-heading__eyebrow">' . esc_html__('Menu', 'tealforge') . '</p>';
-    echo '<h2 class="tf-myaccount-nav-heading__title">' . esc_html__('Mon espace', 'tealforge') . '</h2>';
-    echo '</div>';
-}
-
-add_action('woocommerce_before_account_navigation', 'tealforge_woocommerce_before_account_navigation');
-
 function tealforge_woocommerce_before_customer_login_form(): void
 {
     echo '<div class="tf-account-login-note">';
     echo '<p class="tf-account-login-note__eyebrow">' . esc_html__('Accès client', 'tealforge') . '</p>';
-    echo '<p class="tf-account-login-note__text">' . esc_html__('Utilisez votre email de commande pour accéder à votre espace personnel.', 'tealforge') . '</p>';
+    echo '<p class="tf-account-login-note__text">' . esc_html__('Connectez-vous avec les identifiants de votre compte. Un achat en tant qu’invité ne crée pas automatiquement de compte : retrouvez les informations de cet achat dans votre email de commande.', 'tealforge') . '</p>';
     echo '</div>';
 }
 
@@ -129,18 +156,73 @@ add_action('woocommerce_before_customer_login_form', 'tealforge_woocommerce_befo
 
 function tealforge_woocommerce_account_dashboard_intro(): void
 {
-    echo '<div class="tf-myaccount-dashboard-intro">';
-    echo '<p class="tf-myaccount-dashboard-intro__eyebrow">' . esc_html__('Votre espace', 'tealforge') . '</p>';
-    echo '<h2 class="tf-myaccount-dashboard-intro__title">' . esc_html__('Vos recharges en un coup d’œil', 'tealforge') . '</h2>';
-    echo '<p class="tf-myaccount-dashboard-intro__text">' . esc_html__('Consultez vos commandes et gardez vos coordonnées à jour.', 'tealforge') . '</p>';
-    echo '<div class="tf-myaccount-dashboard-intro__actions">';
-    echo '<a class="button" href="' . esc_url(wc_get_account_endpoint_url('orders')) . '">' . esc_html__('Voir mes commandes', 'tealforge') . '</a>';
-    echo '<a class="button button--secondary" href="' . esc_url(wc_get_account_endpoint_url('edit-account')) . '">' . esc_html__('Modifier mes informations', 'tealforge') . '</a>';
-    echo '</div>';
-    echo '</div>';
+    if (! is_user_logged_in()) {
+        return;
+    }
+
+    $customer_id = get_current_user_id();
+    $orders = wc_get_orders([
+        'customer_id' => $customer_id,
+        'limit' => 3,
+        'status' => array_keys(wc_get_order_statuses()),
+        'orderby' => 'date',
+        'order' => 'DESC',
+    ]);
+    $recent_orders = [];
+
+    foreach ($orders as $order) {
+        if ($order->get_customer_id() !== $customer_id || ! current_user_can('view_order', $order->get_id())) {
+            continue;
+        }
+
+        $date = $order->get_date_created();
+        $recent_orders[] = [
+            'number' => $order->get_order_number(),
+            'date' => $date ? wc_format_datetime($date) : '',
+            'datetime' => $date ? $date->date(DATE_ATOM) : '',
+            'status' => wc_get_order_status_name($order->get_status()),
+            'total' => wp_kses_post($order->get_formatted_order_total()),
+            'url' => $order->get_view_order_url(),
+        ];
+    }
+
+    Timber\Timber::render('components/account-dashboard.twig', [
+        'orders' => $recent_orders,
+        'orders_url' => wc_get_account_endpoint_url('orders'),
+        'recharges_url' => home_url('/#recharges'),
+    ]);
 }
 
 add_action('woocommerce_account_dashboard', 'tealforge_woocommerce_account_dashboard_intro', 1);
+
+function tealforge_woocommerce_verification_link_class(string $message): string
+{
+    if (! str_contains($message, 'wc_send_verification')) {
+        return $message;
+    }
+
+    $processor = new WP_HTML_Tag_Processor($message);
+    while ($processor->next_tag('A')) {
+        $href = $processor->get_attribute('href');
+        if (! is_string($href)) {
+            continue;
+        }
+
+        $query = wp_parse_url($href, PHP_URL_QUERY);
+        if (! is_string($query)) {
+            continue;
+        }
+
+        parse_str($query, $params);
+        if (($params['wc_send_verification'] ?? null) === '1') {
+            $processor->add_class('tf-account-verify-link');
+        }
+    }
+
+    return $processor->get_updated_html();
+}
+
+add_filter('woocommerce_add_notice', 'tealforge_woocommerce_verification_link_class');
 
 function tealforge_woocommerce_gettext(string $translation, string $text, string $domain): string
 {
@@ -153,6 +235,9 @@ function tealforge_woocommerce_gettext(string $translation, string $text, string
     }
 
     return match ($text) {
+        'Confirm email address' => __('Envoyer un mail', 'tealforge'),
+        'Confirm your email address to check for past orders and link them to your account.' => __('Confirmez votre adresse e-mail pour retrouver vos anciens achats et les associer à votre compte.', 'tealforge'),
+        'A confirmation link has been sent to your email address. Please check your inbox.' => __('Votre lien de confirmation a été envoyé par e-mail. Ouvrez le message pour confirmer votre adresse. Pensez aussi à vérifier vos courriers indésirables.', 'tealforge'),
         'Log in' => __('Connexion', 'tealforge'),
         'Login' => __('Connexion', 'tealforge'),
         'Remember me' => __('Se souvenir de moi', 'tealforge'),

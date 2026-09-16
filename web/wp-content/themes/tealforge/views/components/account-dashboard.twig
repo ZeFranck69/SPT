@@ -1,0 +1,22 @@
+<section class="tf-account-orders" aria-labelledby="tf-account-orders-title">
+    <h2 id="tf-account-orders-title">Vos dernières commandes</h2>
+    {% if orders %}
+        <p class="tf-account-orders__intro">Consultez le statut et le détail de vos derniers achats.</p>
+        <ul class="tf-account-orders__list">
+            {% for order in orders %}
+                <li class="tf-account-orders__item">
+                    <div>
+                        <a class="tf-account-orders__link" href="{{ function('esc_url', order.url) }}">Commande n° {{ order.number|e }}</a>
+                        {% if order.date %}<time datetime="{{ order.datetime|e('html_attr') }}">{{ order.date|e }}</time>{% endif %}
+                    </div>
+                    <span class="tf-account-orders__status">{{ order.status|e }}</span>
+                    <span class="tf-account-orders__total">{{ order.total|raw }}</span>
+                </li>
+            {% endfor %}
+        </ul>
+        <a class="button" href="{{ function('esc_url', orders_url) }}">Toutes mes commandes</a>
+    {% else %}
+        <p class="tf-account-orders__intro">Aucune commande n’est encore associée à votre compte.</p>
+        <a class="button" href="{{ function('esc_url', recharges_url) }}">Découvrir les recharges</a>
+    {% endif %}
+</section>

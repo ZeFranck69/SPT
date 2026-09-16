@@ -1,13 +1,13 @@
 {% extends 'layouts/base.twig' %}
 
 {% block content %}
-    <section class="tf-woo-page tf-account-page{{ spt_account.is_logged_in ? ' tf-account-page--authenticated' : ' tf-account-page--guest' }}">
+    <section class="tf-woo-page tf-account-page tf-purchase-page{{ spt_account.is_logged_in ? ' tf-account-page--authenticated' : ' tf-account-page--guest' }}">
         <div class="tf-woo-page__inner">
             {% set account_heading = {
                 icon: 'user-round',
-                eyebrow: spt_account.is_logged_in ? 'Espace client' : 'Connexion sécurisée',
+                eyebrow: is_registration ? 'Bienvenue chez SPT' : (spt_account.is_logged_in ? 'Espace client' : 'Connexion sécurisée'),
                 title: spt_account.is_logged_in and spt_account.display_name ? 'Bonjour ' ~ spt_account.display_name : post.title,
-                text: spt_account.is_logged_in ? 'Retrouvez vos commandes et gérez vos informations personnelles.' : 'Connectez-vous pour consulter vos commandes et retrouver vos achats SPT.'
+                text: is_registration ? 'Créez votre espace personnel pour suivre vos prochaines commandes.' : (spt_account.is_logged_in ? 'Retrouvez vos commandes et gérez vos informations personnelles.' : 'Connectez-vous pour consulter vos commandes et retrouver vos achats SPT.')
             } %}
             {% include 'components/inner-page-heading.twig' with { heading: account_heading } only %}
 
@@ -19,6 +19,17 @@
                 {% else %}
                     <p class="tf-account-card__empty">
                         Le contenu WooCommerce de l'espace client sera affiché ici.
+                    </p>
+                {% endif %}
+                {% if not spt_account.is_logged_in %}
+                    <p class="tf-account-access-link">
+                        {% if is_registration %}
+                            Déjà un compte ?<br>
+                            <a href="{{ function('esc_url', spt_links.account) }}">Se connecter</a>
+                        {% else %}
+                            Pas encore de compte ?<br>
+                            <a href="{{ function('esc_url', function('home_url', '/creer-un-compte/')) }}">Créer un compte</a>
+                        {% endif %}
                     </p>
                 {% endif %}
             </div>
