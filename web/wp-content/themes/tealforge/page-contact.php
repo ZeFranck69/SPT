@@ -7,9 +7,9 @@ defined('ABSPATH') || exit;
 $context = tealforge_get_context();
 $context['post'] = Timber\Timber::get_post();
 
-$contact_email = function_exists('get_field') ? trim((string) get_field('contact_email', 'option')) : '';
-$contact_address = function_exists('get_field') ? trim((string) get_field('contact_address', 'option')) : '';
-$contact_hours = function_exists('get_field') ? trim((string) get_field('contact_hours', 'option')) : '';
+$contact_email = trim((string) ($context['spt_contact']['email'] ?? ''));
+$contact_address = trim((string) ($context['spt_contact']['address'] ?? ''));
+$contact_hours = trim((string) ($context['spt_contact']['hours'] ?? ''));
 
 $contact_email = $contact_email !== '' ? $contact_email : 'support@spt.wf';
 $contact_address = $contact_address !== '' ? $contact_address : 'Wallis et Futuna';

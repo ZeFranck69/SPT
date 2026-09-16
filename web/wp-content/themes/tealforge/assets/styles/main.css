@@ -4,17 +4,6 @@
 @import './sections/header.css';
 @import './sections/footer.css';
 @import './sections/inner-pages.css';
-@import './sections/recharge-hero.css';
-@import './sections/recharge-products.css';
-@import './sections/home-notices.css';
-@import './sections/recharge-offers.css';
-@import './sections/recharge-papito.css';
-@import './sections/recharge-neti.css';
-@import './sections/recharge-families.css';
-@import './sections/recharge-steps.css';
-@import './sections/recharge-faq.css';
-@import './sections/recharge-cta.css';
-@import './sections/reassurance.css';
 @import './sections/text-content.css';
 
 :root {

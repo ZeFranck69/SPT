@@ -1,0 +1,83 @@
+.wpforms-container .wpforms-field input:not([type="checkbox"]):not([type="radio"]):not([type="hidden"]),
+.wpforms-container .wpforms-field select,
+.wpforms-container .wpforms-field textarea {
+  width: 100%;
+  border: 1px solid var(--tf-color-border);
+  border-radius: 8px;
+  padding: 13px 14px;
+  background: var(--tf-color-surface);
+  color: var(--tf-color-text);
+  font: inherit;
+}
+
+.wpforms-container button[type="submit"],
+.wpforms-container .wpforms-submit {
+  display: inline-flex;
+  min-height: 48px;
+  align-items: center;
+  justify-content: center;
+  border: 0;
+  border-radius: 8px;
+  padding: 0 22px;
+  background: var(--tf-color-coral);
+  color: #ffffff;
+  font-weight: 800;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.wpforms-container {
+  margin: 0;
+}
+
+.wpforms-container .wpforms-field {
+  padding-block: 0 16px;
+}
+
+.wpforms-container .wpforms-field-label {
+  color: var(--tf-color-muted);
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.wpforms-container .wpforms-required-label {
+  color: var(--tf-color-coral);
+}
+
+.wpforms-container .wpforms-submit-container {
+  padding-top: 4px;
+}
+
+.wpforms-container button[type="submit"]:hover {
+  opacity: 0.9;
+}
+
+.wpforms-container button[type="submit"]:hover,
+.wpforms-container button[type="submit"]:focus-visible {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 24px rgb(26 26 26 / 15%) !important;
+}
+
+.wpforms-container button[type="submit"] {
+  border: 0 !important;
+  border-radius: 8px !important;
+  background: var(--tf-color-primary) !important;
+  color: #ffffff !important;
+  box-shadow: none !important;
+  transition:
+    transform 0.28s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.28s ease,
+    opacity 0.28s ease,
+    background-color 0.28s ease,
+    border-color 0.28s ease,
+    color 0.28s ease !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .wpforms-container button[type="submit"] {
+    transition: none !important;
+    transform: none !important;
+  }
+}
