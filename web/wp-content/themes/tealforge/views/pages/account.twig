@@ -1,7 +1,7 @@
 {% extends 'layouts/base.twig' %}
 
 {% block content %}
-    <section class="tf-woo-page tf-account-page{{ spt_account.is_logged_in ? ' tf-account-page--authenticated' : ' tf-account-page--guest' }}">
+    <section class="tf-woo-page tf-account-page tf-purchase-page{{ spt_account.is_logged_in ? ' tf-account-page--authenticated' : ' tf-account-page--guest' }}">
         <div class="tf-woo-page__inner">
             {% set account_heading = {
                 icon: 'user-round',

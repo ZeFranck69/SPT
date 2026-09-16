@@ -6,12 +6,12 @@
     {% endif %}
 
     {% if heading.eyebrow %}
-        <p class="tf-inner-page-heading__eyebrow">{{ heading.eyebrow }}</p>
+        <p class="tf-inner-page-heading__eyebrow">{{ heading.eyebrow|e }}</p>
     {% endif %}
 
-    <h1 class="tf-inner-page-heading__title">{{ heading.title }}</h1>
+    <h1 class="tf-inner-page-heading__title">{{ heading.title|e }}</h1>
 
     {% if heading.text %}
-        <p class="tf-inner-page-heading__text">{{ heading.text }}</p>
+        <p class="tf-inner-page-heading__text">{{ heading.text|e }}</p>
     {% endif %}
 </header>
