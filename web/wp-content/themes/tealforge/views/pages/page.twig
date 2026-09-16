@@ -9,12 +9,24 @@
             } only %}
         {% endfor %}
     {% else %}
-        <article class="tf-content tf-inner-page">
+        <article class="tf-content tf-inner-page{{ is_purchase_page ? ' tf-purchase-page' : '' }}">
             <div class="tf-content__inner">
                 {% include 'components/inner-page-heading.twig' with { heading: heading } only %}
 
+                {% if cart_return_url %}
+                    <a class="tf-purchase-return" href="{{ function('esc_url', cart_return_url) }}">
+                        <span aria-hidden="true">←</span> Continuer mes achats
+                    </a>
+                {% endif %}
+
+                {% if checkout_cart_url %}
+                    <a class="tf-purchase-return" href="{{ function('esc_url', checkout_cart_url) }}">
+                        <span aria-hidden="true">←</span> Modifier mon panier
+                    </a>
+                {% endif %}
+
                 {% if post.content %}
-                    <div class="tf-wysiwyg tf-inner-page__content">
+                    <div class="tf-wysiwyg tf-inner-page__content"{% if cart_return_url or checkout_cart_url %} data-tf-purchase-review{% endif %}{% if checkout_cart_url %} data-tf-checkout-contact{% endif %}>
                         {{ post.content }}
                     </div>
                 {% endif %}

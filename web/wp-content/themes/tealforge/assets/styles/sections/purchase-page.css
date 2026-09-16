@@ -1,0 +1,76 @@
+.tf-purchase-return {
+  display: inline-flex;
+  min-height: 44px;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 16px;
+  color: var(--tf-color-text);
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.tf-purchase-return:hover {
+  color: var(--tf-color-primary);
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
+.tf-purchase-return:focus-visible {
+  outline: 2px solid var(--tf-color-primary);
+  outline-offset: 4px;
+}
+
+.tf-purchase-page {
+  position: relative;
+  isolation: isolate;
+  background:
+    radial-gradient(ellipse at 100% 0, rgb(10 122 152 / 8%), transparent 55%),
+    linear-gradient(180deg, #f1f6fc, #ffffff 480px, #f5f8fb);
+}
+
+.tf-purchase-page::after {
+  content: '';
+  position: absolute;
+  z-index: -1;
+  pointer-events: none;
+}
+
+.tf-purchase-page::after {
+  right: 0;
+  bottom: 12px;
+  width: min(260px, 24%);
+  height: 260px;
+  background: url('../../images/motif-feuille-turquoise.svg') right bottom / contain no-repeat;
+  opacity: 0.12;
+}
+
+.tf-purchase-page .tf-inner-page-heading {
+  position: relative;
+  isolation: isolate;
+}
+
+.tf-purchase-page .tf-inner-page-heading::after {
+  content: '';
+  position: absolute;
+  z-index: -1;
+  top: 0;
+  right: 2%;
+  width: min(150px, 18%);
+  height: 150px;
+  background: url('../../images/motif-hibiscus-turquoise.svg') center / contain no-repeat;
+  opacity: 0.1;
+  pointer-events: none;
+}
+
+@media (max-width: 680px) {
+  .tf-purchase-page::after {
+    height: 140px;
+    opacity: 0.08;
+  }
+
+  .tf-purchase-page .tf-inner-page-heading::after {
+    right: 0;
+    height: 80px;
+    opacity: 0.07;
+  }
+}
