@@ -131,9 +131,15 @@ const initScrollReveals = () => {
   elements.forEach((element) => observer.observe(element));
 };
 
-document.addEventListener('DOMContentLoaded', () => {
+const initApp = () => {
   initMobileNavigation();
   initHistoryBackButtons();
   initQuantityControls();
   initScrollReveals();
-});
+};
+
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', initApp, { once: true });
+} else {
+  initApp();
+}

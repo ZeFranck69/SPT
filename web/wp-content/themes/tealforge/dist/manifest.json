@@ -11,8 +11,14 @@
     "file": "assets/motif-tapa-turquoise.CAHBL8I9.svg",
     "src": "assets/images/motif-tapa-turquoise.svg"
   },
+  "assets/scripts/cart.js": {
+    "file": "assets/scripts/cart.DyX05jvZ.js",
+    "name": "cart",
+    "src": "assets/scripts/cart.js",
+    "isEntry": true
+  },
   "assets/scripts/main.js": {
-    "file": "assets/scripts/main.CjNjVtuF.js",
+    "file": "assets/scripts/main.D5FCP7_A.js",
     "name": "main",
     "src": "assets/scripts/main.js",
     "isEntry": true,

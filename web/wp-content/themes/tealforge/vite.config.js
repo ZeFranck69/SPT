@@ -10,6 +10,7 @@ export default defineConfig({
     rollupOptions: {
       input: [
         'assets/scripts/main.js',
+        'assets/scripts/cart.js',
         ...['woocommerce', 'product-detail', 'cart', 'checkout', 'account', 'contact', 'error-page', 'animations']
           .map((name) => `assets/styles/sections/${name}.css`),
       ],

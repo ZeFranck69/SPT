@@ -91,6 +91,45 @@ function tealforge_enqueue_assets(): void
 
 add_action('wp_enqueue_scripts', 'tealforge_enqueue_assets');
 
+function tealforge_module_script_tag(string $tag, string $handle): string
+{
+    if (! in_array($handle, ['tealforge-main', 'tealforge-cart'], true)) {
+        return $tag;
+    }
+
+    $processor = new WP_HTML_Tag_Processor($tag);
+
+    if ($processor->next_tag('SCRIPT')) {
+        $processor->set_attribute('type', 'module');
+    }
+
+    return $processor->get_updated_html();
+}
+
+add_filter('script_loader_tag', 'tealforge_module_script_tag', 10, 2);
+
+function tealforge_enqueue_cart_script(): void
+{
+    if (! function_exists('is_cart')
+        || (! is_cart() && ! (is_checkout() && ! is_wc_endpoint_url()))) {
+        return;
+    }
+
+    $source = 'assets/scripts/cart.js';
+    $entry = tealforge_get_asset_manifest()[$source] ?? null;
+    $compiled = is_array($entry) && ! empty($entry['file']);
+
+    wp_enqueue_script(
+        'tealforge-cart',
+        get_theme_file_uri($compiled ? 'dist/' . $entry['file'] : $source),
+        ['wp-data', 'wp-i18n', 'wc-blocks-data-store', 'wc-blocks-checkout'],
+        $compiled ? null : wp_get_theme()->get('Version'),
+        true
+    );
+}
+
+add_action('wp_enqueue_scripts', 'tealforge_enqueue_cart_script', 20);
+
 function tealforge_enqueue_page_styles(): void
 {
     $post = get_queried_object();
