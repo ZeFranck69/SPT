@@ -14,6 +14,10 @@
 !.env.example
 deploy.local.env
 
+# DDEV generated files. Keep the shared project configuration.
+.ddev/*
+!.ddev/config.yaml
+
 # WordPress local/runtime files
 web/wp-config.php
 web/wp-content/uploads/
@@ -36,8 +40,7 @@ web/*.php
 web/license.txt
 web/readme.html
 
-# DDEV local certificates and private keys
-.ddev/traefik/certs/
+# Private keys
 *.key
 
 # Dependencies

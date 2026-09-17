@@ -23,9 +23,9 @@ Ne jamais mettre ici :
 - Type de site : WordPress / WooCommerce
 - Date de démarrage : 2026-08-25
 
-Le site doit proposer un parcours d'achat simple : choix d'une ou plusieurs
-recharges, paiement par carte bancaire, puis réception automatique des codes par
-email et par SMS après validation effective du paiement.
+Le site propose un parcours d'achat simple : choix d'une ou plusieurs recharges,
+paiement par carte bancaire, puis délivrance des codes après validation effective
+du paiement. L'email est intégré ; l'envoi par SMS reste à développer.
 
 ## 2. Environnements
 
@@ -44,7 +44,7 @@ email et par SMS après validation effective du paiement.
 
 ## 3. Stack retenue
 
-- WordPress : dernière version stable installée via WP-CLI
+- WordPress : installé localement ; version à vérifier selon l'environnement
 - PHP : 8.3
 - MySQL/MariaDB : MySQL 8.0 via DDEV
 - DDEV : oui
@@ -57,36 +57,28 @@ email et par SMS après validation effective du paiement.
 
 ## 4. Plugins WordPress
 
-Plugins de socle :
+Plugins utilisés pour le site : ACF Pro, WPForms, WooCommerce, WPvivid,
+WP-Optimize et AIOS. Vérifier leur activation et leurs versions sur chaque
+environnement après restauration.
 
-- [ ] ACF Pro
-- [ ] WPForms
-- [ ] WPvivid
-- [ ] WP-Optimize
-- [ ] Plugin de maintenance : à définir
-- [ ] All-In-One Security / AIOS
+Plugins spécifiques :
 
-Plugins spécifiques projet :
+- `mobupay-for-woocommerce` : paiement CB par redirection vers la page hébergée
+  MobuPay, retour sur le site et confirmation par webhook signé. Version 1.2.0
+  présente localement ; mode test utilisé, configuration production à valider.
+- `spt-vouchers` : imports, stocks, réservation, attribution après paiement,
+  emails et affichage/impression des codes dans Mon compte. Version 0.4.2
+  présente localement ; version de production à vérifier.
 
-- [ ] WooCommerce
-- [ ] Plugin custom projet `spt-vouchers` à prévoir pour la gestion métier des
-      vouchers, des imports CSV, des stocks, de l'attribution après paiement et
-      des notifications.
-
-Licences ou comptes à demander au client, sans stocker de secret ici :
-
-- ACF Pro : à confirmer
-- WPForms : à confirmer
-- WooCommerce : module de paiement à confirmer
-- Paiement CB : ePayNC ou MobuPay à confirmer
-- SMS : prestataire externe à confirmer
-- SMTP : fournisseur à confirmer
+Les plugins custom sont distribués séparément du dépôt du site. Restaurer la
+BDD ne restaure pas leurs fichiers ni leurs versions. La source du plugin
+`spt-vouchers` et ses archives sont dans `/Users/francoissarin/plugins-tealforge/`.
 
 Réglages sensibles à documenter :
 
 - Cache : WP-Optimize actif uniquement après validation visuelle.
 - Sécurité : AIOS activé progressivement, REST API et admin-ajax à vérifier.
-- SMTP : fournisseur à confirmer avec le client, secrets hors dépôt.
+- SMTP : fournisseur et configuration d'envoi réel à confirmer, secrets hors dépôt.
 - Sauvegardes : WPvivid avant toute restauration ou déploiement.
 
 ## 5. Conventions projet
@@ -94,11 +86,11 @@ Réglages sensibles à documenter :
 - Slug du thème : tealforge
 - Préfixe CSS : tf-
 - Champs ACF principaux : page_sections
-- Menus WordPress : primary, footer
+- Menus WordPress : `primary`, `footer_recharges`, `footer_help` ; `footer`
+  reste enregistré comme ancien emplacement.
 - CPT prévus : aucun dans le thème à ce stade
 - Taxonomies prévues : aucune dans le thème à ce stade
-- Templates spécifiques : intégrations WooCommerce à prévoir selon la charte
-  graphique client.
+- Templates spécifiques : intégration WooCommerce et sections ACF du thème.
 - Plugin métier : `spt-vouchers`, afin de garder la logique vouchers hors du
   thème.
 
@@ -113,7 +105,8 @@ Le catalogue contient 6 produits simples :
 - Neti Data 3 000 F
 - Neti Data 5 000 F
 
-Devise prévue : F CFP / XPF, à confirmer dans la configuration WooCommerce.
+Devise du parcours : F CFP / XPF ; vérifier le réglage WooCommerce sur chaque
+environnement.
 
 Chaque produit doit être associé à un type de recharge utilisé par le système de
 vouchers. Le stock affiché doit refléter les vouchers disponibles.
@@ -123,28 +116,24 @@ vouchers. Le stock affiché doit refléter les vouchers disponibles.
 Les vouchers sont des codes uniques préexistants, fournis régulièrement par SPT
 sous forme de fichiers CSV.
 
-Fonctionnalités attendues :
+Fonctionnalités intégrées au plugin :
 
 - import CSV depuis le back-office ;
 - association de chaque voucher à une gamme, un montant et un produit
   WooCommerce ;
 - contrôle des doublons à l'import ;
-- statuts minimum : disponible, réservé ou en cours d'attribution, vendu ;
+- statuts : disponible, réservé, vendu, expiré ;
 - suivi du stock disponible par recharge ;
 - attribution automatique du nombre exact de vouchers après paiement validé ;
 - rattachement des vouchers attribués à la commande WooCommerce ;
 - conservation de la date d'attribution ou de vente ;
 - garantie qu'un voucher ne puisse être attribué qu'une seule fois.
 
-Volume d'import estimé : environ 2 à 4 imports par mois.
-
-Format CSV à confirmer. Champs attendus d'après les notes projet :
-
-- type de recharge ;
-- gamme concernée ;
-- montant ;
-- code voucher ;
-- référence de lot éventuelle.
+Format CSV confirmé : sans en-tête, un voucher par ligne, avec séparateur `|` :
+`numero_voucher|numero_serie|date_expiration` (date `AAAA-MM-JJ`). L'interface
+propose un champ d'import pour chacun des six produits ; l'association au type
+de recharge vient du champ choisi, pas d'une colonne CSV. Les réimports cumulent
+le stock avec contrôle des doublons. Volume estimé : 2 à 4 imports par mois.
 
 ## 8. Parcours client
 
@@ -153,26 +142,27 @@ Le client doit pouvoir :
 1. choisir une recharge parmi les six produits ;
 2. ajouter une ou plusieurs recharges au panier ;
 3. renseigner ses informations, notamment email et numéro de téléphone ;
-4. payer sa commande par carte bancaire ;
-5. recevoir les codes uniquement après validation effective du paiement ;
-6. recevoir les mêmes codes par email et par SMS.
+4. payer sa commande via MobuPay (page de paiement externe) ;
+5. recevoir les codes par email après validation effective du paiement ;
+6. retrouver et imprimer ses codes dans Mon compte > Commandes > Voir, si la
+   commande payée lui appartient et que les vouchers sont vendus.
 
 L'achat de plusieurs produits ou de plusieurs quantités dans une même commande
 doit attribuer un code distinct pour chaque recharge achetée.
 
-Achat invité : à confirmer.
+Achat invité : règle à décider. Un invité ne peut pas consulter ses codes dans
+Mon compte ; l'email doit donc rester un moyen de récupération fiable.
 
 ## 9. Notifications
 
-Après attribution des vouchers :
+Après attribution des vouchers, l'email transactionnel WooCommerce affiche les
+codes avec le récapitulatif. Les tests locaux passent par Mailpit ; l'envoi réel
+via SMTP reste à configurer et à valider.
 
-- l'email transactionnel WooCommerce doit contenir le récapitulatif de commande
-  et les codes achetés ;
-- un SMS doit envoyer les mêmes codes au numéro renseigné au checkout ;
-- le résultat de l'envoi SMS doit être conservé si possible pour faciliter le
-  support.
-
-Les modèles d'email et de SMS devront être validés avant mise en ligne.
+L'envoi des mêmes codes par SMS n'est pas encore intégré. SMSLink est le
+prestataire envisagé : confirmer la couverture Wallis-et-Futuna, le contrat et
+l'API avant développement. Prévoir une trace du résultat de chaque envoi pour
+le support. Faire valider les modèles d'email et de SMS.
 
 ## 10. Back-office
 
@@ -199,12 +189,13 @@ intervention technique :
   - Sens recommandé : dev/prod -> local après création d'un environnement de
     référence.
   - Outil : WPvivid
-  - Dernier import local : aucun
-- Médias : à intégrer selon la charte graphique et les contenus fournis.
+  - Dernier import local : reprise depuis la production signalée par François ;
+    date et périmètre non vérifiés dans le dépôt.
+- Médias : données d'environnement, non versionnées.
 - Données externes/API :
   - fichiers CSV de vouchers fournis par SPT ;
-  - API SMS du prestataire externe à confirmer ;
-  - module de paiement ePayNC ou MobuPay à confirmer.
+  - API SMSLink et desserte Wallis-et-Futuna à confirmer ;
+  - MobuPay en mode test, passage en production à valider.
 - Données de test nécessaires :
   - les 6 produits WooCommerce ;
   - un lot de vouchers de test par produit ;
@@ -219,7 +210,8 @@ intervention technique :
 - Accès SSH : à définir
 - Chemin WordPress distant : à définir
 - Variables locales de déploiement : `deploy.local.env`
-- Commande ou méthode de déploiement : à définir selon l'hébergement retenu
+- Déploiement du thème : procédure projet à valider selon l'hébergement ; les
+  plugins custom doivent être mis à jour séparément.
 - Points de vérification après déploiement : manifest.json, CSS/JS 200,
   WooCommerce, ACF JSON, caches, imports vouchers, attribution après paiement,
   emails, SMS.
@@ -238,6 +230,8 @@ intervention technique :
 ## 14. Points de vigilance
 
 - Aucun voucher ne doit être envoyé avant validation effective du paiement.
+- Le retour du navigateur depuis MobuPay ne vaut pas confirmation du paiement ;
+  vérifier le webhook signé et les statuts WooCommerce.
 - Aucun voucher ne doit pouvoir être attribué deux fois.
 - Une commande ne doit pas être considérée comme correctement traitée si le stock
   de vouchers est insuffisant.
@@ -264,3 +258,7 @@ intervention technique :
   de sécuriser les imports, les stocks et l'attribution après paiement.
 - 2026-08-25 : les points 13 et 14 de la note projet PDF ne sont pas repris comme
   source de contenu dans ce fichier.
+- 2026-09-17 : MobuPay est le moyen de paiement testé ; sa page de paiement
+  hébergée implique une redirection. Le plugin vouchers 0.4.2 est présent en
+  local avec email et affichage/impression dans Mon compte. SMSLink et l'envoi
+  SMTP réel restent à valider ; la version du plugin en production est inconnue.

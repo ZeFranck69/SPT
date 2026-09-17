@@ -203,8 +203,11 @@ ddev npm --prefix /var/www/html/web/wp-content/themes/tealforge install
 bin/build
 ```
 
-Les plugins tiers ne sont pas recuperes par Git. Les installer manuellement depuis
-le back-office WordPress, selon le projet.
+Les plugins ne sont pas recuperes par Git. Installer les plugins tiers depuis le
+back-office et restaurer separement les plugins custom et leur version depuis
+leurs archives validees. Pour SPT, verifier notamment `spt-vouchers` : restaurer
+la base de donnees ne met pas ses fichiers a jour. Voir `PROJECT.md` pour les
+versions attendues et les points restant a confirmer.
 
 ### 4. Importer la base et les medias
 
@@ -245,6 +248,21 @@ Le dossier `dist/` doit rester versionne pour le deploiement.
 `bin/ci-check` verifie Git, PHP, les dependances npm, le build Vite et le
 manifest. Il peut utiliser DDEV si les outils ne sont pas installes sur le poste.
 
+### Recuperer les modifications d'un collegue
+
+Depuis le depot du projet courant, verifier les modifications locales avant de
+recuperer la branche distante :
+
+```bash
+git status
+git pull --ff-only origin main
+```
+
+Ne pas remplacer le remote du projet par celui du boilerplate. Si le pull
+contient des modifications CSS ou JavaScript, reconstruire les assets avec
+`bin/build`. Traiter les modifications locales avant le pull ; ne pas forcer un
+push en cas de conflit.
+
 ## Versionner les modifications
 
 Workflow Git classique :
@@ -265,6 +283,9 @@ bin/push
 
 Avant un commit, verifier que les sauvegardes, exports SQL, secrets, uploads,
 `node_modules`, `vendor` et `deploy.local.env` ne sont pas inclus.
+`bin/commit` utilise `git add -A` : il inclut donc tous les fichiers modifies
+encore suivis par Git, meme ceux que `.gitignore` exclut pour les nouveaux clones.
+Verifier `git status --short` avant de le lancer.
 
 Pour faire evoluer un projet avec une nouvelle version du boilerplate, consulter
 [docs/evolution-boilerplate.md](docs/evolution-boilerplate.md). Ne jamais fusionner
